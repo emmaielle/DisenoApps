@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-HOla estamos erert probando
-
-sdalfkjsd;lkj
-=======
-dsfdsf
-HOla edstamos erer
->>>>>>> 3d95a0da429c8c88832e83936ce770c2e8192632
