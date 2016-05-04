@@ -7,6 +7,7 @@ package vista;
 
 import controlador.ControladorLogin;
 import controlador.VistaLogin;
+import javax.swing.JOptionPane;
 import modelo.Jugador;
 import modelo.Mesa;
 
@@ -91,7 +92,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
 
     @Override
     public void errorLogin() {
-        estado.setText("Login incorrecto");
+        JOptionPane.showMessageDialog(this, "Login incorrecto");
     }
 
     @Override
@@ -107,7 +108,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
 
     @Override
     public void errorYaLogueado() {
-        estado.setText("Usuario actualmente logueado");
+        JOptionPane.showMessageDialog(this, "Usuario actualmente logueado");
     }
     
     
