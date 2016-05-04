@@ -5,30 +5,26 @@
  */
 package vista;
 
-import controlador.ControladorListaMesas;
+import controlador.ControladorListaMesas2;
 import controlador.VistaListaMesas;
 import java.util.ArrayList;
-import modelo.JuegoRuleta;
 import modelo.Jugador;
+import modelo.JugadorRuleta;
 import modelo.Mesa;
 
 /**
  *
- * @author Moi
+ * @author Euge
  */
-public class VistaListaMesasV1 extends javax.swing.JFrame implements VistaListaMesas{
+public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaListaMesas {
 
-    private ControladorListaMesas controlador;
-    private final Jugador jugador;
     /**
-     * Creates new form VistaListaMesasV1
-     * @param juego
+     * Creates new form VistaListaMesasV2
      */
-    public VistaListaMesasV1(JuegoRuleta juego, Jugador j) {
-        controlador = new ControladorListaMesas(this);
-        controlador.listarMesas();
+    private ControladorListaMesas2 controlador;
+    public VistaListaMesasV1(Jugador j) {
         initComponents();
-        jugador = j;
+        controlador = new ControladorListaMesas2(j,this);
     }
 
     /**
@@ -47,10 +43,9 @@ public class VistaListaMesasV1 extends javax.swing.JFrame implements VistaListaM
         txt_newTableName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btn_createTable = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Ruleta");
         getContentPane().setLayout(null);
 
         jLabel2.setText("Mesas activas:");
@@ -81,35 +76,35 @@ public class VistaListaMesasV1 extends javax.swing.JFrame implements VistaListaM
         getContentPane().add(jLabel3);
         jLabel3.setBounds(10, 220, 41, 14);
 
-        btn_createTable.setText("Crear");
-        btn_createTable.addActionListener(new java.awt.event.ActionListener() {
+        btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_createTableActionPerformed(evt);
+                btnCrearActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_createTable);
-        btn_createTable.setBounds(189, 211, 70, 32);
+        getContentPane().add(btnCrear);
+        btnCrear.setBounds(210, 220, 73, 23);
 
-        setBounds(0, 0, 461, 339);
+        setBounds(0, 0, 483, 339);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_createTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createTableActionPerformed
-        controlador.crearMesa(txt_newTableName.getText(), jugador);
-    }//GEN-LAST:event_btn_createTableActionPerformed
 
     private void btn_enterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enterTableActionPerformed
         // TODO add your handling code here:
+        ingresarMesa();
     }//GEN-LAST:event_btn_enterTableActionPerformed
 
-  //run???
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        // TODO add your handling code here:
+        controlador.crearMesa(txt_newTableName.getText());
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
     
-    @Override
-    public void mostrar(ArrayList<Mesa> lista) {
-        if (lista.size() > 0) list_mesas.setListData(lista.toArray());
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_createTable;
+    private javax.swing.JButton btnCrear;
     private javax.swing.JButton btn_enterTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -119,18 +114,29 @@ public class VistaListaMesasV1 extends javax.swing.JFrame implements VistaListaM
     private javax.swing.JTextField txt_newTableName;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public void mostrar(ArrayList<Mesa> lista) {
+        list_mesas.setListData(lista.toArray());
+    }
 
 
     @Override
     public void cerrarJuego() {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void abrirMesa(Mesa m, Jugador j) {
         dispose();
-        new VistaMesaV1(jugador, m).setVisible(true);
+        new VistaMesaV1(m, j).setVisible(true);
     }
 
-    
+    private void ingresarMesa() {
+        if (list_mesas.getModel().getSize() > 0 && list_mesas.getSelectedValue() != null)
+            controlador.unirseAmesa(list_mesas.getSelectedValue().toString());
+//v.euge
+//        Mesa m = (Mesa)list_mesas.getSelectedValue();
+//        if (m!=null)
+//            controlador.unirseAmesa(m);
+    }
 }

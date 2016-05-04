@@ -7,31 +7,28 @@ package vista;
 
 import controlador.ControladorMesa;
 import controlador.VistaMesa;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import modelo.Jugador;
 import modelo.Mesa;
 
 /**
  *
- * @author Moi
+ * @author Euge
  */
-public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, ActionListener {
-
-    private Jugador jugador;
-    private Mesa mesa;
+public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
+    
     private ControladorMesa controlador;
+    private Mesa mesa;
+    private Jugador jugador;
     /**
-     * Creates new form VistaMesaV1
+     * Creates new form VistaMesaV2
      */
-    public VistaMesaV1(Jugador j, Mesa m) {
-        
+    public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
 
         controlador = new ControladorMesa(this);
         mesa = m;
-        jugador = j;
-        lbl_tableName.setText("Mesa " + m.getNombre());
+        jugador = j;        
+        lbl.setText("Mesa " + m.getNombre());
 
     }
 
@@ -44,41 +41,38 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_tableName = new javax.swing.JLabel();
+        lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lbl_tableName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_tableName.setText("Mesa");
+        lbl.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(lbl_tableName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(114, Short.MAX_VALUE)
+                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lbl_tableName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(lbl)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbl_tableName;
+    private javax.swing.JLabel lbl;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

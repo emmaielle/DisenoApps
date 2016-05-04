@@ -17,7 +17,7 @@ import modelo.JugadorRuleta;
  *
  * @author Moi
  */
-public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
+public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     
     /**
@@ -132,13 +132,14 @@ public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
         //dispose();
         
         if(juego.getClass()==JuegoRuleta.class){
-            new VistaListaMesasV2(this, rootPaneCheckingEnabled, jugador).setVisible(true);
-            
+
+            new VistaListaMesasV1(jugador).setVisible(true);
+
         }
         else
             System.out.println("vista.VistaJuegosV1.abrirJuego()");
         
     }
-
+    
 
 }
