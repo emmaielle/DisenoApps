@@ -19,10 +19,10 @@ import vista.VistaJuegosV1;
 public class ControladorJuegos implements Observer {
 
     private Modelo modelo = Modelo.getInstancia();
-    private VistaJuegosV1 vista;
+    private VistaJuegos vista;
     private Jugador jugador;
     
-    public ControladorJuegos(VistaJuegosV1 v ,Jugador j){
+    public ControladorJuegos(VistaJuegos v ,Jugador j){
         this.vista = v;
         modelo.addObserver(this);
         jugador = j;
