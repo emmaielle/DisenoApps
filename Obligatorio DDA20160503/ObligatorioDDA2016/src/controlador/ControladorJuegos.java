@@ -46,4 +46,10 @@ public class ControladorJuegos implements Observer {
         //if (juego != null) // supongo que esto deberia ir para controlar
             vista.abrirJuego(juego);
     }
+    
+    public void logout(){
+        modelo.logout(jugador);
+        vista.dispose();
+        
+    }
 }
