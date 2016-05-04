@@ -18,7 +18,7 @@ public class ControladorLogin implements Observer{
     
     private Modelo modelo = Modelo.getInstancia();
     private VistaLogin vista;
-
+    
     public ControladorLogin(VistaLogin vista) {
         this.vista = vista;
         modelo.addObserver(this);
@@ -27,16 +27,16 @@ public class ControladorLogin implements Observer{
     }
     public void login(String usr,String pass){
         if (!modelo.isLogged(usr)){
-            Jugador j = modelo.login(usr, pass);
-            if(j==null){
-                vista.errorLogin();
-            }else{
-                vista.ingresarJugador(j);
-            }
+        Jugador j = modelo.login(usr, pass);
+        if(j==null){
+            vista.errorLogin();
+        }else{
+            vista.ingresarJugador(j);
         }
+    }
         else vista.errorYaLogueado();
     }
-
+    
     @Override
     public void update(Observable o, Object evento) {
         if(evento.equals(Modelo.EVENTO_LOGIN)){

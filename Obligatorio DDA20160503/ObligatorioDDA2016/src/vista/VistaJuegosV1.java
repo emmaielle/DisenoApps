@@ -46,13 +46,14 @@ public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        drp_listaJuegos = new javax.swing.JComboBox<>();
+        drp_listaJuegos = new javax.swing.JComboBox<String>();
         label1 = new java.awt.Label();
         btn_chooseGame = new javax.swing.JButton();
         btn_statsCasino = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        btnLogout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("JUEGOS");
         getContentPane().setLayout(null);
 
@@ -83,6 +84,15 @@ public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(10, 139, 380, 10);
 
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLogout);
+        btnLogout.setBounds(90, 240, 210, 30);
+
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -94,6 +104,11 @@ public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_statsCasinoActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        controlador.logout();
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -104,6 +119,7 @@ public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btn_chooseGame;
     private javax.swing.JButton btn_statsCasino;
     private javax.swing.JComboBox<String> drp_listaJuegos;
@@ -113,10 +129,11 @@ public class VistaJuegosV1 extends javax.swing.JFrame implements VistaJuegos {
 
     @Override
     public void abrirJuego(Object juego) {
-        dispose();
+        //dispose();
         
         if(juego.getClass()==JuegoRuleta.class){
             new VistaListaMesasV2(this, rootPaneCheckingEnabled, jugador).setVisible(true);
+            
         }
         else
             System.out.println("vista.VistaJuegosV1.abrirJuego()");

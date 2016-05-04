@@ -65,7 +65,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
             }
         });
         getContentPane().add(btnIngresarCasino);
-        btnIngresarCasino.setBounds(238, 95, 121, 23);
+        btnIngresarCasino.setBounds(250, 70, 121, 23);
         getContentPane().add(estado);
         estado.setBounds(66, 204, 211, 18);
 
@@ -109,6 +109,6 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
     public void errorYaLogueado() {
         estado.setText("Usuario actualmente logueado");
     }
-
+    
     
 }
