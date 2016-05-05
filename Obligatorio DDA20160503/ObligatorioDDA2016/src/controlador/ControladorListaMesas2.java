@@ -42,8 +42,7 @@ public class ControladorListaMesas2 implements Observer {
     
     public void crearMesa(String nom){
         Mesa m = new Mesa(nom);
-        JugadorRuleta jr = new JugadorRuleta(Color.yellow, null, jugador);
-        if (modelo.agregarMesaRuleta(m, jr)) vista.abrirMesa(m,jr);
+        if (modelo.agregarMesaRuleta(m, jugador)) vista.abrirMesa(m,jugador);
         // else
     }
     
@@ -60,8 +59,8 @@ public class ControladorListaMesas2 implements Observer {
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
         JugadorRuleta jr = new JugadorRuleta(Color.yellow, null, jugador);
         if (m != null) {
-            modelo.unirJugadorAMesaRuleta(jr, m);
-            vista.abrirMesa(m, jr);
+            modelo.unirJugadorAMesaRuleta(jugador, m);
+            vista.abrirMesa(m, jugador);
         }
         //else
     }

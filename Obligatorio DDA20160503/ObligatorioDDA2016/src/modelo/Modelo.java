@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -68,10 +69,11 @@ public class Modelo extends Observable {
 
     }
 
-    public boolean agregarMesaRuleta(Mesa m, JugadorRuleta j) {
+    public boolean agregarMesaRuleta(Mesa m, Jugador j) {
         if (m.validar()){
-            j.setMesa(m); // mesa en jugador
-            m.agregarJugador(j); // lista de jugadores en mesa
+            JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
+            jr.setMesa(m); // mesa en jugador
+            m.agregarJugador(jr); // lista de jugadores en mesa
 
             casino.getRuleta().agregar(m); // lista de mesas en ruleta
             
@@ -86,9 +88,10 @@ public class Modelo extends Observable {
         return casino.getRuleta().buscarMesa(nom);
     }
 
-    public boolean unirJugadorAMesaRuleta(JugadorRuleta j, Mesa m){
-        m.agregarJugador(j);
-        j.setMesa(m);
+    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m){
+        JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
+        m.agregarJugador(jr);
+        jr.setMesa(m);
         // make robust
         return true;
     }

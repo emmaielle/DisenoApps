@@ -6,7 +6,7 @@
 package controlador;
 
 import java.util.ArrayList;
-import modelo.JugadorRuleta;
+import modelo.Jugador;
 import modelo.Mesa;
 
 /**
@@ -16,6 +16,6 @@ import modelo.Mesa;
 public interface VistaListaMesas {
     public void mostrar(ArrayList<Mesa> lista);
     public void cerrarJuego();
-    public void abrirMesa(Mesa m,JugadorRuleta jr);
+    public void abrirMesa(Mesa m,Jugador jr);
 
 }

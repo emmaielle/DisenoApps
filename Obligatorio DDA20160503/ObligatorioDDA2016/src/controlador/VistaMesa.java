@@ -5,10 +5,13 @@
  */
 package controlador;
 
+import java.util.ArrayList;
+import modelo.Numero;
+
 /**
  *
  * @author Moi
  */
 public interface VistaMesa {
-    
+    public void mostrar(ArrayList<Numero> numeros);
 }

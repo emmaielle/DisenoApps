@@ -59,7 +59,6 @@ public class SistemaJugador {
         return false;
     }
     
-    
     public void logout(Jugador j) {
         logueados.remove(j);
         Modelo.getInstancia().avisar(Modelo.EVENTO_LOGUEADOS);
@@ -68,7 +67,5 @@ public class SistemaJugador {
     public boolean isHabilitado() {
         return habilitado;
     }
-
-
     
 }
