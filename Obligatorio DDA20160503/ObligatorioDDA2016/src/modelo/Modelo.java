@@ -68,10 +68,10 @@ public class Modelo extends Observable {
 
     }
 
-    public boolean agregarMesaRuleta(Mesa m, Jugador j) {
+    public boolean agregarMesaRuleta(Mesa m, JugadorRuleta j) {
         if (m.validar()){
-            ((JugadorRuleta)j.getRol()).setMesa(m); // mesa en jugador
-            m.agregarJugador((JugadorRuleta)j.getRol()); // lista de jugadores en mesa
+            j.setMesa(m); // mesa en jugador
+            m.agregarJugador(j); // lista de jugadores en mesa
 
             casino.getRuleta().agregar(m); // lista de mesas en ruleta
             
@@ -81,24 +81,14 @@ public class Modelo extends Observable {
         else return false;
     }
     
-    //otro metodo que no esta bueno
-    public void setPlayerRole(Jugador jugador, Object juego) {
-        switch(juego.toString()){
-            case "Ruleta": 
-                jugador.setRol(new JugadorRuleta("Ruleta"));
-                break;
-            default:
-                jugador.setRol(null);
-        }
-        
-    }
+
     public Mesa buscarMesaRuleta(String nom){
         return casino.getRuleta().buscarMesa(nom);
     }
 
-    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m){
-        m.agregarJugador((JugadorRuleta)j.getRol());
-        ((JugadorRuleta)j.getRol()).setMesa(m);
+    public boolean unirJugadorAMesaRuleta(JugadorRuleta j, Mesa m){
+        m.agregarJugador(j);
+        j.setMesa(m);
         // make robust
         return true;
     }

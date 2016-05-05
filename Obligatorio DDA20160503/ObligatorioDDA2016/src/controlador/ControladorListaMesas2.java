@@ -6,6 +6,7 @@
 package controlador;
 
 
+import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 import modelo.Jugador;
@@ -41,8 +42,8 @@ public class ControladorListaMesas2 implements Observer {
     
     public void crearMesa(String nom){
         Mesa m = new Mesa(nom);
-        
-        if (modelo.agregarMesaRuleta(m, jugador)) vista.abrirMesa(m,jugador);
+        JugadorRuleta jr = new JugadorRuleta(Color.yellow, null, jugador);
+        if (modelo.agregarMesaRuleta(m, jr)) vista.abrirMesa(m,jr);
         // else
     }
     
@@ -57,9 +58,10 @@ public class ControladorListaMesas2 implements Observer {
         // change to something more robust. Si el nombre tiene una coma, ya no sirve.
         String nameMesa = nom.split(",")[0];
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
+        JugadorRuleta jr = new JugadorRuleta(Color.yellow, null, jugador);
         if (m != null) {
-            modelo.unirJugadorAMesaRuleta(jugador, m);
-            vista.abrirMesa(m, jugador);
+            modelo.unirJugadorAMesaRuleta(jr, m);
+            vista.abrirMesa(m, jr);
         }
         //else
     }

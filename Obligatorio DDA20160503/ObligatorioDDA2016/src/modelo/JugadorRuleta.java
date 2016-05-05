@@ -11,13 +11,25 @@ import java.awt.Color;
  *
  * @author Euge
  */
-public class JugadorRuleta extends TipoJugador{
+public class JugadorRuleta {
     private Color color;
     private Mesa mesa;
-    public JugadorRuleta(String nombre) {
-        super(nombre);
-        
+    private Jugador jugador;
+
+    public JugadorRuleta(Color color, Mesa mesa, Jugador jugador) {
+        this.color = color;
+        this.mesa = mesa;
+        this.jugador = jugador;
     }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+    
 
     public Mesa getMesa() {
         return mesa;

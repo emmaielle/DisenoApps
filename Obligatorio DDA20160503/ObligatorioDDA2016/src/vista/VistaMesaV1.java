@@ -7,7 +7,7 @@ package vista;
 
 import controlador.ControladorMesa;
 import controlador.VistaMesa;
-import modelo.Jugador;
+import modelo.JugadorRuleta;
 import modelo.Mesa;
 
 /**
@@ -18,11 +18,11 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
     
     private ControladorMesa controlador;
     private Mesa mesa;
-    private Jugador jugador;
+    private JugadorRuleta jugador;
     /**
      * Creates new form VistaMesaV2
      */
-    public VistaMesaV1(Mesa m, Jugador j) {
+    public VistaMesaV1(Mesa m, JugadorRuleta j) {
         initComponents();
 
         controlador = new ControladorMesa(this);
