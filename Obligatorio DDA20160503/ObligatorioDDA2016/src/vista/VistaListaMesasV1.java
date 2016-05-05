@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.ControladorListaMesas2;
+import controlador.ControladorListaMesas;
 import controlador.VistaListaMesas;
 import java.util.ArrayList;
 import modelo.Jugador;
@@ -21,10 +21,10 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     /**
      * Creates new form VistaListaMesasV2
      */
-    private ControladorListaMesas2 controlador;
+    private ControladorListaMesas controlador;
     public VistaListaMesasV1(Jugador j) {
         initComponents();
-        controlador = new ControladorListaMesas2(j,this);
+        controlador = new ControladorListaMesas(j,this);
     }
 
     /**

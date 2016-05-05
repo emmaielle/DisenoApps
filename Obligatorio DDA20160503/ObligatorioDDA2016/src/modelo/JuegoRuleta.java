@@ -32,7 +32,6 @@ public class JuegoRuleta {
     }
     public void agregar(Mesa m){
         listadoMesas.add(m);
-        // no se si los avisos pueden ir en cualquier clase o en los sistemas solo, sino se cambia esto
         Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
     }
     public void cerrarMesa(Mesa m){

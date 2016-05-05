@@ -5,10 +5,13 @@
  */
 package controlador;
 
-import java.util.ArrayList;
+
+import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 import modelo.Jugador;
+import modelo.JugadorRuleta;
+
 import modelo.Mesa;
 import modelo.Modelo;
 
@@ -16,18 +19,19 @@ import modelo.Modelo;
  *
  * @author Euge
  */
-public class ControladorListaMesas implements Observer{
-    
+public class ControladorListaMesas implements Observer {
     private Modelo modelo = Modelo.getInstancia();
-    //private Mesa mesa;
+    private Jugador jugador;
     private VistaListaMesas vista;
 
-    public ControladorListaMesas(VistaListaMesas vista) {
+    public ControladorListaMesas(Jugador j, VistaListaMesas vista) {
         modelo.addObserver(this);
-        //this.mesa = mesa;
+        this.jugador= j;
         this.vista = vista;
         listarMesas();
     }
+
+    
     
     @Override
     public void update(Observable o, Object evento) {
@@ -36,23 +40,33 @@ public class ControladorListaMesas implements Observer{
         }
     }
     
-    public void crearMesa(String nom, Jugador j){
+    public void crearMesa(String nom){
         Mesa m = new Mesa(nom);
-//        if (modelo.agregarMesaRuleta(m, j)) vista.abrirMesa(m,j);
+        if (modelo.agregarMesaRuleta(m, jugador)) vista.abrirMesa(m,jugador);
         // else
     }
     
-    public void unirseAmesa(String nom, Jugador j){
-        
+    // version eugenia
+////    public void unirseAmesa(Mesa m){
+////        m.agregarJugador((JugadorRuleta)jugador.getRol());
+////        vista.abrirMesa(m, jugador);
+////
+////    }
+    
+     public void unirseAmesa(String nom){
+        // change to something more robust. Si el nombre tiene una coma, ya no sirve.
+        String nameMesa = nom.split(",")[0];
+        Mesa m = modelo.buscarMesaRuleta(nameMesa);
+        JugadorRuleta jr = new JugadorRuleta(Color.yellow, null, jugador);
+        if (m != null) {
+            modelo.unirJugadorAMesaRuleta(jugador, m);
+            vista.abrirMesa(m, jugador);
+        }
+        //else
     }
     
     public void listarMesas(){
-        ArrayList<Mesa> lista = modelo.listarMesasRuleta();
-        ArrayList<String> listaString = new ArrayList();
-        for (Mesa m: lista){
-            listaString.add(m.toString());
-        }
-        //vista.mostrar(listaString);
+        vista.mostrar(modelo.listarMesasRuleta());
     }
-    
+   
 }

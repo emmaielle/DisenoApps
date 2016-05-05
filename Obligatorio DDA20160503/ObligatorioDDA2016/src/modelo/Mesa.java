@@ -76,14 +76,15 @@ public class Mesa {
         this.nombre = nombre;
     }
 
-    public void agregarJugador(JugadorRuleta j){
+    public boolean agregarJugador(JugadorRuleta j){
         if(jugadoresMesa.size()<4){
             jugadoresMesa.add(j);
                 //ver si esto queda aca o donde?
-        Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
+            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
+            return true;
         }
         else{
-            //Hacerlo boolean y ver donde avisamos
+            return false;
         }
     }
     public void quitarJugador(JugadorRuleta j){
