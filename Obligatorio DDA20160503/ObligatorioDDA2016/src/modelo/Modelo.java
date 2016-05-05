@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -70,8 +71,9 @@ public class Modelo extends Observable {
 
     public boolean agregarMesaRuleta(Mesa m, Jugador j) {
         if (m.validar()){
-            ((JugadorRuleta)j.getRol()).setMesa(m); // mesa en jugador
-            m.agregarJugador((JugadorRuleta)j.getRol()); // lista de jugadores en mesa
+            JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
+            jr.setMesa(m); // mesa en jugador
+            m.agregarJugador(jr); // lista de jugadores en mesa
 
             casino.getRuleta().agregar(m); // lista de mesas en ruleta
             
@@ -81,24 +83,15 @@ public class Modelo extends Observable {
         else return false;
     }
     
-    //otro metodo que no esta bueno
-    public void setPlayerRole(Jugador jugador, Object juego) {
-        switch(juego.toString()){
-            case "Ruleta": 
-                jugador.setRol(new JugadorRuleta("Ruleta"));
-                break;
-            default:
-                jugador.setRol(null);
-        }
-        
-    }
+
     public Mesa buscarMesaRuleta(String nom){
         return casino.getRuleta().buscarMesa(nom);
     }
 
     public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m){
-        m.agregarJugador((JugadorRuleta)j.getRol());
-        ((JugadorRuleta)j.getRol()).setMesa(m);
+        JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
+        m.agregarJugador(jr);
+        jr.setMesa(m);
         // make robust
         return true;
     }

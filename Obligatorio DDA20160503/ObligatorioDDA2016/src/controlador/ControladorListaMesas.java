@@ -38,7 +38,7 @@ public class ControladorListaMesas implements Observer{
     
     public void crearMesa(String nom, Jugador j){
         Mesa m = new Mesa(nom);
-        if (modelo.agregarMesaRuleta(m, j)) vista.abrirMesa(m,j);
+//        if (modelo.agregarMesaRuleta(m, j)) vista.abrirMesa(m,j);
         // else
     }
     

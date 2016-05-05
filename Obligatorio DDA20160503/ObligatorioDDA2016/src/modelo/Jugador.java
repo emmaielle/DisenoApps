@@ -15,7 +15,7 @@ public class Jugador {
     private String nombre;
     private String password;
     private String nombreCompleto;
-    private TipoJugador rol;
+    
     
     public Jugador(String nombre, String password, String nombreCompleto) {
         this.nombre = nombre;
@@ -23,16 +23,6 @@ public class Jugador {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public void setRol(TipoJugador rol) {
-        this.rol = rol;
-    }
-
-    public TipoJugador getRol() {
-        return rol;
-    }
-    
-    
-    
     public String getNombre() {
         return nombre;
     }

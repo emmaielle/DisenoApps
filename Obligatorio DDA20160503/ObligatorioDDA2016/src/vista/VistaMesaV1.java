@@ -7,8 +7,12 @@ package vista;
 
 import controlador.ControladorMesa;
 import controlador.VistaMesa;
+import java.util.ArrayList;
+import javax.swing.JSplitPane;
 import modelo.Jugador;
+import modelo.JugadorRuleta;
 import modelo.Mesa;
+import modelo.Numero;
 
 /**
  *
@@ -17,19 +21,13 @@ import modelo.Mesa;
 public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
     
     private ControladorMesa controlador;
-    private Mesa mesa;
-    private Jugador jugador;
-    /**
-     * Creates new form VistaMesaV2
-     */
+    private JSplitPane split = new JSplitPane();
+
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
-
-        controlador = new ControladorMesa(this);
-        mesa = m;
-        jugador = j;        
+        JugadorRuleta jr= m.buscarJugador(j);
+        controlador = new ControladorMesa(this,m,jr);
         lbl.setText("Mesa " + m.getNombre());
-
     }
 
     /**
@@ -44,27 +42,13 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
         lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         lbl.setText("jLabel1");
+        getContentPane().add(lbl);
+        lbl.setBounds(114, 38, 178, 14);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
-                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(lbl)
-                .addContainerGap(248, Short.MAX_VALUE))
-        );
-
-        pack();
+        setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -75,4 +59,9 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrar(ArrayList<Numero> numeros) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
