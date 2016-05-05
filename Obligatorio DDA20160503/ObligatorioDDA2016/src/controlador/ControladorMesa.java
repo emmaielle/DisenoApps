@@ -7,6 +7,9 @@ package controlador;
 
 import java.util.Observable;
 import java.util.Observer;
+import modelo.JugadorRuleta;
+import modelo.Mesa;
+import modelo.Modelo;
 
 /**
  *
@@ -14,11 +17,15 @@ import java.util.Observer;
  */
 public class ControladorMesa implements Observer {
 
+    private Modelo modelo = Modelo.getInstancia();
     private VistaMesa vista;
+    private JugadorRuleta jugador;
+    private Mesa mesa;
     
-    public ControladorMesa(VistaMesa vista){
+    public ControladorMesa(VistaMesa vista,Mesa m, JugadorRuleta jr){
         this.vista = vista;
-        
+        this.jugador = jr;
+        this.mesa= m;
     }
     
     
