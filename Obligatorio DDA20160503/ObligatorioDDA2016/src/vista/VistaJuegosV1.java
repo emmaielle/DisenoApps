@@ -106,6 +106,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        dispose();
         controlador.logout();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
