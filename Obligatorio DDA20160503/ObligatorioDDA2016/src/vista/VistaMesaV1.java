@@ -7,6 +7,8 @@ package vista;
 
 import controlador.ControladorMesa;
 import controlador.VistaMesa;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JSplitPane;
 import modelo.Jugador;
@@ -18,13 +20,17 @@ import modelo.Numero;
  *
  * @author Euge
  */
-public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
+public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, ActionListener{
     
     private ControladorMesa controlador;
     private JSplitPane split = new JSplitPane();
 
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
+        split.setTopComponent(new PanelDatos());
+        split.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        split.setDividerLocation(150);
+        setContentPane(split);
         JugadorRuleta jr= m.buscarJugador(j);
         controlador = new ControladorMesa(this,m,jr);
         lbl.setText("Mesa " + m.getNombre());
@@ -78,7 +84,15 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
 
     @Override
     public void mostrar(ArrayList<Numero> numeros) {
+        split.setBottomComponent(new PanelTablero(numeros,this));
+        validate();
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        BotonRuleta origen = (BotonRuleta) e.getSource();
+        Numero n = origen.getNumero();
+        controlador.marcar(n);
     }
 
     @Override

@@ -12,6 +12,7 @@ import modelo.Jugador;
 import modelo.JugadorRuleta;
 import modelo.Mesa;
 import modelo.Modelo;
+import modelo.Numero;
 
 /**
  *
@@ -28,17 +29,24 @@ public class ControladorMesa implements Observer {
         this.vista = vista;
         this.jugador = jr;
         this.mesa= m;
+        //se puede hacer esto? Llamar directo al getNumeros??
+        modelo.addObserver(this);
+        vista.mostrar(mesa.getNumeros());
+
     }
     
-    
+    public void marcar(Numero n){
+        n.marcar(jugador);
+    }
     @Override
     public void update(Observable o, Object arg) {
-
+        if(arg.equals(Modelo.EVENTO_TABLERO)){
+            vista.mostrar(mesa.getNumeros());
+        }
     }
 
     public void cargarJugadoresActivos() {
         ArrayList<Jugador> j = modelo.getJugadoresPorMesa(mesa);
         vista.mostrarJugadores(j);
     }
-    
 }
