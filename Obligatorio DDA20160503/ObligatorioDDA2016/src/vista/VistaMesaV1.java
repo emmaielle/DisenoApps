@@ -24,10 +24,13 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     
     private ControladorMesa controlador;
     private JSplitPane split = new JSplitPane();
+    private PanelTablero bottom;
+    private PanelDatos top;
 
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
-        split.setTopComponent(new PanelDatos());
+        top = new PanelDatos();
+        split.setTopComponent(top);
         split.setOrientation(JSplitPane.VERTICAL_SPLIT);
         split.setDividerLocation(150);
         setContentPane(split);
@@ -47,9 +50,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     private void initComponents() {
 
         lbl = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaJugadores = new javax.swing.JList();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -57,15 +57,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         lbl.setText("jLabel1");
         getContentPane().add(lbl);
         lbl.setBounds(114, 38, 178, 14);
-
-        jScrollPane1.setViewportView(listaJugadores);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(250, 40, 130, 130);
-
-        jLabel1.setText("Jugadores en Mesa");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(250, 20, 100, 14);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
@@ -76,15 +67,13 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl;
-    private javax.swing.JList listaJugadores;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void mostrar(ArrayList<Numero> numeros) {
-        split.setBottomComponent(new PanelTablero(numeros,this));
+        bottom = new PanelTablero(numeros,this);
+        split.setBottomComponent(bottom);
         validate();
     }
 
@@ -97,12 +86,9 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
 
     @Override
     public void mostrarJugadores(ArrayList<JugadorRuleta> j) {
-        ArrayList<String> listado = new ArrayList<>();
-        for (JugadorRuleta ju : j){
-            listado.add(ju.getJugador().getNombreCompleto());
-        }
-        listaJugadores.setListData(listado.toArray());
+        top.mostrarJugadores(j);
     }
+   
 
 
 }

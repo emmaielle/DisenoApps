@@ -46,7 +46,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        drp_listaJuegos = new javax.swing.JComboBox<String>();
+        drp_listaJuegos = new javax.swing.JComboBox<>();
         label1 = new java.awt.Label();
         btn_chooseGame = new javax.swing.JButton();
         btn_statsCasino = new javax.swing.JButton();

@@ -5,6 +5,9 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import modelo.JugadorRuleta;
+
 /**
  *
  * @author Euge
@@ -28,16 +31,39 @@ public class PanelDatos extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaJugadores = new javax.swing.JList();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(null);
 
         jLabel1.setText("Mostrar Estadisticas");
         add(jLabel1);
-        jLabel1.setBounds(170, 110, 180, 14);
+        jLabel1.setBounds(110, 10, 180, 14);
+
+        jScrollPane1.setViewportView(listaJugadores);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(330, 40, 220, 80);
+
+        jLabel2.setText("Jugadores en mesa:");
+        add(jLabel2);
+        jLabel2.setBounds(330, 10, 140, 14);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList listaJugadores;
     // End of variables declaration//GEN-END:variables
+    
+    public void mostrarJugadores(ArrayList<JugadorRuleta> j) {
+       ArrayList<String> listado = new ArrayList<>();
+       for (JugadorRuleta ju : j){
+           listado.add(ju.getJugador().getNombreCompleto());
+       }
+       listaJugadores.setListData(listado.toArray());
+    }
 }
