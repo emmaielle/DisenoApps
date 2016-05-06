@@ -17,12 +17,25 @@ public class Mesa {
     private ArrayList<JugadorRuleta> jugadoresMesa = new ArrayList();
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
+    private ArrayList<Color> coloresDisp;
 
     public Mesa(String nombre) {
         this.nombre = nombre;
         initMesa();
     }
 
+    public ArrayList<Color> getColoresDisp() {
+        return coloresDisp;
+    }
+
+    public void setColoresDisp() {
+        coloresDisp =  new ArrayList<>();
+        coloresDisp.add(Color.BLUE);
+        coloresDisp.add(Color.YELLOW);
+        coloresDisp.add(Color.ORANGE);
+        coloresDisp.add(Color.PINK);
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -112,6 +125,23 @@ public class Mesa {
         numeros.add(new Numero(35, Color.black));
         numeros.add(new Numero(36, Color.red));
         //Ronda ronda = new Ronda();
+    }
+
+
+    public Color getUnusedColour() {
+        Color sirve = null;
+        ArrayList<Color> temp = new ArrayList<>();
+        for (JugadorRuleta jr : jugadoresMesa){
+            temp.add(jr.getColor());
+        }
+        for (Color c : coloresDisp){
+            if (temp.contains(c)) {
+                sirve = c;
+                break;
+            }
+        }
+        return sirve;
+
     }
         
 }

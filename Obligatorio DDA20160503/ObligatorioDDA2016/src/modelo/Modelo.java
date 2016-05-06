@@ -101,6 +101,10 @@ public class Modelo extends Observable {
         return m.getJugadoresMesa();
     }
 
+    public Color asignarColorRuleta(Mesa m) {
+        return m.getUnusedColour();
+    }
+
 
   
     

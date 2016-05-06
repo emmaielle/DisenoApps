@@ -57,7 +57,7 @@ public class ControladorListaMesas implements Observer {
         // change to something more robust. Si el nombre tiene una coma, ya no sirve.
         String nameMesa = nom.split(",")[0];
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
-        JugadorRuleta jr = new JugadorRuleta(Color.yellow, null, jugador);
+        JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
         if (m != null) {
             modelo.unirJugadorAMesaRuleta(jugador, m);
             vista.abrirMesa(m, jugador);
@@ -67,6 +67,10 @@ public class ControladorListaMesas implements Observer {
     
     public void listarMesas(){
         vista.mostrar(modelo.listarMesasRuleta());
+    }
+    
+    private Color asignarColor(Mesa m){
+        return modelo.asignarColorRuleta(m);
     }
    
 }
