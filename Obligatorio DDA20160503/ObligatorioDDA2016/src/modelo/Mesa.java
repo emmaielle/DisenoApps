@@ -20,44 +20,7 @@ public class Mesa {
 
     public Mesa(String nombre) {
         this.nombre = nombre;
-        numeros.add(new Numero(0, Color.green));
-        numeros.add(new Numero(1, Color.red));
-        numeros.add(new Numero(2, Color.black));
-        numeros.add(new Numero(3, Color.red));
-        numeros.add(new Numero(4, Color.black));
-        numeros.add(new Numero(5, Color.red));
-        numeros.add(new Numero(6, Color.black));
-        numeros.add(new Numero(7, Color.red));
-        numeros.add(new Numero(8, Color.black));
-        numeros.add(new Numero(9, Color.red));
-        numeros.add(new Numero(10, Color.black));
-        numeros.add(new Numero(11, Color.black));
-        numeros.add(new Numero(12, Color.red));
-        numeros.add(new Numero(13, Color.black));
-        numeros.add(new Numero(14, Color.red));
-        numeros.add(new Numero(15, Color.black));
-        numeros.add(new Numero(16, Color.red));
-        numeros.add(new Numero(17, Color.black));
-        numeros.add(new Numero(18, Color.red));
-        numeros.add(new Numero(19, Color.red));
-        numeros.add(new Numero(20, Color.black));
-        numeros.add(new Numero(21, Color.red));
-        numeros.add(new Numero(22, Color.black));
-        numeros.add(new Numero(23, Color.red));
-        numeros.add(new Numero(24, Color.black));
-        numeros.add(new Numero(25, Color.red));
-        numeros.add(new Numero(26, Color.black));
-        numeros.add(new Numero(27, Color.red));
-        numeros.add(new Numero(28, Color.black));
-        numeros.add(new Numero(29, Color.black));
-        numeros.add(new Numero(30, Color.red));
-        numeros.add(new Numero(31, Color.black));
-        numeros.add(new Numero(32, Color.red));
-        numeros.add(new Numero(33, Color.black));
-        numeros.add(new Numero(34, Color.red));
-        numeros.add(new Numero(35, Color.black));
-        numeros.add(new Numero(36, Color.red));
-
+        initMesa();
     }
 
     public String getNombre() {
@@ -109,6 +72,45 @@ public class Mesa {
         return null;
     }
 
-
-    
+    public void initMesa(){
+        numeros.add(new Numero(0, Color.green));
+        numeros.add(new Numero(1, Color.red));
+        numeros.add(new Numero(2, Color.black));
+        numeros.add(new Numero(3, Color.red));
+        numeros.add(new Numero(4, Color.black));
+        numeros.add(new Numero(5, Color.red));
+        numeros.add(new Numero(6, Color.black));
+        numeros.add(new Numero(7, Color.red));
+        numeros.add(new Numero(8, Color.black));
+        numeros.add(new Numero(9, Color.red));
+        numeros.add(new Numero(10, Color.black));
+        numeros.add(new Numero(11, Color.black));
+        numeros.add(new Numero(12, Color.red));
+        numeros.add(new Numero(13, Color.black));
+        numeros.add(new Numero(14, Color.red));
+        numeros.add(new Numero(15, Color.black));
+        numeros.add(new Numero(16, Color.red));
+        numeros.add(new Numero(17, Color.black));
+        numeros.add(new Numero(18, Color.red));
+        numeros.add(new Numero(19, Color.red));
+        numeros.add(new Numero(20, Color.black));
+        numeros.add(new Numero(21, Color.red));
+        numeros.add(new Numero(22, Color.black));
+        numeros.add(new Numero(23, Color.red));
+        numeros.add(new Numero(24, Color.black));
+        numeros.add(new Numero(25, Color.red));
+        numeros.add(new Numero(26, Color.black));
+        numeros.add(new Numero(27, Color.red));
+        numeros.add(new Numero(28, Color.black));
+        numeros.add(new Numero(29, Color.black));
+        numeros.add(new Numero(30, Color.red));
+        numeros.add(new Numero(31, Color.black));
+        numeros.add(new Numero(32, Color.red));
+        numeros.add(new Numero(33, Color.black));
+        numeros.add(new Numero(34, Color.red));
+        numeros.add(new Numero(35, Color.black));
+        numeros.add(new Numero(36, Color.red));
+        //Ronda ronda = new Ronda();
+    }
+        
 }

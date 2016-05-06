@@ -21,6 +21,7 @@ public class Modelo extends Observable {
     public static final int EVENTO_LOGIN = 1;
     public static final int EVENTO_LOGUEADOS= 2;
     public static final int EVENTO_NUEVA_MESA = 3;
+    public static final int EVENTO_TABLERO = 4;
     
     
     private Modelo() {
