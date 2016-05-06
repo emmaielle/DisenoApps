@@ -46,6 +46,8 @@ public class Jugador {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
+    
+    // capaz que no?
     @Override
     public String toString(){
         return getNombreCompleto();

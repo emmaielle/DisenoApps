@@ -96,6 +96,10 @@ public class Modelo extends Observable {
         return true;
     }
 
+    public ArrayList<Jugador> getJugadoresPorMesa(Mesa m) {
+        return null;
+    }
+
 
   
     

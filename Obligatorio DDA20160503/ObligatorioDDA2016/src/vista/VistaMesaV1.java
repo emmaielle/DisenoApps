@@ -28,6 +28,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
         JugadorRuleta jr= m.buscarJugador(j);
         controlador = new ControladorMesa(this,m,jr);
         lbl.setText("Mesa " + m.getNombre());
+        controlador.cargarJugadoresActivos();
     }
 
     /**
@@ -40,6 +41,9 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
     private void initComponents() {
 
         lbl = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaJugadores = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -47,6 +51,15 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
         lbl.setText("jLabel1");
         getContentPane().add(lbl);
         lbl.setBounds(114, 38, 178, 14);
+
+        jScrollPane1.setViewportView(listaJugadores);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(250, 40, 130, 130);
+
+        jLabel1.setText("Jugadores en Mesa");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(250, 20, 100, 14);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
@@ -57,11 +70,25 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa{
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl;
+    private javax.swing.JList listaJugadores;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void mostrar(ArrayList<Numero> numeros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
+
+    @Override
+    public void mostrarJugadores(ArrayList<Jugador> j) {
+        ArrayList<String> listado = new ArrayList<>();
+        for (Jugador ju : j){
+            listado.add(ju.getNombreCompleto());
+        }
+        listaJugadores.setListData(listado.toArray());
+    }
+
+
 }

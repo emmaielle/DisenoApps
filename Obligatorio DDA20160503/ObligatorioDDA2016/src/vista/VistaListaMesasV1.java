@@ -116,7 +116,11 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
     @Override
     public void mostrar(ArrayList<Mesa> lista) {
-        list_mesas.setListData(lista.toArray());
+        ArrayList<String> listado = new ArrayList<>();
+        for (Mesa m : lista){
+            listado.add(formatear(m));
+        }
+        list_mesas.setListData(listado.toArray());
     }
 
 
@@ -138,5 +142,9 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 //        Mesa m = (Mesa)list_mesas.getSelectedValue();
 //        if (m!=null)
 //            controlador.unirseAmesa(m);
+    }
+
+    private String formatear(Mesa m) {
+        return m.getNombre() + ", " + m.getJugadoresMesa().size() + " jugador/es";
     }
 }

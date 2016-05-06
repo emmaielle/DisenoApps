@@ -96,6 +96,7 @@ public class Mesa {
         return true;
     }
 
+    // no non o
     @Override
     public String toString() {
         if (jugadoresMesa.size() == 1) return nombre + ", " + jugadoresMesa.size() + " jugador";

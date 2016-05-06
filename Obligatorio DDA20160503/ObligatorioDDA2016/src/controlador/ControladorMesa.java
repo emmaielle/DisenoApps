@@ -5,8 +5,10 @@
  */
 package controlador;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import modelo.Jugador;
 import modelo.JugadorRuleta;
 import modelo.Mesa;
 import modelo.Modelo;
@@ -31,7 +33,12 @@ public class ControladorMesa implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }
+
+    public void cargarJugadoresActivos() {
+        ArrayList<Jugador> j = modelo.getJugadoresPorMesa(mesa);
+        vista.mostrarJugadores(j);
     }
     
 }
