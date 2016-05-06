@@ -96,10 +96,10 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     }
 
     @Override
-    public void mostrarJugadores(ArrayList<Jugador> j) {
+    public void mostrarJugadores(ArrayList<JugadorRuleta> j) {
         ArrayList<String> listado = new ArrayList<>();
-        for (Jugador ju : j){
-            listado.add(ju.getNombreCompleto());
+        for (JugadorRuleta ju : j){
+            listado.add(ju.getJugador().getNombreCompleto());
         }
         listaJugadores.setListData(listado.toArray());
     }

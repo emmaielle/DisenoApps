@@ -46,7 +46,7 @@ public class ControladorMesa implements Observer {
     }
 
     public void cargarJugadoresActivos() {
-        ArrayList<Jugador> j = modelo.getJugadoresPorMesa(mesa);
+        ArrayList<JugadorRuleta> j = modelo.getJugadoresPorMesa(mesa);
         vista.mostrarJugadores(j);
     }
 }
