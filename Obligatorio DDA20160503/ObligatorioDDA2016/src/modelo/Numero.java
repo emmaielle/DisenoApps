@@ -14,6 +14,7 @@ import java.awt.Color;
 public class Numero {
     private int valor;
     private Color color;
+    private JugadorRuleta jugador;
 
     public Numero(int valor, Color color) {
         this.valor = valor;
@@ -34,6 +35,18 @@ public class Numero {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void marcar(JugadorRuleta j) {
+        if(jugador==null){
+            jugador = j;
+            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+        }
+        else if(j==jugador){
+            jugador = null;
+            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+
+        }
     }
     
     
