@@ -15,6 +15,7 @@ public class Jugador {
     private String nombre;
     private String password;
     private String nombreCompleto;
+    private boolean enJuego;
     
     
     public Jugador(String nombre, String password, String nombreCompleto) {
@@ -37,6 +38,15 @@ public class Jugador {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnJuego() {
+        return enJuego;
+    }
+
+    public void setEnJuego(boolean enJuego) {
+        this.enJuego = enJuego;
+        Modelo.getInstancia().avisar(Modelo.EVENTO_JUEGO_CERRADO);
     }
 
     public String getNombreCompleto() {

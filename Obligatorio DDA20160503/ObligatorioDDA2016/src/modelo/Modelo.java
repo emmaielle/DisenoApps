@@ -23,10 +23,8 @@ public class Modelo extends Observable {
     public static final int EVENTO_NUEVA_MESA = 3;
     public static final int EVENTO_TABLERO = 4;
     public static final int EVENTO_SORTEARNUMERO = 5;
-    public static final int EVENTO_NUEVOJUGADORMESARULETA = 6;
-
-
-    
+    public static final int EVENTO_NUEVO_JUGADOR_MESA_RULETA = 6;
+    public static final int EVENTO_JUEGO_CERRADO = 7;
     
     private Modelo() {
     }
@@ -96,7 +94,15 @@ public class Modelo extends Observable {
     }
 
     public int sortearNumero(Mesa m) {
-        return m.getUltimaRonda().sortearNroGanador();
+        return m.sortearNumeroGanador();
+    }
+
+    public void salirDeJuego(Jugador jugador) {
+        jugador.setEnJuego(false);
+    }
+
+    public int ultNumeroSorteado(Mesa m) {
+        return m.getNumeroGanador();
     }
 
 

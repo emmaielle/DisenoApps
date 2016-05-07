@@ -35,9 +35,10 @@ public class ControladorListaMesas implements Observer {
     
     @Override
     public void update(Observable o, Object evento) {
-        if (evento.equals(Modelo.EVENTO_NUEVA_MESA)){
+        if (evento.equals(Modelo.EVENTO_NUEVA_MESA) || evento.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
             listarMesas();
         }
+
     }
     
     public void crearMesa(String nom){
@@ -46,16 +47,8 @@ public class ControladorListaMesas implements Observer {
         // else
     }
     
-    // version eugenia
-////    public void unirseAmesa(Mesa m){
-////        m.agregarJugador((JugadorRuleta)jugador.getRol());
-////        vista.abrirMesa(m, jugador);
-////
-////    }
-    
      public void unirseAmesa(String nom){
         // change to something more robust. Si el nombre tiene una coma, ya no sirve.
-        
         String nameMesa = nom.split(",")[0];
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
         JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
@@ -72,6 +65,10 @@ public class ControladorListaMesas implements Observer {
     
     private Color asignarColor(Mesa m){
         return modelo.asignarColorRuleta(m);
+    }
+
+    public void salirDeJuego() {
+        modelo.salirDeJuego(jugador);
     }
    
 }

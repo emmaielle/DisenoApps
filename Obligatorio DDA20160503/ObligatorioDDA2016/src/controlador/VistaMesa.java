@@ -18,4 +18,5 @@ public interface VistaMesa {
     public void mostrar(ArrayList<Numero> numeros);
     public void mostrarJugadores(ArrayList<JugadorRuleta> jugadores);
     public void mostrarNumeroSorteado(int num);
+    public void salirDeMesa();
 }

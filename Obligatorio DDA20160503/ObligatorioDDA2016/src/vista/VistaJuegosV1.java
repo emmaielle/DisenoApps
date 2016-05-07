@@ -141,6 +141,13 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
             System.out.println("vista.VistaJuegosV1.abrirJuego()");
         
     }
+
+    @Override
+    public void habilitarIrAJuego(boolean habilitar) {
+        btn_chooseGame.setEnabled(habilitar);
+    }
+    
+    
     
 
 }

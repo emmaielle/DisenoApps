@@ -62,7 +62,7 @@ public class Mesa {
             jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
                 //ver si esto queda aca o donde?
-            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVOJUGADORMESARULETA);
+            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
             return true;
         }
         else{
@@ -131,7 +131,8 @@ public class Mesa {
         numeros.add(new Numero(34, Color.red));
         numeros.add(new Numero(35, Color.black));
         numeros.add(new Numero(36, Color.red));
-        //Ronda ronda = new Ronda();
+        Ronda ronda = new Ronda(getUltimaRonda() + 1);
+        rondas.add(ronda);
     }
 
 
@@ -151,12 +152,29 @@ public class Mesa {
 
     }
     
-    
-    public Ronda getUltimaRonda(){
+    public int getUltimaRonda(){
+        int ultRonda = 0;
         for (Ronda r : rondas){
-            if (Ronda.getUltRonda() == r.getNroRonda()) return r;
+            if (r.getNroRonda() > ultRonda) ultRonda = r.getNroRonda();
+        }
+        return ultRonda;
+    }
+    
+    public Ronda buscarRonda(int id){
+        for (Ronda r: rondas){
+            if (r.getNroRonda() == id) return r;
         }
         return null;
+    }
+
+    public int sortearNumeroGanador() {
+        this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
+        return (buscarRonda(getUltimaRonda() - 1)).sortearNroGanador(); // -1 porque ya hay otra mas nueva
+    }
+
+    public int getNumeroGanador() {
+        if (this.getUltimaRonda() == 1) return -1;
+        return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
     }
         
 }

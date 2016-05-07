@@ -46,6 +46,11 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
         btnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel2.setText("Mesas activas:");
@@ -98,6 +103,10 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
         controlador.crearMesa(txt_newTableName.getText());
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrarJuego();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -126,25 +135,33 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
     @Override
     public void cerrarJuego() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void abrirMesa(Mesa m, Jugador j) {
-        dispose();
+        //dispose();
+        
         new VistaMesaV1(m, j).setVisible(true);
     }
 
     private void ingresarMesa() {
         if (list_mesas.getModel().getSize() > 0 && list_mesas.getSelectedValue() != null)
             controlador.unirseAmesa(list_mesas.getSelectedValue().toString());
-//v.euge
-//        Mesa m = (Mesa)list_mesas.getSelectedValue();
-//        if (m!=null)
-//            controlador.unirseAmesa(m);
     }
 
     private String formatear(Mesa m) {
         return m.getNombre() + ", " + m.getJugadoresMesa().size() + " jugador/es";
+    }
+
+    @Override
+    public void salirDeJuego() {
+        controlador.salirDeJuego();
+    }
+
+    @Override
+    public void habilitarIrAMesas(boolean habilitar) {
+        btnCrear.setEnabled(habilitar);
+        btn_enterTable.setEnabled(habilitar);
     }
 }
