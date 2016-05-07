@@ -43,10 +43,18 @@ public class ControladorMesa implements Observer {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
         }
+        // refinar
+        if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){
+            vista.mostrarNumeroSorteado(modelo.sortearNumero(mesa));
+        }
     }
 
     public void cargarJugadoresActivos() {
         ArrayList<JugadorRuleta> j = modelo.getJugadoresPorMesa(mesa);
         vista.mostrarJugadores(j);
+    }
+
+    public int sortearNumero() {
+        return modelo.sortearNumero(mesa);
     }
 }

@@ -22,6 +22,10 @@ public class Modelo extends Observable {
     public static final int EVENTO_LOGUEADOS= 2;
     public static final int EVENTO_NUEVA_MESA = 3;
     public static final int EVENTO_TABLERO = 4;
+    public static final int EVENTO_SORTEARNUMERO = 5;
+    public static final int EVENTO_NUEVOJUGADORMESARULETA = 6;
+
+
     
     
     private Modelo() {
@@ -89,6 +93,10 @@ public class Modelo extends Observable {
 
     public Color asignarColorRuleta(Mesa m) {
         return m.getUnusedColour();
+    }
+
+    public int sortearNumero(Mesa m) {
+        return m.getUltimaRonda().sortearNroGanador();
     }
 
 

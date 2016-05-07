@@ -62,7 +62,7 @@ public class Mesa {
             jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
                 //ver si esto queda aca o donde?
-            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
+            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVOJUGADORMESARULETA);
             return true;
         }
         else{
@@ -148,6 +148,14 @@ public class Mesa {
         }
         return sirve;
 
+    }
+    
+    
+    public Ronda getUltimaRonda(){
+        for (Ronda r : rondas){
+            if (Ronda.getUltRonda() == r.getNroRonda()) return r;
+        }
+        return null;
     }
         
 }
