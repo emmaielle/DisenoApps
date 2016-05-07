@@ -32,21 +32,35 @@ public class ControladorMesa implements Observer {
         //se puede hacer esto? Llamar directo al getNumeros??
         vista.mostrar(mesa.getNumeros());
         modelo.addObserver(this);
-        
     }
     
-    public void marcar(Numero n){
-        n.marcar(jugador);
+    public void apostar(Numero n, int v){
+        if(v!=0){
+            n.apostar(jugador, v);
+            vista.exitoApuesta();
+        }
+        if(v==0&&n.getJugador()!=null){
+            n.apostar(jugador, v);
+            vista.exitoApuesta();
+        }
     }
     @Override
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
         }
+        // refinar
+        if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){
+            vista.mostrarNumeroSorteado(modelo.sortearNumero(mesa));
+        }
     }
 
     public void cargarJugadoresActivos() {
         ArrayList<JugadorRuleta> j = modelo.getJugadoresPorMesa(mesa);
         vista.mostrarJugadores(j);
+    }
+
+    public int sortearNumero() {
+        return modelo.sortearNumero(mesa);
     }
 }

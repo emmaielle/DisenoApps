@@ -14,11 +14,14 @@ import java.awt.Color;
 public class Numero {
     private int valor;
     private Color color;
+    private Color fijo;
     private JugadorRuleta jugador;
+    private int apostado=0;
 
     public Numero(int valor, Color color) {
         this.valor = valor;
         this.color = color;
+        this.fijo = color;
     }
 
     public JugadorRuleta getJugador() {
@@ -41,16 +44,21 @@ public class Numero {
         this.color = color;
     }
 
-    public void marcar(JugadorRuleta j) {
-        Color c = color;
+    public int getApostado() {
+        return apostado;
+    }
+
+    public void apostar(JugadorRuleta j, int v) {
         if(jugador==null){
+            apostado=v;
             jugador = j;
             color=jugador.getColor();
             Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
         }
         else if(j==jugador){
             jugador = null;
-            color = c;
+            apostado=0;
+            color=fijo;
             Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
 
         }

@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -48,6 +49,20 @@ public class JuegoRuleta {
         }
         // return null or throw exception
         return null;
+    }
+
+    boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) {
+        m.agregarJugador(c, j);
+        return true;
+    }
+
+    boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) {
+        if (m.validar()){
+            m.agregarJugador(c, j); // lista de jugadores en mesa
+            agregar(m); // lista de mesas en ruleta
+            return true;
+        }
+        else return false;
     }
     
     

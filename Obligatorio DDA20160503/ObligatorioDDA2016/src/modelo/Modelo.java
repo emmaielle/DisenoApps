@@ -22,6 +22,10 @@ public class Modelo extends Observable {
     public static final int EVENTO_LOGUEADOS= 2;
     public static final int EVENTO_NUEVA_MESA = 3;
     public static final int EVENTO_TABLERO = 4;
+    public static final int EVENTO_SORTEARNUMERO = 5;
+    public static final int EVENTO_NUEVOJUGADORMESARULETA = 6;
+
+
     
     
     private Modelo() {
@@ -70,18 +74,8 @@ public class Modelo extends Observable {
 
     }
 
-    public boolean agregarMesaRuleta(Mesa m, Jugador j) {
-        if (m.validar()){
-            JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
-            jr.setMesa(m); // mesa en jugador
-            m.agregarJugador(jr); // lista de jugadores en mesa
-
-            casino.getRuleta().agregar(m); // lista de mesas en ruleta
-            
-
-            return true;
-        }
-        else return false;
+    public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) {
+        return casino.getRuleta().agregarMesaRuleta(m, j, c);
     }
     
 
@@ -89,12 +83,8 @@ public class Modelo extends Observable {
         return casino.getRuleta().buscarMesa(nom);
     }
 
-    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m){
-        JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
-        m.agregarJugador(jr);
-        jr.setMesa(m);
-        // make robust
-        return true;
+    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c){
+        return casino.getRuleta().unirJugadorAMesaRuleta(j, m, c);
     }
 
     public ArrayList<JugadorRuleta> getJugadoresPorMesa(Mesa m) {
@@ -103,6 +93,10 @@ public class Modelo extends Observable {
 
     public Color asignarColorRuleta(Mesa m) {
         return m.getUnusedColour();
+    }
+
+    public int sortearNumero(Mesa m) {
+        return m.getUltimaRonda().sortearNroGanador();
     }
 
 

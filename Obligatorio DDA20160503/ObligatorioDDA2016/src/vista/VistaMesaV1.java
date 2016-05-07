@@ -29,7 +29,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
 
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
-        top = new PanelDatos();
+        top = new PanelDatos(controlador);
         split.setTopComponent(top);
         split.setOrientation(JSplitPane.VERTICAL_SPLIT);
         split.setDividerLocation(150);
@@ -80,13 +80,28 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void actionPerformed(ActionEvent e) {
         BotonRuleta origen = (BotonRuleta) e.getSource();
         Numero n = origen.getNumero();
-        controlador.marcar(n);
+        int monto =top.obtenerApuesta();
+        controlador.apostar(n,monto);
     }
 
     @Override
     public void mostrarJugadores(ArrayList<JugadorRuleta> j) {
         top.mostrarJugadores(j);
     }
+
+    // se llama cuando todos han hecho click sobre finalizar apuesta, asi que
+    // es avisado
+    @Override
+    public void mostrarNumeroSorteado(int num) {
+        top.mostrarNumeroSorteado(num);
+    }
+
+    @Override
+    public void exitoApuesta() {
+        top.exito();
+    }
+    
+    
    
 
 

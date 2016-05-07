@@ -25,15 +25,18 @@ public class Mesa {
     }
 
     public ArrayList<Color> getColoresDisp() {
+        if (coloresDisp == null){
+            coloresDisp = new ArrayList<>();
+            coloresDisp.add(Color.BLUE);
+            coloresDisp.add(Color.YELLOW);
+            coloresDisp.add(Color.ORANGE);
+            coloresDisp.add(Color.PINK);
+        }
         return coloresDisp;
     }
 
-    public void setColoresDisp() {
-        coloresDisp =  new ArrayList<>();
-        coloresDisp.add(Color.BLUE);
-        coloresDisp.add(Color.YELLOW);
-        coloresDisp.add(Color.ORANGE);
-        coloresDisp.add(Color.PINK);
+    public void setColoresDisp(ArrayList<Color> coloresDisp) {
+        this.coloresDisp = coloresDisp;
     }
     
     public String getNombre() {
@@ -52,11 +55,14 @@ public class Mesa {
         this.nombre = nombre;
     }
 
-    public boolean agregarJugador(JugadorRuleta j){
+    // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
+    public boolean agregarJugador(Color c, Jugador j){
         if(jugadoresMesa.size()<4){
-            jugadoresMesa.add(j);
+            JugadorRuleta jr = new JugadorRuleta(c, this, j);
+            jr.setMesa(this); // mesa en jugador
+            jugadoresMesa.add(jr);
                 //ver si esto queda aca o donde?
-            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
+            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVOJUGADORMESARULETA);
             return true;
         }
         else{
@@ -130,19 +136,27 @@ public class Mesa {
 
 
     public Color getUnusedColour() {
-        Color sirve = null;
+        Color sirve = Color.YELLOW;
         ArrayList<Color> temp = new ArrayList<>();
         for (JugadorRuleta jr : jugadoresMesa){
             temp.add(jr.getColor());
         }
-        for (Color c : coloresDisp){
-            if (temp.contains(c)) {
+        for (Color c : this.getColoresDisp()){
+            if (!temp.contains(c)) {
                 sirve = c;
                 break;
             }
         }
         return sirve;
 
+    }
+    
+    
+    public Ronda getUltimaRonda(){
+        for (Ronda r : rondas){
+            if (Ronda.getUltRonda() == r.getNroRonda()) return r;
+        }
+        return null;
     }
         
 }
