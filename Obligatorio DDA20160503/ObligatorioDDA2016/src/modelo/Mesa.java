@@ -18,6 +18,7 @@ public class Mesa {
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
     private ArrayList<Color> coloresDisp;
+    private ArrayList<JugadorRuleta> jugadorEspera = new ArrayList();
 
     public Mesa(String nombre) {
         this.nombre = nombre;
@@ -57,6 +58,11 @@ public class Mesa {
 
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     public boolean agregarJugador(Color c, Jugador j){
+        //ver q cuando entre quede en una lista temporal hasta q termine la ronda
+        if(jugadoresMesa.size()==0){
+            //Ronda primera = new Ronda();
+            //rondas.add(primera);
+        }    
         if(jugadoresMesa.size()<4){
             JugadorRuleta jr = new JugadorRuleta(c, this, j);
             jr.setMesa(this); // mesa en jugador
@@ -167,6 +173,21 @@ public class Mesa {
         return null;
     }
 
+    public void finalizarApuesta(JugadorRuleta jugador){
+        for(Numero n:numeros){
+            if(n.getJugador()==jugador)
+            {
+                crearApuestas(n);
+            }
+            
+        }
+    }
+
+    private void crearApuestas(Numero n) {
+        Apuesta a = new Apuesta(n);
+ 
+    }
+
     public int sortearNumeroGanador() {
         this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
         return (buscarRonda(getUltimaRonda() - 1)).sortearNroGanador(); // -1 porque ya hay otra mas nueva
@@ -176,5 +197,6 @@ public class Mesa {
         if (this.getUltimaRonda() == 1) return -1;
         return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
     }
-        
+    
+     
 }

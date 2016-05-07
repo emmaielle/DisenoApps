@@ -6,6 +6,7 @@
 package modelo;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +16,7 @@ public class JugadorRuleta {
     private Color color;
     private Mesa mesa;
     private Jugador jugador;
+    private ArrayList<Apuesta> apuestas;
 
     public JugadorRuleta(Color color, Mesa mesa, Jugador jugador) {
         this.color = color;
@@ -46,5 +48,11 @@ public class JugadorRuleta {
     public void setColor(Color color) {
         this.color = color;
     }
-    
+
+    public ArrayList<Apuesta> getApuestas() {
+        return apuestas;
+    }
+    public void agregarApuesta(Apuesta a){
+        if(a!=null) apuestas.add(a);
+    }
 }
