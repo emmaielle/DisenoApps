@@ -23,6 +23,8 @@ public class PanelDatos extends javax.swing.JPanel {
     public PanelDatos(ControladorMesa c) {
         initComponents();
         controlador = c;
+        txt_valorApuesta.setText("0");
+
     }
 
     /**
@@ -41,6 +43,8 @@ public class PanelDatos extends javax.swing.JPanel {
         nroSorteado = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txt_valorApuesta = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btn_finalizarA = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -72,18 +76,38 @@ public class PanelDatos extends javax.swing.JPanel {
         add(jButton1);
         jButton1.setBounds(50, 70, 120, 40);
         add(txt_valorApuesta);
-        txt_valorApuesta.setBounds(20, 150, 90, 20);
+        txt_valorApuesta.setBounds(140, 150, 90, 20);
+
+        jLabel3.setText("Ingrese valor a apostar:");
+        add(jLabel3);
+        jLabel3.setBounds(10, 150, 117, 14);
+
+        btn_finalizarA.setText("Finalizar Apuestas");
+        btn_finalizarA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_finalizarAActionPerformed(evt);
+            }
+        });
+        add(btn_finalizarA);
+        btn_finalizarA.setBounds(440, 130, 119, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sortearNum();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
+        // TODO add your handling code here:
+        //insertarApuesta();
+    }//GEN-LAST:event_btn_finalizarAActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_finalizarA;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList listaJugadores;
     private javax.swing.JLabel nroSorteado;
@@ -109,7 +133,7 @@ public class PanelDatos extends javax.swing.JPanel {
     public int obtenerApuesta(){
         int monto=0;
         //Controlar que si mete letras largue una excepcion... solo sirve para numeros
-        if(txt_valorApuesta.getText()!=""){
+        if(txt_valorApuesta.getText()!="0"){
             monto = Integer.parseInt(txt_valorApuesta.getText());
         }
         return monto;

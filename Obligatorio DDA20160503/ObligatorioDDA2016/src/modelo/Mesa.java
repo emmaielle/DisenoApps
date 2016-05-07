@@ -18,6 +18,7 @@ public class Mesa {
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
     private ArrayList<Color> coloresDisp;
+    private ArrayList<JugadorRuleta> jugadorEspera = new ArrayList();
 
     public Mesa(String nombre) {
         this.nombre = nombre;
@@ -57,6 +58,7 @@ public class Mesa {
 
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     public boolean agregarJugador(Color c, Jugador j){
+        //ver q cuando entre quede en una lista temporal hasta q termine la ronda
         if(jugadoresMesa.size()<4){
             JugadorRuleta jr = new JugadorRuleta(c, this, j);
             jr.setMesa(this); // mesa en jugador

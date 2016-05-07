@@ -35,13 +35,15 @@ public class ControladorMesa implements Observer {
     }
     
     public void apostar(Numero n, int v){
-        if(v!=0){
-            n.apostar(jugador, v);
-            vista.exitoApuesta();
-        }
-        if(v==0&&n.getJugador()!=null){
-            n.apostar(jugador, v);
-            vista.exitoApuesta();
+        if(jugador.getJugador().getSaldo()>=v){
+            if(v!=0){
+                n.apostar(jugador, v);
+                vista.exitoApuesta();
+            }
+            if(v==0&&n.getJugador()!=null){
+                n.apostar(jugador, v);
+                vista.exitoApuesta();
+            }
         }
     }
     @Override

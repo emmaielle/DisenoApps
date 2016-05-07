@@ -15,12 +15,16 @@ public class Jugador {
     private String nombre;
     private String password;
     private String nombreCompleto;
+    private int saldo;
+    private long totalCobrado;
+    private long totalApostado;
     
     
-    public Jugador(String nombre, String password, String nombreCompleto) {
+    public Jugador(String nombre, String password, String nombreCompleto, int saldo) {
         this.nombre = nombre;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
+        this.saldo = saldo;
     }
 
     public String getNombre() {
@@ -45,6 +49,18 @@ public class Jugador {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public long getTotalCobrado() {
+        return totalCobrado;
+    }
+
+    public long getTotalApostado() {
+        return totalApostado;
     }
     
     // capaz que no?

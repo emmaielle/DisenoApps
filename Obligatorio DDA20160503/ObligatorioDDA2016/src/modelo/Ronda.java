@@ -60,7 +60,9 @@ public class Ronda {
         }
         return nroGanador;
     }
-    
+    public void agregarApuestas(Apuesta a){
+        if (a!=null)apuestas.add(a);
+    }
     
     
     
