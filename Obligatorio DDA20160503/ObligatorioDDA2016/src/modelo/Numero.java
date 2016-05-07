@@ -21,6 +21,10 @@ public class Numero {
         this.color = color;
     }
 
+    public JugadorRuleta getJugador() {
+        return jugador;
+    }
+
     public int getValor() {
         return valor;
     }
@@ -38,15 +42,25 @@ public class Numero {
     }
 
     public void marcar(JugadorRuleta j) {
+        Color c = color;
         if(jugador==null){
             jugador = j;
+            color=jugador.getColor();
             Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
         }
         else if(j==jugador){
             jugador = null;
+            color = c;
             Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
 
         }
+    }
+
+    @Override
+    public String toString() {
+        String j = "Sin marcar";
+        if(jugador!=null) j=jugador.getJugador().getNombreCompleto();
+        return "Numero{" + "valor=" + valor + ", usuario=" + j + '}';
     }
     
     

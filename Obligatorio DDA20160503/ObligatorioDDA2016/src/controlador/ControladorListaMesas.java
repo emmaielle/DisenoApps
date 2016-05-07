@@ -55,9 +55,10 @@ public class ControladorListaMesas implements Observer {
     
      public void unirseAmesa(String nom){
         // change to something more robust. Si el nombre tiene una coma, ya no sirve.
+        
         String nameMesa = nom.split(",")[0];
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
-        JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
+                JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
         if (m != null) {
             modelo.unirJugadorAMesaRuleta(jugador, m);
             vista.abrirMesa(m, jugador);

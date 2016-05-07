@@ -87,6 +87,7 @@ public class Mesa {
     }
 
     public void initMesa(){
+        if(numeros!=null)numeros.clear();
         numeros.add(new Numero(0, Color.green));
         numeros.add(new Numero(1, Color.red));
         numeros.add(new Numero(2, Color.black));

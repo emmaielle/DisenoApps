@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import modelo.JugadorRuleta;
 import modelo.Numero;
 
 /**
@@ -51,9 +52,9 @@ public class PanelTablero extends javax.swing.JPanel {
             b.setForeground(Color.white);
             b.addActionListener(al);
             b.setNumero(n);
-//            Usuario u = n.getUsuario();
-//            if(u==null) b.setToolTipText("Sin marcar");
-//            else b.setToolTipText(u.getNombreCompleto());
+            JugadorRuleta j = n.getJugador();
+            if(j==null) b.setToolTipText("Sin marcar");
+            else b.setToolTipText(j.getJugador().getNombreCompleto());
             add(b);
         }
     }
