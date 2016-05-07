@@ -25,11 +25,11 @@ public class Inicio {
 
     private static void cargarDatos() {
         Modelo m = Modelo.getInstancia();
-        m.agregar(new Jugador("a","a","Maria Eugenia Cremona"));
-        m.agregar(new Jugador("b","b","Moira Lasserre"));
-        m.agregar(new Jugador("c","c","Gabriel Serrano"));
-        m.agregar(new Jugador("d","d","Florencia Polcaro"));
-        m.agregar(new Jugador("e","e","Profe"));
+        m.agregar(new Jugador("a","a","Maria Eugenia Cremona",1000));
+        m.agregar(new Jugador("b","b","Moira Lasserre",1000));
+        m.agregar(new Jugador("c","c","Gabriel Serrano",1000));
+        m.agregar(new Jugador("d","d","Florencia Polcaro",1000));
+        m.agregar(new Jugador("e","e","Profe",1000));
 
     }
     

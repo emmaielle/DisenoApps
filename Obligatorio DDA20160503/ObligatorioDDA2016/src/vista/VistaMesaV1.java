@@ -97,7 +97,8 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void actionPerformed(ActionEvent e) {
         BotonRuleta origen = (BotonRuleta) e.getSource();
         Numero n = origen.getNumero();
-        controlador.marcar(n);
+        int monto =top.obtenerApuesta();
+        controlador.apostar(n,monto);
     }
 
     @Override
@@ -117,6 +118,11 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     @Override
     public void salirDeMesa() {
 
+    }
+
+    @Override
+    public void exitoApuesta() {
+        top.exito();
     }
     
     

@@ -51,7 +51,7 @@ public class JuegoRuleta {
         return null;
     }
 
-    boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) {
+    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) {
         m.agregarJugador(c, j);
         return true;
     }

@@ -15,6 +15,7 @@ import modelo.Numero;
 public class BotonRuleta extends JButton{
     
     private Numero numero;
+    private int valor;
     
     public BotonRuleta(String text) {
         super(text);
@@ -26,5 +27,13 @@ public class BotonRuleta extends JButton{
 
     public void setNumero(Numero numero) {
         this.numero = numero;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 }

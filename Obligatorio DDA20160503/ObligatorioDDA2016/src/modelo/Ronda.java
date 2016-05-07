@@ -60,7 +60,9 @@ public class Ronda {
         // si ya se sorteo, muestra ese numero. Solo por si hay bugs
         return nroGanador;
     }
-    
+    public void agregarApuestas(Apuesta a){
+        if (a!=null)apuestas.add(a);
+    }
     
     
     
