@@ -31,7 +31,9 @@ public class ControladorJuegos implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-
+        if (arg.equals(Modelo.EVENTO_JUEGO_CERRADO)){
+            if(!jugador.isEnJuego()) vista.habilitarIrAJuego(true);
+        }
     }
     
     
@@ -45,6 +47,8 @@ public class ControladorJuegos implements Observer {
         //modelo.setPlayerRole(jugador, juego);
         //if (juego != null) // supongo que esto deberia ir para controlar
             vista.abrirJuego(juego);
+            jugador.setEnJuego(true);
+            vista.habilitarIrAJuego(false);
     }
     
     public void logout(){

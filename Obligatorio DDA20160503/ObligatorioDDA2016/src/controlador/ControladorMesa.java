@@ -52,8 +52,11 @@ public class ControladorMesa implements Observer {
             vista.mostrar(mesa.getNumeros());
         }
         // refinar
-        if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){
-            vista.mostrarNumeroSorteado(modelo.sortearNumero(mesa));
+        else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){
+            buscarNumeroActual();
+        }
+        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
+            vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
         }
     }
 
@@ -62,7 +65,16 @@ public class ControladorMesa implements Observer {
         vista.mostrarJugadores(j);
     }
 
-    public int sortearNumero() {
-        return modelo.sortearNumero(mesa);
+    public void sortearNumero() {
+        mostrarNumeroSorteado(modelo.sortearNumero(mesa));
     }
+
+    public void buscarNumeroActual() {
+        mostrarNumeroSorteado(modelo.ultNumeroSorteado(mesa));
+    }
+    
+    private void mostrarNumeroSorteado(int i){
+        vista.mostrarNumeroSorteado(i);
+    }
+    
 }

@@ -17,5 +17,7 @@ public interface VistaListaMesas {
     public void mostrar(ArrayList<Mesa> lista);
     public void cerrarJuego();
     public void abrirMesa(Mesa m,Jugador jr);
+    public void salirDeJuego();
+    public void habilitarIrAMesas(boolean habilitar);
 
 }

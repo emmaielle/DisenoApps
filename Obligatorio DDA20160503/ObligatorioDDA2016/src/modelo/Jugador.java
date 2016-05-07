@@ -18,6 +18,7 @@ public class Jugador {
     private int saldo;
     private long totalCobrado;
     private long totalApostado;
+    private boolean enJuego;
     
     
     public Jugador(String nombre, String password, String nombreCompleto, int saldo) {
@@ -41,6 +42,15 @@ public class Jugador {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnJuego() {
+        return enJuego;
+    }
+
+    public void setEnJuego(boolean enJuego) {
+        this.enJuego = enJuego;
+        Modelo.getInstancia().avisar(Modelo.EVENTO_JUEGO_CERRADO);
     }
 
     public String getNombreCompleto() {

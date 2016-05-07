@@ -15,7 +15,6 @@ public class Ronda {
     
     // no hice getters de todos
     
-    private static int ultRonda = 1;
     private final int nroRonda;
     // montoGanado estaba en el UML pero creo que lo pusimos cuando ibamos a 
     // calcular las estadisticas por el lado del casino. Hay que ver si sigue yendo aca
@@ -24,19 +23,18 @@ public class Ronda {
     
     private ArrayList<Apuesta> apuestas = new ArrayList<>();
 
-    public Ronda() {
-        nroRonda = ultRonda;
-        Ronda.ultRonda++;
+    public Ronda(int numRonda) {
+        nroRonda = numRonda;
+    }
+
+    public int getNroGanador() {
+        return nroGanador;
     }
 
     public void setApuestas(ArrayList<Apuesta> apuestas) {
         this.apuestas = apuestas;
     }
     
-    public static int getUltRonda() {
-        return ultRonda;
-    }
-
     public int getNroRonda() {
         return nroRonda;
     }
@@ -52,12 +50,14 @@ public class Ronda {
     // sortea si no existe, sino devuelve nomas
     public int sortearNroGanador() {
         int nro = 0;
+        // significa que todavia no se sorteo
         if (nroGanador == -1){
             int randomOut = (int)Math.floor(Math.random()*37);
             nroGanador = randomOut; // hacer logica
             Modelo.getInstancia().avisar(Modelo.EVENTO_SORTEARNUMERO);
             return randomOut;
         }
+        // si ya se sorteo, muestra ese numero. Solo por si hay bugs
         return nroGanador;
     }
     public void agregarApuestas(Apuesta a){

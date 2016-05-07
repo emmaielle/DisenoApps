@@ -17,4 +17,6 @@ public interface VistaJuegos {
     
     public void abrirJuego(Object juego);
     
+    public void habilitarIrAJuego(boolean habilitar);
+    
 }

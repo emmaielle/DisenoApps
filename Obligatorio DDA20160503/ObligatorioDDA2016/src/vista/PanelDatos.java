@@ -26,6 +26,12 @@ public class PanelDatos extends javax.swing.JPanel {
         txt_valorApuesta.setText("0");
 
     }
+    
+    public PanelDatos(ControladorMesa c, int numeroSorteado) {
+        initComponents();
+        controlador = c;
+        mostrarNumeroSorteado(numeroSorteado);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,7 +69,6 @@ public class PanelDatos extends javax.swing.JPanel {
         jLabel2.setBounds(330, 10, 140, 14);
 
         nroSorteado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        nroSorteado.setText("1");
         add(nroSorteado);
         nroSorteado.setBounds(150, 10, 50, 30);
 
@@ -123,12 +128,12 @@ public class PanelDatos extends javax.swing.JPanel {
     }
     
     public void mostrarNumeroSorteado(int num){
-        nroSorteado.setText(String.valueOf(num));
+        if (num == -1) nroSorteado.setText("");
+        else nroSorteado.setText(String.valueOf(num));
     }
 
     private void sortearNum() {
-        int num = controlador.sortearNumero();
-        mostrarNumeroSorteado(num);
+        controlador.sortearNumero();
     }
     public int obtenerApuesta(){
         int monto=0;
