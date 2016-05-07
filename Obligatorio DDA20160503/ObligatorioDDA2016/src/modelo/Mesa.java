@@ -59,6 +59,10 @@ public class Mesa {
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     public boolean agregarJugador(Color c, Jugador j){
         //ver q cuando entre quede en una lista temporal hasta q termine la ronda
+        if(jugadoresMesa.size()==0){
+            Ronda primera = new Ronda();
+            rondas.add(primera);
+        }    
         if(jugadoresMesa.size()<4){
             JugadorRuleta jr = new JugadorRuleta(c, this, j);
             jr.setMesa(this); // mesa en jugador
@@ -160,5 +164,21 @@ public class Mesa {
         }
         return null;
     }
+    public void finalizarApuesta(JugadorRuleta jugador){
+        for(Numero n:numeros){
+            if(n.getJugador()==jugador)
+            {
+                crearApuestas(n);
+            }
+            
+        }
+    }
+
+    private void crearApuestas(Numero n) {
+        Apuesta a = new Apuesta(n);
         
+    }
+
+    
+     
 }
