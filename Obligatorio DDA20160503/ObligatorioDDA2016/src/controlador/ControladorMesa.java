@@ -32,7 +32,7 @@ public class ControladorMesa implements Observer {
         //se puede hacer esto? Llamar directo al getNumeros??
         vista.mostrar(mesa.getNumeros());
         modelo.addObserver(this);
-
+        
     }
     
     public void marcar(Numero n){
