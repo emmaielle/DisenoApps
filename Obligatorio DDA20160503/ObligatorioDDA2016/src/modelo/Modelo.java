@@ -70,18 +70,8 @@ public class Modelo extends Observable {
 
     }
 
-    public boolean agregarMesaRuleta(Mesa m, Jugador j) {
-        if (m.validar()){
-            JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
-            jr.setMesa(m); // mesa en jugador
-            m.agregarJugador(jr); // lista de jugadores en mesa
-
-            casino.getRuleta().agregar(m); // lista de mesas en ruleta
-            
-
-            return true;
-        }
-        else return false;
+    public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) {
+        return casino.getRuleta().agregarMesaRuleta(m, j, c);
     }
     
 
@@ -89,12 +79,8 @@ public class Modelo extends Observable {
         return casino.getRuleta().buscarMesa(nom);
     }
 
-    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m){
-        JugadorRuleta jr = new JugadorRuleta(Color.yellow, m, j);
-        m.agregarJugador(jr);
-        jr.setMesa(m);
-        // make robust
-        return true;
+    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c){
+        return casino.getRuleta().unirJugadorAMesaRuleta(j, m, c);
     }
 
     public ArrayList<JugadorRuleta> getJugadoresPorMesa(Mesa m) {
