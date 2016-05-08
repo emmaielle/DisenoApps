@@ -105,6 +105,10 @@ public class Modelo extends Observable {
         return m.getNumeroGanador();
     }
 
+    public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) {
+        mesa.apostar(n, v, jugador);
+    }
+
 
   
     

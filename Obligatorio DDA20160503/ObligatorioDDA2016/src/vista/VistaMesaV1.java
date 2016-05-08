@@ -10,6 +10,7 @@ import controlador.VistaMesa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import modelo.Jugador;
 import modelo.JugadorRuleta;
@@ -34,7 +35,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         top = new PanelDatos(controlador);
         split.setTopComponent(top);
         split.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        split.setDividerLocation(150);
+        split.setDividerLocation(180);
         setContentPane(split);
         controlador.cargarJugadoresActivos();
         controlador.buscarNumeroActual();
@@ -66,7 +67,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         getContentPane().add(lbl);
         lbl.setBounds(114, 38, 178, 14);
 
-        setBounds(0, 0, 416, 339);
+        setBounds(0, 0, 716, 493);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -90,6 +91,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void mostrar(ArrayList<Numero> numeros) {
         bottom = new PanelTablero(numeros,this);
         split.setBottomComponent(bottom);
+        split.setDividerLocation(180);
         validate();
     }
 
@@ -97,7 +99,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void actionPerformed(ActionEvent e) {
         BotonRuleta origen = (BotonRuleta) e.getSource();
         Numero n = origen.getNumero();
-        int monto =top.obtenerApuesta();
+        int monto = top.obtenerApuesta();
         controlador.apostar(n,monto);
     }
 
@@ -123,6 +125,11 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     @Override
     public void exitoApuesta() {
         top.exito();
+    }
+
+    @Override
+    public void errorApuesta(String msj) {
+        JOptionPane.showMessageDialog(this, msj);
     }
     
     

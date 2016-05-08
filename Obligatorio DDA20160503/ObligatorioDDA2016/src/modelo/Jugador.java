@@ -6,6 +6,7 @@
 package modelo;
 
 import java.awt.Color;
+import java.util.Objects;
 
 /**
  *
@@ -78,6 +79,10 @@ public class Jugador {
     public String toString(){
         return getNombreCompleto();
     }
+
+
+    
+    
 
 
 }

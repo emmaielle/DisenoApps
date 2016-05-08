@@ -137,7 +137,7 @@ public class PanelDatos extends javax.swing.JPanel {
     }
     public int obtenerApuesta(){
         int monto=0;
-        //Controlar que si mete letras largue una excepcion... solo sirve para numeros
+        //TODO Controlar que si mete letras largue una excepcion... solo sirve para numeros
         if(txt_valorApuesta.getText()!="0"){
             monto = Integer.parseInt(txt_valorApuesta.getText());
         }

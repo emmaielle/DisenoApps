@@ -93,7 +93,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
         getContentPane().add(btnLogout);
         btnLogout.setBounds(90, 240, 210, 30);
 
-        setBounds(0, 0, 416, 339);
+        setBounds(0, 0, 416, 401);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_chooseGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chooseGameActionPerformed

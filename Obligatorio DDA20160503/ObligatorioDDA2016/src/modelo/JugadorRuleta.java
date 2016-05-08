@@ -16,7 +16,7 @@ public class JugadorRuleta {
     private Color color;
     private Mesa mesa;
     private Jugador jugador;
-    private ArrayList<Apuesta> apuestas;
+    private ArrayList<Apuesta> apuestas = new ArrayList<>();
 
     public JugadorRuleta(Color color, Mesa mesa, Jugador jugador) {
         this.color = color;
@@ -54,5 +54,9 @@ public class JugadorRuleta {
     }
     public void agregarApuesta(Apuesta a){
         if(a!=null) apuestas.add(a);
+    }
+    
+    public void quitarApuesta(Apuesta a){
+        if (apuestas.contains(a)) apuestas.remove(a);
     }
 }

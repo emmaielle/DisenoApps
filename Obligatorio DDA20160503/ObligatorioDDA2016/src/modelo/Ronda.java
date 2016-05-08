@@ -63,8 +63,43 @@ public class Ronda {
     public void agregarApuestas(Apuesta a){
         if (a!=null)apuestas.add(a);
     }
+
+    // funciona en ambos sentidos si se hace click de nuevo
+    public void apostar(Numero n, int v, JugadorRuleta jugador) {
+        Apuesta yaApostada = null;
+        for (Apuesta a: apuestas){
+            if (a.getNumero() == n) yaApostada = a;
+        }
+        // si llega aca es porque ese numero no fue elegido antes
+        if (yaApostada == null){
+            Apuesta a = new Apuesta(v, jugador, n);
+            if (a.validar()){
+                agregarApuesta(a);
+            }
+        }
+        else {
+            // solo quita la apuesta si el monto apostado es 0 y ya tiene apuesta hecha por él mismo
+            // sino queda la anterior
+            if (yaApostada.getJugador().equals(jugador) && v == 0) {
+                quitarApuesta(yaApostada);
+            }
+        }
+    }
     
+    public void quitarApuesta(Apuesta a){
+        a.getNumero().setApuesta(null);
+        a.getJugador().quitarApuesta(a);
+        a.setJugador(null);
+        apuestas.remove(a);
+        Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+    }
     
+    public void agregarApuesta(Apuesta a){
+        a.getNumero().setApuesta(a);
+        a.getJugador().agregarApuesta(a);
+        apuestas.add(a);
+        Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+    }
     
     
 }

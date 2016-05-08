@@ -13,20 +13,15 @@ import java.awt.Color;
  */
 public class Numero {
     private int valor;
-    private Color color;
-    private Color fijo;
-    private JugadorRuleta jugador;
-    private int apostado=0;
+    private Color color; // el color por defecto
+    private Apuesta apuesta;
 
     public Numero(int valor, Color color) {
         this.valor = valor;
         this.color = color;
-        this.fijo = color;
     }
 
-    public JugadorRuleta getJugador() {
-        return jugador;
-    }
+
 
     public int getValor() {
         return valor;
@@ -44,30 +39,35 @@ public class Numero {
         this.color = color;
     }
 
-    public int getApostado() {
-        return apostado;
+
+//    public void apostar(JugadorRuleta j, int v) {
+//        if(jugador==null){
+//            apostado=v;
+//            jugador = j;
+//            color=jugador.getColor();
+//            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+//        }
+//        else if(j==jugador){
+//            jugador = null;
+//            apostado=0;
+//            color=fijo;
+//            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+//
+//        }
+//    }
+
+    public Apuesta getApuesta() {
+        return apuesta;
     }
 
-    public void apostar(JugadorRuleta j, int v) {
-        if(jugador==null){
-            apostado=v;
-            jugador = j;
-            color=jugador.getColor();
-            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
-        }
-        else if(j==jugador){
-            jugador = null;
-            apostado=0;
-            color=fijo;
-            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
-
-        }
+    public void setApuesta(Apuesta apuesta) {
+        this.apuesta = apuesta;
     }
 
     @Override
     public String toString() {
         String j = "Sin marcar";
-        if(jugador!=null) j=jugador.getJugador().getNombreCompleto();
+        if(apuesta!=null) j=apuesta.getJugador().getJugador().getNombreCompleto();
         return "Numero{" + "valor=" + valor + ", usuario=" + j + '}';
     }
     

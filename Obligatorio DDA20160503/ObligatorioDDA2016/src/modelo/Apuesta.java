@@ -47,6 +47,10 @@ public class Apuesta {
     public void setNumero(Numero numero) {
         this.numero = numero;
     }
+
+    public boolean validar() {
+        return monto > 0 && jugador != null && numero != null; 
+    }
     
     
     

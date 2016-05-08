@@ -5,10 +5,11 @@
  */
 package controlador;
 
+import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import modelo.Jugador;
+import modelo.Apuesta;
 import modelo.JugadorRuleta;
 import modelo.Mesa;
 import modelo.Modelo;
@@ -24,6 +25,7 @@ public class ControladorMesa implements Observer {
     private VistaMesa vista;
     private JugadorRuleta jugador;
     private Mesa mesa;
+    private ArrayList<Apuesta> apuestas = new ArrayList<>();
     
     public ControladorMesa(VistaMesa vista,Mesa m, JugadorRuleta jr){
         this.vista = vista;
@@ -35,16 +37,21 @@ public class ControladorMesa implements Observer {
     }
     
     public void apostar(Numero n, int v){
-        if(jugador.getJugador().getSaldo()>=v){
+        // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
+        if(jugador.getJugador().getSaldo() >= v){ /// mensaje de que no tiene saldo suf
+            //si el monto a aportar es mayor que 0
             if(v!=0){
-                n.apostar(jugador, v);
+                modelo.apostar(mesa, n, v, jugador);
+                //n.apostar(jugador, v);
                 vista.exitoApuesta();
             }
-            if(v==0&&n.getJugador()!=null){
-                n.apostar(jugador, v);
+            // si es igual a 0 pero ese numero ya tiene apuesta. Desapuesta
+            if(v == 0 && n.getApuesta() != null){
+                modelo.apostar(mesa, n, v, jugador);
                 vista.exitoApuesta();
             }
-        }
+        } 
+        else vista.errorApuesta("No tiene saldo suficiente para realizar esta apuesta");
     }
     @Override
     public void update(Observable o, Object arg) {

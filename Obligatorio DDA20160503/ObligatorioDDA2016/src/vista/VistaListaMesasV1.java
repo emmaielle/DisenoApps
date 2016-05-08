@@ -90,7 +90,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
         getContentPane().add(btnCrear);
         btnCrear.setBounds(210, 220, 73, 23);
 
-        setBounds(0, 0, 483, 339);
+        setBounds(0, 0, 483, 373);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_enterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enterTableActionPerformed

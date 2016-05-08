@@ -59,8 +59,8 @@ public class Mesa {
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     public boolean agregarJugador(Color c, Jugador j){
         //ver q cuando entre quede en una lista temporal hasta q termine la ronda
-        if(jugadoresMesa.size()==0){
-            //Ronda primera = new Ronda();
+        if(jugadoresMesa.size()== 0){
+            //Ronda primera = new Ronda(); // esto se puede hacer aca pero cuidado que hay que borrar el que ya esta hecho en otra parte
             //rondas.add(primera);
         }    
         if(jugadoresMesa.size()<4){
@@ -173,15 +173,15 @@ public class Mesa {
         return null;
     }
 
-    public void finalizarApuesta(JugadorRuleta jugador){
-        for(Numero n:numeros){
-            if(n.getJugador()==jugador)
-            {
-                crearApuestas(n);
-            }
-            
-        }
-    }
+//    public void finalizarApuesta(JugadorRuleta jugador){
+//        for(Numero n:numeros){
+//            if(n.getJugador()==jugador)
+//            {
+//                crearApuestas(n);
+//            }
+//            
+//        }
+//    }
 
     private void crearApuestas(Numero n) {
         Apuesta a = new Apuesta(n);
@@ -196,6 +196,10 @@ public class Mesa {
     public int getNumeroGanador() {
         if (this.getUltimaRonda() == 1) return -1;
         return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
+    }
+
+    public void apostar(Numero n, int v, JugadorRuleta jugador) {
+        (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
     }
     
      
