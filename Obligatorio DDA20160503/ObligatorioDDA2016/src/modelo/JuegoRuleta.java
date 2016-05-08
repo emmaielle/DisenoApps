@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import exceptions.InvalidUserActionException;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -31,7 +32,8 @@ public class JuegoRuleta {
     public void setListadoMesas(ArrayList<Mesa> listadoMesas) {
         this.listadoMesas = listadoMesas;
     }
-    public void agregar(Mesa m){
+    public void agregar(Mesa m) throws InvalidUserActionException{
+        if(listadoMesas.contains(m))throw new InvalidUserActionException("La mesa ya existe");
         listadoMesas.add(m);
         Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
     }
@@ -56,7 +58,7 @@ public class JuegoRuleta {
         return true;
     }
 
-    boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) {
+    boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
         if (m.validar()){
             m.agregarJugador(c, j); // lista de jugadores en mesa
             agregar(m); // lista de mesas en ruleta

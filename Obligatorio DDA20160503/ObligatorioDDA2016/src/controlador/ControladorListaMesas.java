@@ -6,6 +6,7 @@
 package controlador;
 
 
+import exceptions.InvalidUserActionException;
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
@@ -43,7 +44,13 @@ public class ControladorListaMesas implements Observer {
     
     public void crearMesa(String nom){
         Mesa m = new Mesa(nom);
-        if (modelo.agregarMesaRuleta(m, jugador, asignarColor(m))) vista.abrirMesa(m,jugador);
+        try{
+            modelo.agregarMesaRuleta(m, jugador, asignarColor(m));
+            vista.abrirMesa(m,jugador);
+        }
+        catch(InvalidUserActionException ex){
+            vista.errorCrearMesa(ex.getMessage());
+        }
         // else
     }
     
