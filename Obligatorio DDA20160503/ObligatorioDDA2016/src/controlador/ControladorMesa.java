@@ -74,6 +74,8 @@ public class ControladorMesa implements Observer {
 
     public void sortearNumero() {
         mostrarNumeroSorteado(modelo.sortearNumero(mesa));
+        // llamar a metodo de ver quien gano
+        vista.mostrar(mesa.getNumeros());
     }
 
     public void buscarNumeroActual() {

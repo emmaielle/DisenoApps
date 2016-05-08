@@ -18,7 +18,6 @@ public class Mesa {
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
     private ArrayList<Color> coloresDisp;
-    private ArrayList<JugadorRuleta> jugadorEspera = new ArrayList();
 
     public Mesa(String nombre) {
         this.nombre = nombre;
@@ -173,7 +172,9 @@ public class Mesa {
         return null;
     }
 
-//    public void finalizarApuesta(JugadorRuleta jugador){
+    public void finalizarApuesta(JugadorRuleta jugador){
+        // llamar a sortearNumero
+        
 //        for(Numero n:numeros){
 //            if(n.getJugador()==jugador)
 //            {
@@ -181,7 +182,7 @@ public class Mesa {
 //            }
 //            
 //        }
-//    }
+    }
 
     private void crearApuestas(Numero n) {
         Apuesta a = new Apuesta(n);
@@ -189,10 +190,19 @@ public class Mesa {
     }
 
     public int sortearNumeroGanador() {
-        this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
-        return (buscarRonda(getUltimaRonda() - 1)).sortearNroGanador(); // -1 porque ya hay otra mas nueva
+        int nro = (buscarRonda(getUltimaRonda())).sortearNroGanador(); // -1 porque ya hay otra mas nueva
+        modificarSaldo();
+        // reviso resultados // aviso ganadores // reparto plata // guardo historial
+        nuevaRonda();
+        return nro;
     }
 
+    public void nuevaRonda(){
+        this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
+        
+        //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
+    }
+    
     public int getNumeroGanador() {
         if (this.getUltimaRonda() == 1) return -1;
         return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
@@ -200,6 +210,19 @@ public class Mesa {
 
     public void apostar(Numero n, int v, JugadorRuleta jugador) {
         (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+    }
+
+    private void modificarSaldo() {
+        for (JugadorRuleta j: jugadoresMesa){
+            Ronda r = buscarRonda(getUltimaRonda());
+            if (r.getApuestaGanadora() != null){
+                if (j.getJugador().getNombre().equals(r.
+                        getApuestaGanadora().getJugador().getJugador().getNombre())){
+                    // le da al que gano
+                }
+            }
+            // saca a todos, la cantidad q apostaron
+        }
     }
     
      

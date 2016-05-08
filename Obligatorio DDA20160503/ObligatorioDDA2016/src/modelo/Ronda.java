@@ -18,7 +18,7 @@ public class Ronda {
     private final int nroRonda;
     // montoGanado estaba en el UML pero creo que lo pusimos cuando ibamos a 
     // calcular las estadisticas por el lado del casino. Hay que ver si sigue yendo aca
-    private int montoGanado;
+    private Apuesta apuestaGanadora;
     private int nroGanador = -1;
     
     private ArrayList<Apuesta> apuestas = new ArrayList<>();
@@ -39,9 +39,11 @@ public class Ronda {
         return nroRonda;
     }
 
-    public int getMontoGanado() {
-        return montoGanado;
+    public Apuesta getApuestaGanadora() {
+        return apuestaGanadora;
     }
+
+    
 
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;
@@ -55,9 +57,10 @@ public class Ronda {
             int randomOut = (int)Math.floor(Math.random()*37);
             nroGanador = randomOut; // hacer logica
             Modelo.getInstancia().avisar(Modelo.EVENTO_SORTEARNUMERO);
+            lookForWinner();
             return randomOut;
         }
-        // si ya se sorteo, muestra ese numero. Solo por si hay bugs
+        // nunca se deberia llegar aca
         return nroGanador;
     }
     public void agregarApuestas(Apuesta a){
@@ -99,6 +102,13 @@ public class Ronda {
         a.getJugador().agregarApuesta(a);
         apuestas.add(a);
         Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+    }
+
+    private void lookForWinner() {
+        for (Apuesta a : apuestas){
+            if (a.getNumero().getValor() == nroGanador) apuestaGanadora = a;
+        }
+        
     }
     
     
