@@ -225,5 +225,9 @@ public class Mesa {
         }
     }
     
-     
+    @Override
+     public boolean equals(Object o){
+        Mesa m = (Mesa)o;
+        return nombre.equalsIgnoreCase(m.getNombre());
+    }
 }
