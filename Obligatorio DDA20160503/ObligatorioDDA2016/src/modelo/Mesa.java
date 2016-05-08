@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Mesa {
     private String nombre;
+    private ArrayList<JugadorRuleta> jugadoresEspera = new ArrayList<>();
     private ArrayList<JugadorRuleta> jugadoresMesa = new ArrayList();
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
@@ -213,15 +214,13 @@ public class Mesa {
     }
 
     private void modificarSaldo() {
-        for (JugadorRuleta j: jugadoresMesa){
-            Ronda r = buscarRonda(getUltimaRonda());
-            if (r.getApuestaGanadora() != null){
-                if (j.getJugador().getNombre().equals(r.
-                        getApuestaGanadora().getJugador().getJugador().getNombre())){
-                    // le da al que gano
-                }
+        Ronda r = buscarRonda(getUltimaRonda());
+        Apuesta apuestaGanadora = r.getApuestaGanadora();
+        for (Apuesta a: r.getApuestas()){
+            if (apuestaGanadora != null && apuestaGanadora.equals(a)){ // si hubo un ganador
+                a.getJugador().modificarSaldo(true, apuestaGanadora.getMonto()* 35);
             }
-            // saca a todos, la cantidad q apostaron
+            else a.getJugador().modificarSaldo(false, a.getMonto());
         }
     }
     

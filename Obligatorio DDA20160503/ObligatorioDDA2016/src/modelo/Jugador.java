@@ -80,6 +80,17 @@ public class Jugador {
         return getNombreCompleto();
     }
 
+    public void modificarSaldo(boolean agregar, int monto) {
+        // a esta altura, ya se verifico que la cantidad restada no llegue a ser menor que lo 
+        // que actualmente tiene, porque sino no se haria la apuesta
+        if (agregar){
+            saldo += monto;
+        }
+        else {
+            saldo -= monto;
+        }
+    }
+
 
     
     

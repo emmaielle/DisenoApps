@@ -59,4 +59,8 @@ public class JugadorRuleta {
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
+
+    public void modificarSaldo(boolean agregar, int monto) {
+       jugador.modificarSaldo(agregar, monto);
+    }
 }
