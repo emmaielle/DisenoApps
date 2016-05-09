@@ -56,7 +56,6 @@ public class Ronda {
         if (nroGanador == -1){
             int randomOut = (int)Math.floor(Math.random()*37);
             nroGanador = randomOut; // hacer logica
-            Modelo.getInstancia().avisar(Modelo.EVENTO_SORTEARNUMERO);
             lookForWinner();
             return randomOut;
         }
@@ -109,6 +108,22 @@ public class Ronda {
             if (a.getNumero().getValor() == nroGanador) apuestaGanadora = a;
         }
         
+    }
+    
+    public void modificarSaldos() {
+        for (Apuesta a: apuestas){
+            Jugador j = a.getJugador().getJugador();
+            if (apuestaGanadora != null && apuestaGanadora.equals(a)){ // si hubo un ganador
+                j.modificarSaldo(true, a.getMonto()* 35);
+                j.modificarSaldo(false, a.getMonto());
+                j.setTotalCobrado(j.getTotalCobrado() + a.getMonto() * 35);
+                j.setTotalApostado(j.getTotalApostado() + a.getMonto());
+            }
+            else {
+                j.modificarSaldo(false, a.getMonto());
+                j.setTotalApostado(j.getTotalApostado() + a.getMonto());
+            }
+        }
     }
     
     

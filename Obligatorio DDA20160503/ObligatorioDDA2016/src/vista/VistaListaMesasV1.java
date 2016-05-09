@@ -8,6 +8,7 @@ package vista;
 import controlador.ControladorListaMesas;
 import controlador.VistaListaMesas;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Jugador;
 import modelo.JugadorRuleta;
 import modelo.Mesa;
@@ -104,7 +105,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        cerrarJuego();
+        salirDeJuego();
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -133,10 +134,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     }
 
 
-    @Override
-    public void cerrarJuego() {
 
-    }
 
     @Override
     public void abrirMesa(Mesa m, Jugador j) {
@@ -163,5 +161,10 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     public void habilitarIrAMesas(boolean habilitar) {
         btnCrear.setEnabled(habilitar);
         btn_enterTable.setEnabled(habilitar);
+    }
+
+    @Override
+    public void errorCrearMesa(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
     }
 }

@@ -39,6 +39,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         setContentPane(split);
         controlador.cargarJugadoresActivos();
         controlador.buscarNumeroActual();
+        controlador.mostrarSaldo();
     }
 
     /**
@@ -130,6 +131,11 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     @Override
     public void errorApuesta(String msj) {
         JOptionPane.showMessageDialog(this, msj);
+    }
+
+    @Override
+    public void mostrarSaldo(long saldoJugador) {
+        top.mostrarSaldo(saldoJugador);
     }
     
     

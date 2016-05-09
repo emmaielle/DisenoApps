@@ -51,6 +51,7 @@ public class PanelDatos extends javax.swing.JPanel {
         txt_valorApuesta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btn_finalizarA = new javax.swing.JButton();
+        lbl_saldo = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -79,7 +80,7 @@ public class PanelDatos extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(50, 70, 120, 40);
+        jButton1.setBounds(310, 130, 120, 40);
         add(txt_valorApuesta);
         txt_valorApuesta.setBounds(140, 150, 90, 20);
 
@@ -95,6 +96,8 @@ public class PanelDatos extends javax.swing.JPanel {
         });
         add(btn_finalizarA);
         btn_finalizarA.setBounds(440, 130, 119, 40);
+        add(lbl_saldo);
+        lbl_saldo.setBounds(20, 50, 160, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -114,6 +117,7 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_saldo;
     private javax.swing.JList listaJugadores;
     private javax.swing.JLabel nroSorteado;
     private javax.swing.JTextField txt_valorApuesta;
@@ -147,5 +151,9 @@ public class PanelDatos extends javax.swing.JPanel {
     public void exito() {
         txt_valorApuesta.setText("0");
         txt_valorApuesta.requestFocus();
+    }
+    
+    public void mostrarSaldo(long saldo){
+        lbl_saldo.setText("Saldo actual: " + String.valueOf(saldo));
     }
 }

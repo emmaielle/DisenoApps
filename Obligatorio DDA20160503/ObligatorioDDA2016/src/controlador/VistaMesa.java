@@ -23,4 +23,6 @@ public interface VistaMesa {
 
     public void errorApuesta(String msj);
 
+    public void mostrarSaldo(long saldoJugador);
+
 }

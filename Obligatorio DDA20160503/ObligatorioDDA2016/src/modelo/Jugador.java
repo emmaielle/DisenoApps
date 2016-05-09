@@ -70,6 +70,14 @@ public class Jugador {
         return totalCobrado;
     }
 
+    public void setTotalCobrado(long totalCobrado) {
+        this.totalCobrado = totalCobrado;
+    }
+
+    public void setTotalApostado(long totalApostado) {
+        this.totalApostado = totalApostado;
+    }
+    
     public long getTotalApostado() {
         return totalApostado;
     }

@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import exceptions.InvalidUserActionException;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -72,7 +73,7 @@ public class Modelo extends Observable {
 
     }
 
-    public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) {
+    public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
         return casino.getRuleta().agregarMesaRuleta(m, j, c);
     }
     

@@ -191,17 +191,19 @@ public class Mesa {
     }
 
     public int sortearNumeroGanador() {
-        int nro = (buscarRonda(getUltimaRonda())).sortearNroGanador(); // -1 porque ya hay otra mas nueva
-        modificarSaldo();
+        Ronda ultimaRonda = buscarRonda(getUltimaRonda());
+        int nro = ultimaRonda.sortearNroGanador(); // -1 porque ya hay otra mas nueva
         // reviso resultados // aviso ganadores // reparto plata // guardo historial
+        ultimaRonda.modificarSaldos();
         nuevaRonda();
+        Modelo.getInstancia().avisar(Modelo.EVENTO_SORTEARNUMERO);
         return nro;
     }
 
     public void nuevaRonda(){
         this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
-        
-        //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
+        //limpiar los numeros. Quitarles todas las apuestas que tienen asociadas        
+        initMesa();
     }
     
     public int getNumeroGanador() {
@@ -212,17 +214,10 @@ public class Mesa {
     public void apostar(Numero n, int v, JugadorRuleta jugador) {
         (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
     }
-
-    private void modificarSaldo() {
-        Ronda r = buscarRonda(getUltimaRonda());
-        Apuesta apuestaGanadora = r.getApuestaGanadora();
-        for (Apuesta a: r.getApuestas()){
-            if (apuestaGanadora != null && apuestaGanadora.equals(a)){ // si hubo un ganador
-                a.getJugador().modificarSaldo(true, apuestaGanadora.getMonto()* 35);
-            }
-            else a.getJugador().modificarSaldo(false, a.getMonto());
-        }
-    }
     
-     
+    @Override
+     public boolean equals(Object o){
+        Mesa m = (Mesa)o;
+        return nombre.equalsIgnoreCase(m.getNombre());
+    }
 }
