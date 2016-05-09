@@ -44,7 +44,6 @@ public class ControladorJuegos implements Observer {
     
     public void ingresarAjuego(String j){
         Object juego = modelo.getJuego(j);
-        //modelo.setPlayerRole(jugador, juego);
         //if (juego != null) // supongo que esto deberia ir para controlar
             vista.abrirJuego(juego);
             jugador.setEnJuego(true);
@@ -53,6 +52,5 @@ public class ControladorJuegos implements Observer {
     
     public void logout(){
         modelo.logout(jugador);
-        
     }
 }
