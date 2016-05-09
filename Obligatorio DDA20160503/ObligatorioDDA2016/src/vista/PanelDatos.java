@@ -103,7 +103,7 @@ public class PanelDatos extends javax.swing.JPanel {
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
         // TODO add your handling code here:
-        //insertarApuesta();
+        finalizarApuesta();
     }//GEN-LAST:event_btn_finalizarAActionPerformed
 
 
@@ -147,5 +147,9 @@ public class PanelDatos extends javax.swing.JPanel {
     public void exito() {
         txt_valorApuesta.setText("0");
         txt_valorApuesta.requestFocus();
+    }
+
+    private void finalizarApuesta() {
+        //controlador.finalizarApuesta();
     }
 }

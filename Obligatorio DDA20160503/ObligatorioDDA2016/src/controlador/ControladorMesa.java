@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -85,5 +84,5 @@ public class ControladorMesa implements Observer {
     private void mostrarNumeroSorteado(int i){
         vista.mostrarNumeroSorteado(i);
     }
-    
+
 }
