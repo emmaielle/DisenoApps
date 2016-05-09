@@ -62,10 +62,7 @@ public class Ronda {
         // nunca se deberia llegar aca
         return nroGanador;
     }
-    public void agregarApuestas(Apuesta a){
-        if (a!=null)apuestas.add(a);
-    }
-
+    
     // funciona en ambos sentidos si se hace click de nuevo
     public void apostar(Numero n, int v, JugadorRuleta jugador) {
         Apuesta yaApostada = null;

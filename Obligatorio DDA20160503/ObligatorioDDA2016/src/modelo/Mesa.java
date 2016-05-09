@@ -59,17 +59,24 @@ public class Mesa {
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     public boolean agregarJugador(Color c, Jugador j){
         //ver q cuando entre quede en una lista temporal hasta q termine la ronda
+        JugadorRuleta jr = new JugadorRuleta(c, this, j);
+
         if(jugadoresMesa.size()== 0){
             //Ronda primera = new Ronda(); // esto se puede hacer aca pero cuidado que hay que borrar el que ya esta hecho en otra parte
             //rondas.add(primera);
-        }    
-        if(jugadoresMesa.size()<4){
-            JugadorRuleta jr = new JugadorRuleta(c, this, j);
             jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
-                //ver si esto queda aca o donde?
             Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
             return true;
+        }    
+        else if(jugadoresMesa.size()<4 && this.buscarRonda(this.getUltimaRonda()).getNroGanador()==-1){
+            
+                jr.setMesa(this); // mesa en jugador
+                jugadoresEspera.add(jr);
+                Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
+                return true;       
+            //jugadoresMesa.add(jr);
+                //ver si esto queda aca o donde?          
         }
         else{
             return false;
@@ -77,6 +84,7 @@ public class Mesa {
     }
     public void quitarJugador(JugadorRuleta j){
         jugadoresMesa.remove(j);
+        jugadoresEspera.remove(j);
     }
 
     // to DO
@@ -172,23 +180,19 @@ public class Mesa {
         }
         return null;
     }
+//
+//    public void finalizarApuesta(JugadorRuleta jugador){
+//        // llamar a sortearNumero
+//        
+////        for(Numero n:numeros){
+////            if(n.getJugador()==jugador)
+////            {
+////                crearApuestas(n);
+////            }
+////            
+////        }
+//    }
 
-    public void finalizarApuesta(JugadorRuleta jugador){
-        // llamar a sortearNumero
-        
-//        for(Numero n:numeros){
-//            if(n.getJugador()==jugador)
-//            {
-//                crearApuestas(n);
-//            }
-//            
-//        }
-    }
-
-    private void crearApuestas(Numero n) {
-        Apuesta a = new Apuesta(n);
- 
-    }
 
     public int sortearNumeroGanador() {
         Ronda ultimaRonda = buscarRonda(getUltimaRonda());
@@ -201,9 +205,14 @@ public class Mesa {
     }
 
     public void nuevaRonda(){
-        this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
-        //limpiar los numeros. Quitarles todas las apuestas que tienen asociadas        
+        //lo dejo comentado pq en initMesa ya crea una nueva ronda...
+        //this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
+        for(JugadorRuleta jr:jugadoresEspera){
+            jugadoresMesa.add(jr);
+            jugadoresEspera.clear();
+        }
         initMesa();
+        //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
     }
     
     public int getNumeroGanador() {

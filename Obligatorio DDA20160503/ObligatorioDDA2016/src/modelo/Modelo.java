@@ -108,10 +108,5 @@ public class Modelo extends Observable {
 
     public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) {
         mesa.apostar(n, v, jugador);
-    }
-
-
-  
-    
-
+    }  
 }

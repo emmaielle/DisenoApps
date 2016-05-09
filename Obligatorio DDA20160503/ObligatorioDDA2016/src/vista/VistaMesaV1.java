@@ -30,6 +30,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
 
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
+        this.setTitle("Mesa : "+m.getNombre());
         JugadorRuleta jr= m.buscarJugador(j);
         controlador = new ControladorMesa(this,m,jr);
         top = new PanelDatos(controlador);
@@ -51,8 +52,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -63,10 +62,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
             }
         });
         getContentPane().setLayout(null);
-
-        lbl.setText("jLabel1");
-        getContentPane().add(lbl);
-        lbl.setBounds(114, 38, 178, 14);
 
         setBounds(0, 0, 716, 493);
     }// </editor-fold>//GEN-END:initComponents
@@ -85,7 +80,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbl;
     // End of variables declaration//GEN-END:variables
 
     @Override
