@@ -20,7 +20,7 @@ public interface VistaMesa {
     public void mostrarNumeroSorteado(int num);
     public void exitoApuesta();
     public void salirDeMesa();
-
+    public void habilitar(boolean b);
     public void errorApuesta(String msj);
 
     public void mostrarSaldo(long saldoJugador);
