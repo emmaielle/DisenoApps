@@ -138,6 +138,8 @@ public class PanelDatos extends javax.swing.JPanel {
 
     private void sortearNum() {
         controlador.sortearNumero();
+        habilitar(true);
+
     }
     public int obtenerApuesta(){
         int monto=0;
@@ -158,7 +160,11 @@ public class PanelDatos extends javax.swing.JPanel {
     }
 
     private void finalizarApuesta() {
-        //controlador.finalizarApuesta();
+        controlador.finalizarApuesta();
+        //habilitar(true);
+    }
 
+    public void habilitar(boolean b) {
+        btn_finalizarA.setEnabled(b);
     }
 }

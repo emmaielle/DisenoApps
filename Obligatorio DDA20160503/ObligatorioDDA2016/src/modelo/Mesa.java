@@ -19,6 +19,7 @@ public class Mesa {
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
     private ArrayList<Color> coloresDisp;
+    private int cant;
 
     public Mesa(String nombre) {
         this.nombre = nombre;
@@ -103,6 +104,9 @@ public class Mesa {
         for(JugadorRuleta jr:jugadoresMesa){
             if(jr.getJugador()==j) return jr;     
         }
+        for(JugadorRuleta jr: jugadoresEspera){
+            if(jr.getJugador()==j) return jr;
+        }
         return null;
     }
 
@@ -147,6 +151,7 @@ public class Mesa {
         numeros.add(new Numero(36, Color.red));
         Ronda ronda = new Ronda(getUltimaRonda() + 1);
         rondas.add(ronda);
+        cant=0;
     }
 
 
@@ -212,6 +217,7 @@ public class Mesa {
             jugadoresEspera.clear();
         }
         initMesa();
+        Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
         //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
     }
     
@@ -221,12 +227,33 @@ public class Mesa {
     }
 
     public void apostar(Numero n, int v, JugadorRuleta jugador) {
-        (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+       // if(this.getUltimaRonda()==1&& jugadoresMesa.size()==1)
+        for(JugadorRuleta jr:jugadoresMesa){
+            if(jugador==jr)
+                (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+
+        }    
+        //else if(this.buscarRonda(this.getUltimaRonda()).getNroGanador()!=-1)
+        //    (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+
     }
     
     @Override
      public boolean equals(Object o){
         Mesa m = (Mesa)o;
         return nombre.equalsIgnoreCase(m.getNombre());
+    }
+
+    public int finalizarApuesta() {
+        cant++;
+        if(cant==jugadoresMesa.size()){
+            return sortearNumeroGanador();
+        }
+        else if(cant>1&&cant<=jugadoresMesa.size())
+        {
+            cant++;
+            return -1;
+        }
+        return -1;
     }
 }

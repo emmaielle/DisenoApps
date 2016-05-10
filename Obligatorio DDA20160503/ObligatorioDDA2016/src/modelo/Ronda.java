@@ -111,6 +111,8 @@ public class Ronda {
         for (Apuesta a: apuestas){
             Jugador j = a.getJugador().getJugador();
             if (apuestaGanadora != null && apuestaGanadora.equals(a)){ // si hubo un ganador
+                //no podriamos restar antes para no llamar dos veces al metodo?
+                //o multiplicar por 34???
                 j.modificarSaldo(true, a.getMonto()* 35);
                 j.modificarSaldo(false, a.getMonto());
                 j.setTotalCobrado(j.getTotalCobrado() + a.getMonto() * 35);
