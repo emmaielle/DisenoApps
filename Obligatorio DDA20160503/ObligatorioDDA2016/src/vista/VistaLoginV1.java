@@ -49,11 +49,11 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
 
         lblNombre.setText("Nombre :");
         getContentPane().add(lblNombre);
-        lblNombre.setBounds(66, 68, 44, 14);
+        lblNombre.setBounds(30, 68, 80, 20);
 
         lblPsw.setText("Password :");
         getContentPane().add(lblPsw);
-        lblPsw.setBounds(66, 125, 53, 14);
+        lblPsw.setBounds(29, 125, 90, 20);
         getContentPane().add(txtNombre);
         txtNombre.setBounds(148, 65, 58, 20);
         getContentPane().add(txtPsw);
@@ -66,7 +66,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
             }
         });
         getContentPane().add(btnIngresarCasino);
-        btnIngresarCasino.setBounds(250, 70, 121, 23);
+        btnIngresarCasino.setBounds(230, 70, 160, 60);
         getContentPane().add(estado);
         estado.setBounds(66, 204, 211, 18);
 
