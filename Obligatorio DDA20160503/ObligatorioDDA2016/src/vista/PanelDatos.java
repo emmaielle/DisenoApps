@@ -80,13 +80,13 @@ public class PanelDatos extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(310, 130, 120, 40);
+        jButton1.setBounds(270, 130, 120, 40);
         add(txt_valorApuesta);
-        txt_valorApuesta.setBounds(140, 150, 90, 20);
+        txt_valorApuesta.setBounds(160, 150, 70, 20);
 
         jLabel3.setText("Ingrese valor a apostar:");
         add(jLabel3);
-        jLabel3.setBounds(10, 150, 117, 14);
+        jLabel3.setBounds(10, 150, 130, 20);
 
         btn_finalizarA.setText("Finalizar Apuestas");
         btn_finalizarA.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class PanelDatos extends javax.swing.JPanel {
             }
         });
         add(btn_finalizarA);
-        btn_finalizarA.setBounds(440, 130, 119, 40);
+        btn_finalizarA.setBounds(409, 130, 150, 40);
         add(lbl_saldo);
         lbl_saldo.setBounds(20, 50, 160, 30);
     }// </editor-fold>//GEN-END:initComponents

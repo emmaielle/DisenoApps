@@ -214,10 +214,12 @@ public class Mesa {
         //this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
         for(JugadorRuleta jr:jugadoresEspera){
             jugadoresMesa.add(jr);
-            jugadoresEspera.clear();
         }
+        jugadoresEspera.clear();
+
         initMesa();
         Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+        Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
         //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
     }
     
