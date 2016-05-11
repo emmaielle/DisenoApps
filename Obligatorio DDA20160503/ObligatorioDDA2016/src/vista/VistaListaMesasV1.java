@@ -73,15 +73,15 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
         getContentPane().add(btn_enterTable);
         btn_enterTable.setBounds(338, 71, 85, 33);
         getContentPane().add(txt_newTableName);
-        txt_newTableName.setBounds(61, 217, 118, 20);
+        txt_newTableName.setBounds(130, 220, 118, 20);
 
         jLabel1.setText("Crear Mesa:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(120, 179, 59, 14);
+        jLabel1.setBounds(120, 179, 130, 20);
 
         jLabel3.setText("Nombre:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 220, 41, 14);
+        jLabel3.setBounds(10, 220, 80, 20);
 
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
             }
         });
         getContentPane().add(btnCrear);
-        btnCrear.setBounds(210, 220, 73, 23);
+        btnCrear.setBounds(280, 220, 73, 23);
 
         setBounds(0, 0, 483, 373);
     }// </editor-fold>//GEN-END:initComponents

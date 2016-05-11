@@ -95,5 +95,6 @@ public class ControladorMesa implements Observer {
 
     public void finalizarApuesta() {
         modelo.finalizarApuesta(mesa);
+       // vista.habilitar(false);
     } 
 }
