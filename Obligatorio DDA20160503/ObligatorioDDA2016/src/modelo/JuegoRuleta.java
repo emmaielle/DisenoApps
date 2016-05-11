@@ -53,18 +53,21 @@ public class JuegoRuleta {
         return null;
     }
 
-    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) {
+    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException {
+        if (j.isEnMesa()) throw new InvalidUserActionException("Jugador ya se encuentra en una mesa");
         m.agregarJugador(c, j);
         return true;
     }
 
     boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
+        if (j.isEnMesa()) throw new InvalidUserActionException("Jugador ya se encuentra en una mesa");
         if (m.validar()){
             m.agregarJugador(c, j); // lista de jugadores en mesa
             agregar(m); // lista de mesas en ruleta
             return true;
         }
         else return false;
+
     }
     
     

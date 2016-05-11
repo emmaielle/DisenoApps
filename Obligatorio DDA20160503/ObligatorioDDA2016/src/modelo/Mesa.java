@@ -48,6 +48,17 @@ public class Mesa {
     public ArrayList<JugadorRuleta> getJugadoresMesa() {
         return jugadoresMesa;
     }
+    
+    public ArrayList<JugadorRuleta> getTodosJugadoresEnMesa(){
+        ArrayList<JugadorRuleta> todos = new ArrayList<>();
+        for (JugadorRuleta k : jugadoresMesa){
+            todos.add(k);
+        }
+        for ( JugadorRuleta j : jugadoresEspera){
+            todos.add(j);
+        }
+        return todos;
+    }
 
     public ArrayList<Numero> getNumeros() {
         return numeros;
@@ -62,22 +73,23 @@ public class Mesa {
         //ver q cuando entre quede en una lista temporal hasta q termine la ronda
         JugadorRuleta jr = new JugadorRuleta(c, this, j);
 
-        if(jugadoresMesa.size()== 0){
+        if(jugadoresMesa.isEmpty()){
             //Ronda primera = new Ronda(); // esto se puede hacer aca pero cuidado que hay que borrar el que ya esta hecho en otra parte
             //rondas.add(primera);
             jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
             Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
+            j.setEnMesa(true);
             return true;
         }    
         else if(jugadoresMesa.size()<4 && this.buscarRonda(this.getUltimaRonda()).getNroGanador()==-1){
-            
-                jr.setMesa(this); // mesa en jugador
-                jugadoresEspera.add(jr);
-                Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
-                return true;       
+            jr.setMesa(this); // mesa en jugador
+            jugadoresEspera.add(jr);
+            j.setEnMesa(true);
+            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
+            return true;       
             //jugadoresMesa.add(jr);
-                //ver si esto queda aca o donde?          
+            //ver si esto queda aca o donde?          
         }
         else{
             return false;
@@ -93,7 +105,6 @@ public class Mesa {
         return true;
     }
 
-    // no non o
     @Override
     public String toString() {
         if (jugadoresMesa.size() == 1) return nombre + ", " + jugadoresMesa.size() + " jugador";
@@ -185,18 +196,6 @@ public class Mesa {
         }
         return null;
     }
-//
-//    public void finalizarApuesta(JugadorRuleta jugador){
-//        // llamar a sortearNumero
-//        
-////        for(Numero n:numeros){
-////            if(n.getJugador()==jugador)
-////            {
-////                crearApuestas(n);
-////            }
-////            
-////        }
-//    }
 
 
     public int sortearNumeroGanador() {
@@ -210,14 +209,13 @@ public class Mesa {
     }
 
     public void nuevaRonda(){
-        //lo dejo comentado pq en initMesa ya crea una nueva ronda...
-        //this.rondas.add(new Ronda(getUltimaRonda() + 1)); // +1 xq es nueva
         for(JugadorRuleta jr:jugadoresEspera){
             jugadoresMesa.add(jr);
-            jugadoresEspera.clear();
         }
+        jugadoresEspera.clear();
         initMesa();
         Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
+        Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
         //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
     }
     

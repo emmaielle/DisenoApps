@@ -20,6 +20,7 @@ public class Jugador {
     private long totalCobrado;
     private long totalApostado;
     private boolean enJuego;
+    private boolean enMesa;
     
     
     public Jugador(String nombre, String password, String nombreCompleto, int saldo) {
@@ -37,6 +38,14 @@ public class Jugador {
         this.nombre = nombre;
     }
 
+    public boolean isEnMesa() {
+        return enMesa;
+    }
+
+    public void setEnMesa(boolean enMesa) {
+        this.enMesa = enMesa;
+    }
+    
     public String getPassword() {
         return password;
     }

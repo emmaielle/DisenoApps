@@ -150,7 +150,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     }
 
     private String formatear(Mesa m) {
-        return m.getNombre() + ", " + m.getJugadoresMesa().size() + " jugador/es";
+        return m.getNombre() + ", " + m.getTodosJugadoresEnMesa().size() + " jugador/es";
     }
 
     @Override
