@@ -10,6 +10,7 @@ package modelo;
  * @author Euge
  */
 public interface TipoJugador {
-    public void actualizarTotalCobrado();
-    public void actualizarTotalApostado();
+    public int totalCobrado();
+    public int totalApostado();
+    public void modificarSaldo(boolean agregar,int monto);
 }

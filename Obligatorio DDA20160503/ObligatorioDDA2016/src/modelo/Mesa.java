@@ -20,7 +20,7 @@ public class Mesa {
     private ArrayList<Ronda> rondas = new ArrayList();
     private ArrayList<Color> coloresDisp;
     private int cant;
-
+    
     public Mesa(String nombre) {
         this.nombre = nombre;
         initMesa();
@@ -254,4 +254,5 @@ public class Mesa {
         }
         return -1;
     }
+
 }

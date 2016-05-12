@@ -61,7 +61,6 @@ public class ControladorMesa implements Observer {
             buscarNumeroActual();
             // mostrar nuevos saldos. Hacer un display de saldo, actualizar paneltablero
             mostrarSaldo();
-            vista.habilitar(true);
         }
         else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
             vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
@@ -95,6 +94,7 @@ public class ControladorMesa implements Observer {
 
     public void finalizarApuesta() {
         modelo.finalizarApuesta(mesa);
-       // vista.habilitar(false);
+        //if algo q habilite el boton
+            //vista.habilitar(true);
     } 
 }

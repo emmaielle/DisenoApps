@@ -15,7 +15,7 @@ public class SistemaJugador {
     private ArrayList<Jugador> jugadores = new ArrayList();
     private ArrayList<Jugador> logueados = new ArrayList();
     private boolean habilitado = true;
-
+    private TipoJugador tipo;
     private static SistemaJugador instancia = new SistemaJugador();
     private SistemaJugador() {
     }
@@ -66,6 +66,20 @@ public class SistemaJugador {
 
     public boolean isHabilitado() {
         return habilitado;
+    }
+    public int totalCobradoTodos(){
+        int total=0;
+        for(Jugador j:jugadores){
+            total+=j.getTotalCobrado();
+        }
+        return total;
+    }
+    public int totalApostadoTodos(){
+        int total=0;
+        for(Jugador j: jugadores){
+            total+=j.getTotalApostado();
+        }
+        return total;
     }
     
 }

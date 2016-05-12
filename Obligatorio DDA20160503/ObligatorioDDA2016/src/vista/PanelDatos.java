@@ -107,6 +107,7 @@ public class PanelDatos extends javax.swing.JPanel {
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
         // TODO add your handling code here:
         finalizarApuesta();
+        habilitar(false);
     }//GEN-LAST:event_btn_finalizarAActionPerformed
 
 
@@ -138,7 +139,7 @@ public class PanelDatos extends javax.swing.JPanel {
 
     private void sortearNum() {
         controlador.sortearNumero();
-        habilitar(true);
+//        habilitar(true);
 
     }
     public int obtenerApuesta(){
