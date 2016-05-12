@@ -110,7 +110,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void mostrarNumeroSorteado(int num) {
         top.mostrarNumeroSorteado(num);
         validate(); // para refrescar en el momento
-        
     }
 
     @Override

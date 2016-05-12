@@ -26,6 +26,7 @@ public class Modelo extends Observable {
     public static final int EVENTO_SORTEARNUMERO = 5;
     public static final int EVENTO_NUEVO_JUGADOR_MESA_RULETA = 6;
     public static final int EVENTO_JUEGO_CERRADO = 7;
+    public static final int EVENTO_ACTUALIZA_SALDOS = 8;
     
     private Modelo() {
     }
@@ -113,4 +114,13 @@ public class Modelo extends Observable {
     public int finalizarApuesta(Mesa mesa) {
         return mesa.finalizarApuesta();
     }
+
+    public int totalApostadoTodos() {
+        return sj.totalApostadoTodos();
+    }
+
+    public int totalCobradoTodos() {
+        return sj.totalCobradoTodos();
+    }
+    
 }

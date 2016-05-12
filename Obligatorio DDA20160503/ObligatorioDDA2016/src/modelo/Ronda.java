@@ -121,6 +121,7 @@ public class Ronda {
                 j.setTotalApostado(j.getTotalApostado() + a.getMonto());
             }
         }
+        Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
     }
     
     

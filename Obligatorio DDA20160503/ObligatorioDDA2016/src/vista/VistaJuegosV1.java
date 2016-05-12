@@ -102,6 +102,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     private void btn_statsCasinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_statsCasinoActionPerformed
         // TODO add your handling code here:
+        mostrarEstadisticas();
     }//GEN-LAST:event_btn_statsCasinoActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -145,6 +146,10 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     @Override
     public void habilitarIrAJuego(boolean habilitar) {
         btn_chooseGame.setEnabled(habilitar);
+    }
+
+    private void mostrarEstadisticas() {
+        new VistaEstadisticasV1(jugador).setVisible(true);
     }
     
     
