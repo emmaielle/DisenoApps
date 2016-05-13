@@ -45,6 +45,10 @@ public class Mesa {
         return nombre;
     }
 
+    public ArrayList<JugadorRuleta> getJugadoresEspera() {
+        return jugadoresEspera;
+    }
+    
     public ArrayList<JugadorRuleta> getJugadoresMesa() {
         return jugadoresMesa;
     }

@@ -6,8 +6,11 @@
 package vista;
 
 import controlador.ControladorMesa;
+import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.JugadorRuleta;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 
 /**
  *
@@ -81,6 +84,15 @@ public class PanelDatos extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(270, 130, 120, 40);
+
+        txt_valorApuesta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_valorApuestaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_valorApuestaFocusLost(evt);
+            }
+        });
         add(txt_valorApuesta);
         txt_valorApuesta.setBounds(160, 150, 70, 20);
 
@@ -109,6 +121,14 @@ public class PanelDatos extends javax.swing.JPanel {
         finalizarApuesta();
         habilitar(false);
     }//GEN-LAST:event_btn_finalizarAActionPerformed
+
+    private void txt_valorApuestaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorApuestaFocusGained
+        txt_valorApuesta.setText("");
+    }//GEN-LAST:event_txt_valorApuestaFocusGained
+
+    private void txt_valorApuestaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorApuestaFocusLost
+        
+    }//GEN-LAST:event_txt_valorApuestaFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -142,13 +162,10 @@ public class PanelDatos extends javax.swing.JPanel {
 //        habilitar(true);
 
     }
-    public int obtenerApuesta(){
-        int monto=0;
-        //TODO Controlar que si mete letras largue una excepcion... solo sirve para numeros
-        if(txt_valorApuesta.getText()!="0"){
-            monto = Integer.parseInt(txt_valorApuesta.getText());
-        }
-        return monto;
+    public String obtenerApuesta() throws InvalidUserActionException{
+        String montoIngresado = txt_valorApuesta.getText();
+        if (!montoIngresado.matches("[0-9]+")) throw new InvalidUserActionException("El valor apostado debe contener solo numeros");
+        return montoIngresado;
     }
 
     public void exito() {

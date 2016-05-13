@@ -101,8 +101,10 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     }//GEN-LAST:event_btn_enterTableActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
-        controlador.crearMesa(txt_newTableName.getText());
+        if (!txt_newTableName.getText().equals("")){
+            controlador.crearMesa(txt_newTableName.getText());
+        }
+        else JOptionPane.showMessageDialog(this, "Ingrese un nombre para la mesa a crear");
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

@@ -7,9 +7,12 @@ package vista;
 
 import controlador.ControladorMesa;
 import controlador.VistaMesa;
+import exceptions.InvalidUserActionException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import modelo.Jugador;
@@ -95,8 +98,19 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void actionPerformed(ActionEvent e) {
         BotonRuleta origen = (BotonRuleta) e.getSource();
         Numero n = origen.getNumero();
-        int monto = top.obtenerApuesta();
-        controlador.apostar(n,monto);
+        try{
+            String monto = top.obtenerApuesta();
+            int montoInt = 0;
+            if(!monto.equals("0")){
+                montoInt = Integer.parseInt(monto);
+            }
+            controlador.apostar(n,montoInt);
+        }
+        catch (InvalidUserActionException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+        
     }
 
     @Override
