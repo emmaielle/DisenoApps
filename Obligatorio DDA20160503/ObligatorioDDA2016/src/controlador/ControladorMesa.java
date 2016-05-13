@@ -64,7 +64,8 @@ public class ControladorMesa implements Observer {
             vista.habilitar(true);
             mostrarSaldo();
         }
-        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
+        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) ||
+                arg.equals(Modelo.EVENTO_SALIR_MESA)){
             vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
         }
     }
@@ -99,4 +100,9 @@ public class ControladorMesa implements Observer {
         //if algo q habilite el boton
             //vista.habilitar(true);
     } 
+
+    public void salirDeMesa() {
+        modelo.salirDeMesaRuleta(jugador, mesa);
+        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
+    }
 }

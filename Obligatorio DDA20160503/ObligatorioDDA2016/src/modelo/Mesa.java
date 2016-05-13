@@ -102,6 +102,8 @@ public class Mesa {
     public void quitarJugador(JugadorRuleta j){
         jugadoresMesa.remove(j);
         jugadoresEspera.remove(j);
+        Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
+        // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
     }
 
     // to DO
@@ -225,7 +227,6 @@ public class Mesa {
         initMesa();
         Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
         Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
-        //limpiar los numeros. Es decir, quitarles todas las apuestas que tienen asociadas
     }
     
     public int getNumeroGanador() {

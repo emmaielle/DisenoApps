@@ -128,7 +128,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
 
     @Override
     public void salirDeMesa() {
-
+        controlador.salirDeMesa();
     }
 
     @Override

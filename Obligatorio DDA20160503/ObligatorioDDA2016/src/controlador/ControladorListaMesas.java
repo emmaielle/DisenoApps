@@ -36,7 +36,8 @@ public class ControladorListaMesas implements Observer {
     
     @Override
     public void update(Observable o, Object evento) {
-        if (evento.equals(Modelo.EVENTO_NUEVA_MESA) || evento.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
+        if (evento.equals(Modelo.EVENTO_NUEVA_MESA) || evento.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)
+         || evento.equals(Modelo.EVENTO_SALIR_MESA)){
             listarMesas();
         }
 
