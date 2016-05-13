@@ -173,7 +173,7 @@ public class Mesa {
     public Color getUnusedColour() {
         Color sirve = Color.YELLOW;
         ArrayList<Color> temp = new ArrayList<>();
-        for (JugadorRuleta jr : jugadoresMesa){
+        for (JugadorRuleta jr : this.getTodosJugadoresEnMesa()){
             temp.add(jr.getColor());
         }
         for (Color c : this.getColoresDisp()){
@@ -213,10 +213,15 @@ public class Mesa {
     }
 
     public void nuevaRonda(){
-        for(JugadorRuleta jr:jugadoresEspera){
-            jugadoresMesa.add(jr);
+        // esto asegura que no intente pasar en espera solo porque termino la ronda
+        // y no considere la max cant de jugadores por ronda
+        while (jugadoresMesa.size() < 4 && !jugadoresEspera.isEmpty()){
+            if (!jugadoresEspera.isEmpty()){
+                JugadorRuleta temp = jugadoresEspera.get(0);
+                jugadoresMesa.add(temp);
+                jugadoresEspera.remove(temp);
+            }
         }
-        jugadoresEspera.clear();
         initMesa();
         Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
         Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
@@ -251,7 +256,7 @@ public class Mesa {
         if(cant==jugadoresMesa.size()){
             return sortearNumeroGanador();
         }
-        else if(cant>1&&cant<=jugadoresMesa.size())
+        else if(cant>1 && cant<jugadoresMesa.size())
         {
             cant++;
             return -1;

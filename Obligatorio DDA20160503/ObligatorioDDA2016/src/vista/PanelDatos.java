@@ -118,8 +118,9 @@ public class PanelDatos extends javax.swing.JPanel {
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
         // TODO add your handling code here:
-        finalizarApuesta();
         habilitar(false);
+        finalizarApuesta();
+        
     }//GEN-LAST:event_btn_finalizarAActionPerformed
 
     private void txt_valorApuestaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorApuestaFocusGained
@@ -179,7 +180,6 @@ public class PanelDatos extends javax.swing.JPanel {
 
     private void finalizarApuesta() {
         controlador.finalizarApuesta();
-        //habilitar(true);
     }
 
     public void habilitar(boolean b) {

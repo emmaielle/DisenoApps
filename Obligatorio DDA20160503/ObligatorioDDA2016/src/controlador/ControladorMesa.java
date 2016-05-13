@@ -61,6 +61,7 @@ public class ControladorMesa implements Observer {
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
             // mostrar nuevos saldos. Hacer un display de saldo, actualizar paneltablero
+            vista.habilitar(true);
             mostrarSaldo();
         }
         else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
