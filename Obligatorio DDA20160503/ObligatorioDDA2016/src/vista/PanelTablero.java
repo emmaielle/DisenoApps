@@ -44,7 +44,7 @@ public class PanelTablero extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarTablero(ArrayList<Numero> numeros, ActionListener al) {
-        GridLayout disenio = new GridLayout(3, numeros.size());
+        GridLayout disenio = new GridLayout(3, 12);
         setLayout(disenio);
         
         for(Numero n:numeros){

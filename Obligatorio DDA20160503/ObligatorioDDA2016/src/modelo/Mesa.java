@@ -102,6 +102,7 @@ public class Mesa {
     public void quitarJugador(JugadorRuleta j){
         jugadoresMesa.remove(j);
         jugadoresEspera.remove(j);
+        j.getJugador().setEnMesa(false);
         Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
         // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
     }

@@ -15,6 +15,7 @@ public class SistemaJugador {
     private ArrayList<Jugador> jugadores = new ArrayList();
     private ArrayList<Jugador> logueados = new ArrayList();
     private boolean habilitado = true;
+    //Ver si la interfaz queda aca!!!!!!!! No deberia quedar en el Jugador? No lo tengo claro
     private TipoJugador tipo;
     private static SistemaJugador instancia = new SistemaJugador();
     private SistemaJugador() {
