@@ -124,5 +124,11 @@ public class Ronda {
         Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
     }
     
-    
+    public void eliminarApuestas(JugadorRuleta j){
+        for(Apuesta a:apuestas){
+            if(a.getJugador()==j)
+                quitarApuesta(a);
+                //apuestas.remove(a);
+        }
+    }
 }
