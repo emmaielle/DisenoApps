@@ -159,8 +159,6 @@ public class PanelDatos extends javax.swing.JPanel {
 
     private void sortearNum() {
         controlador.sortearNumero();
-//        habilitar(true);
-
     }
     public String obtenerApuesta() throws InvalidUserActionException{
         String montoIngresado = txt_valorApuesta.getText();
