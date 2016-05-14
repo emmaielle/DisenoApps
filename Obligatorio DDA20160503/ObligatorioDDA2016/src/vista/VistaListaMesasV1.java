@@ -7,7 +7,10 @@ package vista;
 
 import controlador.ControladorListaMesas;
 import controlador.VistaListaMesas;
+import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Jugador;
 import modelo.JugadorRuleta;
@@ -97,15 +100,21 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_enterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enterTableActionPerformed
-        // TODO add your handling code here:
-        ingresarMesa();
+        try {
+            // TODO add your handling code here:
+            ingresarMesa();
+        } catch (InvalidUserActionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+
+        }
     }//GEN-LAST:event_btn_enterTableActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        if (!txt_newTableName.getText().equals("")){
-            controlador.crearMesa(txt_newTableName.getText());
+        try {
+            crearMesa();
+        } catch (InvalidUserActionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        else JOptionPane.showMessageDialog(this, "Ingrese un nombre para la mesa a crear");
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -148,8 +157,9 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
         vistaMesa.setVisible(true);
     }
 
-    private void ingresarMesa() {
-        if (list_mesas.getModel().getSize() > 0 && list_mesas.getSelectedValue() != null)
+    private void ingresarMesa() throws InvalidUserActionException {
+        if (list_mesas.getModel().getSize() == 0)  throw new InvalidUserActionException("No hay ninguna mesa creada");
+        if(list_mesas.getSelectedValue() == null) throw new InvalidUserActionException("Debe seleccionar una mesa para ingresar");
             controlador.unirseAmesa(list_mesas.getSelectedValue().toString());
     }
 
@@ -176,5 +186,11 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     @Override
     public void errorCrearMesa(String msg) {
         JOptionPane.showMessageDialog(this, msg);
+    }
+
+    private void crearMesa() throws InvalidUserActionException{
+        if (txt_newTableName.getText().equals("")) throw new InvalidUserActionException("Ingrese un nombre para la mesa a crear");
+            if(txt_newTableName.getText().contains(",")) throw new InvalidUserActionException("El nombre de la mesa no puede contener ','");
+                controlador.crearMesa(txt_newTableName.getText());
     }
 }
