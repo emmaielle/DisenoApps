@@ -93,8 +93,11 @@ public class ControladorMesa implements Observer {
     }
 
     public void finalizarApuesta() {
-        modelo.finalizarApuesta(mesa);
+        int sorteado=modelo.finalizarApuesta(mesa);
         //if algo q habilite el boton
-            //vista.habilitar(true);
+        if(sorteado!=-1)
+            vista.habilitar(true);
+        else
+            vista.habilitar(false);
     } 
 }
