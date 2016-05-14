@@ -36,7 +36,8 @@ public class ControladorListaMesas implements Observer {
     
     @Override
     public void update(Observable o, Object evento) {
-        if (evento.equals(Modelo.EVENTO_NUEVA_MESA) || evento.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
+        if (evento.equals(Modelo.EVENTO_NUEVA_MESA) || evento.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)
+         || evento.equals(Modelo.EVENTO_SALIR_MESA)){
             listarMesas();
         }
 
@@ -61,8 +62,8 @@ public class ControladorListaMesas implements Observer {
         JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
         if (m != null) {
             try {
-            modelo.unirJugadorAMesaRuleta(jugador, m, asignarColor(m));
-            vista.abrirMesa(m, jugador);
+                modelo.unirJugadorAMesaRuleta(jugador, m, asignarColor(m));
+                vista.abrirMesa(m, jugador);
             }
             catch (InvalidUserActionException ex){
                 vista.errorCrearMesa(ex.getMessage());

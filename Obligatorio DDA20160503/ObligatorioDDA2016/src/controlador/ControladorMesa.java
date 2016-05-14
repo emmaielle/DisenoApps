@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -35,22 +36,22 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
-    public void apostar(Numero n, int v){
+    public void apostar(Numero n, int v) throws InvalidUserActionException {
         // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
-        if(jugador.getJugador().getSaldo() >= v){ /// mensaje de que no tiene saldo suf
-            //si el monto a aportar es mayor que 0
-            if(v!=0){
-                modelo.apostar(mesa, n, v, jugador);
-                //n.apostar(jugador, v);
-                vista.exitoApuesta();
-            }
-            // si es igual a 0 pero ese numero ya tiene apuesta. Desapuesta
-            if(v == 0 && n.getApuesta() != null){
-                modelo.apostar(mesa, n, v, jugador);
-                vista.exitoApuesta();
-            }
-        } 
-        else vista.errorApuesta("No tiene saldo suficiente para realizar esta apuesta");
+        if (mesa.getJugadoresEspera().contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
+        if(jugador.getJugador().getSaldo() < v) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
+        //si el monto a aportar es mayor que 0
+        if(v!=0){
+            modelo.apostar(mesa, n, v, jugador);
+            //n.apostar(jugador, v);
+            vista.exitoApuesta();
+        }
+        // si es igual a 0 pero ese numero ya tiene apuesta. Desapuesta
+        if(v == 0 && n.getApuesta() != null){
+            modelo.apostar(mesa, n, v, jugador);
+            vista.exitoApuesta();
+        }
+         
     }
     @Override
     public void update(Observable o, Object arg) {
@@ -60,9 +61,11 @@ public class ControladorMesa implements Observer {
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
             // mostrar nuevos saldos. Hacer un display de saldo, actualizar paneltablero
+            vista.habilitar(true);
             mostrarSaldo();
         }
-        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)){
+        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) ||
+                arg.equals(Modelo.EVENTO_SALIR_MESA)){
             vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
         }
     }
@@ -100,4 +103,9 @@ public class ControladorMesa implements Observer {
         else
             vista.habilitar(false);
     } 
+
+    public void salirDeMesa() {
+        modelo.salirDeMesaRuleta(jugador, mesa);
+        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
+    }
 }

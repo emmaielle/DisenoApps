@@ -39,6 +39,7 @@ public class JuegoRuleta {
     }
     public void cerrarMesa(Mesa m){
         listadoMesas.remove(m);
+        Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
     }
     @Override
     public String toString() {
