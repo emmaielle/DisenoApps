@@ -23,6 +23,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
      * Creates new form VistaListaMesasV2
      */
     private ControladorListaMesas controlador;
+    private VistaMesaV1 vistaMesa;
     public VistaListaMesasV1(Jugador j) {
         initComponents();
         controlador = new ControladorListaMesas(j,this);
@@ -143,7 +144,8 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     public void abrirMesa(Mesa m, Jugador j) {
         //dispose();
         
-        new VistaMesaV1(m, j).setVisible(true);
+        vistaMesa = new VistaMesaV1(m, j);
+        vistaMesa.setVisible(true);
     }
 
     private void ingresarMesa() {
@@ -157,7 +159,12 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
     @Override
     public void salirDeJuego() {
-        controlador.salirDeJuego();
+        if(vistaMesa!=null){
+            controlador.salirDeJuego();
+            vistaMesa.salirDeMesa(); 
+            vistaMesa.dispose();
+        }
+        
     }
 
     @Override

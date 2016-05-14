@@ -21,6 +21,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
      * Creates new form VistaLoginV1
      */
     private ControladorLogin controlador;
+    private VistaJuegosV1 vistaJuegos;
     public VistaLoginV1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -98,7 +99,8 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
     @Override
     public void ingresarJugador(Jugador j) {
         dispose();
-        new VistaJuegosV1(j).setVisible(true);
+        vistaJuegos = new VistaJuegosV1(j);
+        vistaJuegos.setVisible(true);
     }
 
     @Override
@@ -109,6 +111,10 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
     @Override
     public void errorYaLogueado() {
         JOptionPane.showMessageDialog(this, "Usuario actualmente logueado");
+    }
+
+    public void finalizar() {
+        if(vistaJuegos!=null) vistaJuegos.logout();
     }
     
     
