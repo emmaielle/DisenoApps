@@ -14,6 +14,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    private VistaLoginV1 vistaLogin;
     public Principal() {
         initComponents();
     }
@@ -66,11 +67,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_finalizarActionPerformed
 
     private void ingresar(){
-        new VistaLoginV1(this,false).setVisible(true);
+        vistaLogin = new VistaLoginV1(this,false);
+        vistaLogin.setVisible(true);
     }
     
     private void finalizar() {
         dispose();
+        if(vistaLogin!=null){
+            vistaLogin.finalizar();
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

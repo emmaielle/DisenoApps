@@ -107,5 +107,6 @@ public class ControladorMesa implements Observer {
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
         if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
+        
     }
 }

@@ -52,5 +52,6 @@ public class ControladorJuegos implements Observer {
     
     public void logout(){
         modelo.logout(jugador);
+        jugador.setEnJuego(false);
     }
 }

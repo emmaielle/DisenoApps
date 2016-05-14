@@ -26,6 +26,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     
     private ControladorJuegos controlador;
     private Jugador jugador;
+    private VistaListaMesasV1 vistaListaMesa;
     /**
      *
      * @param j
@@ -107,8 +108,9 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        dispose();
-        controlador.logout();
+        logout();
+        
+        
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
@@ -135,7 +137,8 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
         
         if(juego.getClass()==JuegoRuleta.class){
 
-            new VistaListaMesasV1(jugador).setVisible(true);
+            vistaListaMesa =new VistaListaMesasV1(jugador);
+            vistaListaMesa.setVisible(true);
 
         }
         else
@@ -150,6 +153,15 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     private void mostrarEstadisticas() {
         new VistaEstadisticasV1(jugador).setVisible(true);
+    }
+
+    public void logout() {
+        dispose();
+        controlador.logout();
+        if(vistaListaMesa!=null){
+            vistaListaMesa.salirDeJuego();
+            vistaListaMesa.dispose();
+        }
     }
     
     
