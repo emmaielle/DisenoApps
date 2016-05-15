@@ -50,11 +50,11 @@ public class PanelDatos extends javax.swing.JPanel {
         listaJugadores = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
         nroSorteado = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         txt_valorApuesta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btn_finalizarA = new javax.swing.JButton();
         lbl_saldo = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -66,24 +66,15 @@ public class PanelDatos extends javax.swing.JPanel {
         jScrollPane1.setViewportView(listaJugadores);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(330, 40, 220, 80);
+        jScrollPane1.setBounds(350, 40, 220, 80);
 
         jLabel2.setText("Jugadores en mesa:");
         add(jLabel2);
-        jLabel2.setBounds(330, 10, 140, 14);
+        jLabel2.setBounds(350, 20, 140, 14);
 
         nroSorteado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         add(nroSorteado);
         nroSorteado.setBounds(150, 10, 50, 30);
-
-        jButton1.setText("SortearPrueba");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1);
-        jButton1.setBounds(270, 130, 120, 40);
 
         txt_valorApuesta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -107,14 +98,14 @@ public class PanelDatos extends javax.swing.JPanel {
             }
         });
         add(btn_finalizarA);
-        btn_finalizarA.setBounds(409, 130, 150, 40);
+        btn_finalizarA.setBounds(420, 130, 150, 40);
         add(lbl_saldo);
         lbl_saldo.setBounds(20, 50, 160, 30);
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sortearNum();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jLabel4.setText("(Para desapostar, ingresar 0 y elegir el numero apostado)");
+        add(jLabel4);
+        jLabel4.setBounds(10, 110, 430, 40);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
         // TODO add your handling code here:
@@ -133,10 +124,10 @@ public class PanelDatos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_finalizarA;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_saldo;
     private javax.swing.JList listaJugadores;
