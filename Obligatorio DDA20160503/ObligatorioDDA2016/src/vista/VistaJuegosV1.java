@@ -26,6 +26,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     private ControladorJuegos controlador;
     private Jugador jugador;
     private VistaListaMesasV1 vistaListaMesa;
+    private VistaEstadisticasV1 vistaEstadisticas;
     /**
      *
      * @param j
@@ -148,7 +149,8 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     }
 
     private void mostrarEstadisticas() {
-        new VistaEstadisticasV1(jugador).setVisible(true);
+        vistaEstadisticas = new VistaEstadisticasV1(jugador);
+        vistaEstadisticas.setVisible(true);
     }
 
     public void logout() {
@@ -157,6 +159,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
         if(vistaListaMesa!=null){
             vistaListaMesa.salirDeJuego();
             vistaListaMesa.dispose();
+            vistaEstadisticas.dispose();
         }
     }
     
