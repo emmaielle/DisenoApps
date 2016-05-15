@@ -11,8 +11,6 @@ import exceptions.InvalidUserActionException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import modelo.Jugador;
@@ -33,7 +31,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
 
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
-        this.setTitle("Mesa : "+m.getNombre()+"- Jugador "+j.getNombreCompleto());
+        this.setTitle("Mesa: "+m.getNombre()+" - Jugador: "+j.getNombreCompleto());
         JugadorRuleta jr= m.buscarJugador(j);
         controlador = new ControladorMesa(this,m,jr);
         top = new PanelDatos(controlador);
@@ -44,7 +42,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         controlador.cargarJugadoresActivos();
         controlador.buscarNumeroActual();
         controlador.mostrarSaldo();
-        
     }
 
     /**
