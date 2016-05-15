@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import modelo.JuegoRuleta;
 import modelo.Jugador;
-import modelo.JugadorRuleta;
 
 /**
  *
@@ -108,9 +107,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        logout();
-        
-        
+        logout(); 
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
@@ -136,8 +133,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
         //dispose();
         
         if(juego.getClass()==JuegoRuleta.class){
-
-            vistaListaMesa =new VistaListaMesasV1(jugador);
+            vistaListaMesa = new VistaListaMesasV1(jugador);
             vistaListaMesa.setVisible(true);
 
         }

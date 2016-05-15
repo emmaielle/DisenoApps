@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.VistaLogin;
+import java.util.ArrayList;
+
 /**
  *
  * @author Euge
@@ -14,7 +17,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    private VistaLoginV1 vistaLogin;
+    private ArrayList<VistaLoginV1> vistasLogin = new ArrayList<>();
     public Principal() {
         initComponents();
     }
@@ -67,15 +70,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_finalizarActionPerformed
 
     private void ingresar(){
-        vistaLogin = new VistaLoginV1(this,false);
+        VistaLoginV1 vistaLogin = new VistaLoginV1(this,false);
+        vistasLogin.add(vistaLogin);
         vistaLogin.setVisible(true);
     }
     
     private void finalizar() {
         dispose();
-        if(vistaLogin!=null){
-            vistaLogin.finalizar();
-            
+        if(!vistasLogin.isEmpty()){
+            for (VistaLoginV1 v : vistasLogin){
+                v.finalizar();
+            }
         }
     }
 

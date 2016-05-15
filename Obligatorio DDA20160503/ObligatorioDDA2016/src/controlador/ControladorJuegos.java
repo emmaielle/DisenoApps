@@ -36,7 +36,6 @@ public class ControladorJuegos implements Observer {
         }
     }
     
-    
     public void listarJuegos(){
         ArrayList<String> juegos = modelo.getJuegos();
         vista.mostrarJuegos(juegos);
