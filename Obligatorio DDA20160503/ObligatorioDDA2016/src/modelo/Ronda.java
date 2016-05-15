@@ -106,7 +106,6 @@ public class Ronda {
         for (Apuesta a : apuestas){
             if (a.getNumero().getValor() == nroGanador) apuestaGanadora = a;
         }
-        
     }
     
     public void modificarSaldos() {
@@ -127,10 +126,11 @@ public class Ronda {
     }
     
     public void eliminarApuestas(JugadorRuleta j){
-        for(Apuesta a:apuestas){
-            if(a.getJugador()==j)
-                quitarApuesta(a);
-                //apuestas.remove(a);
+        for (int i = 0; i < apuestas.size(); i++){
+            if(apuestas.get(i).getJugador() == j){
+                quitarApuesta(apuestas.get(i));
+                i--;
+            }
         }
     }
 }
