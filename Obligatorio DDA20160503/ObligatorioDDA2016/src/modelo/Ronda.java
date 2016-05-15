@@ -74,6 +74,7 @@ public class Ronda {
             Apuesta a = new Apuesta(v, jugador, n);
             if (a.validar()){
                 agregarApuesta(a);
+                jugador.getJugador().modificarSaldo(false, v);
             }
         }
         else {
@@ -81,6 +82,7 @@ public class Ronda {
             // sino queda la anterior
             if (yaApostada.getJugador().equals(jugador) && v == 0) {
                 quitarApuesta(yaApostada);
+                jugador.getJugador().modificarSaldo(true,yaApostada.getMonto());
             }
         }
     }

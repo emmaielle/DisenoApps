@@ -111,6 +111,7 @@ public class Mesa {
 
     // to DO
     public boolean validar() {
+        
         return true;
     }
 
@@ -243,9 +244,8 @@ public class Mesa {
             if(jugador==jr)
                 (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
 
-        }    
-        //else if(this.buscarRonda(this.getUltimaRonda()).getNroGanador()!=-1)
-        //    (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+        }
+        Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
 
     }
     

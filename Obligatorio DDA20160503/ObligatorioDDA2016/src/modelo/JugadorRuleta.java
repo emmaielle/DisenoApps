@@ -59,5 +59,5 @@ public class JugadorRuleta {
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
-
+    
 }
