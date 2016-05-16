@@ -74,7 +74,7 @@ public class JuegoRuleta implements IJuego {
     
     @Override
     public String toString() {
-        return "Ruleta";
+        return "Ruleta (" + this.listadoMesas.size() + ")";
     }
     
     // </editor-fold>

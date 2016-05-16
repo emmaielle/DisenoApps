@@ -37,6 +37,9 @@ public class ControladorJuegos implements Observer {
             if(jugador.isStatsOn()) vista.habilitarEstadisticas(false);
             else vista.habilitarEstadisticas(true);
         }
+        else if (arg.equals(Modelo.EVENTO_NUEVA_MESA)){
+            this.listarJuegos();
+        }
     }
     
     public void listarJuegos(){
