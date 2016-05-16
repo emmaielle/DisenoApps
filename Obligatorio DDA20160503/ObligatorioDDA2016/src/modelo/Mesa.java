@@ -231,7 +231,6 @@ public class Mesa {
     }
 
     public void apostarUnNumero(Numero n, int v, JugadorRuleta jugador) {
-       // if(this.getUltimaRonda()==1&& jugadoresMesa.size()==1)
         for(JugadorRuleta jr:jugadoresMesa){
             if(jugador==jr)
                 (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
@@ -269,6 +268,7 @@ public class Mesa {
         else temp = nombre + ", " + jugadoresMesa.size() + " jugadores activos";
         
         if (espera != 0){
+
             temp += " || " + espera +" en espera";
         }
         return temp;

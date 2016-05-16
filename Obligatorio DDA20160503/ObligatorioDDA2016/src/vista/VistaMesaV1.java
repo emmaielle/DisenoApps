@@ -131,6 +131,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     @Override
     public void errorApuesta(String msj) {
         JOptionPane.showMessageDialog(this, msj);
+        dispose();                
     }
 
     @Override
@@ -142,5 +143,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void habilitar(boolean b) {
         top.habilitar(b);
     }
+
+   
 
 }
