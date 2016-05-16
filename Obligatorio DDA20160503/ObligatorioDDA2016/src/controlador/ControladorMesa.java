@@ -42,7 +42,6 @@ public class ControladorMesa implements Observer {
         //si el monto a aportar es mayor que 0
         if(v!=0){
             modelo.apostar(mesa, n, v, jugador);
-            //n.apostar(jugador, v);
             vista.exitoApuesta();
         }
         // si es igual a 0 pero ese numero ya tiene apuesta. Desapuesta
@@ -59,12 +58,12 @@ public class ControladorMesa implements Observer {
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
-            // mostrar nuevos saldos. Hacer un display de saldo, actualizar paneltablero
             if (!modelo.estaEnEspera(jugador, mesa))
             {
                 vista.habilitar(true);
             }
             mostrarSaldo();
+            
         }
         else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) ||
                 arg.equals(Modelo.EVENTO_SALIR_MESA)){
@@ -96,14 +95,19 @@ public class ControladorMesa implements Observer {
 
 
     public void mostrarSaldo() {
-        vista.mostrarSaldo(jugador.getJugador().getSaldo());      
+        vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
 
     public void finalizarApuesta() {
         int sorteado = modelo.finalizarApuesta(mesa);
         //if algo q habilite el boton
-        if(sorteado!=-1)
+        if(sorteado!=-1){
             vista.habilitar(true);
+            if(jugador.getJugador().getSaldo()==0) {
+                vista.errorApuesta("Se le terminó el saldo.");
+                vista.salirDeMesa();
+            }
+        }
         else
             vista.habilitar(false);
     } 
@@ -111,6 +115,5 @@ public class ControladorMesa implements Observer {
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
         if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
-        
     }
 }

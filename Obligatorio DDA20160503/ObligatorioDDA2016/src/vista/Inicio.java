@@ -29,7 +29,8 @@ public class Inicio {
         m.agregar(new Jugador("b","b","Moira Lasserre",1000));
         m.agregar(new Jugador("c","c","Gabriel Serrano",1000));
         m.agregar(new Jugador("d","d","Florencia Polcaro",1000));
-        m.agregar(new Jugador("e","e","Profe",1000));
+        m.agregar(new Jugador("e","e","Campalans",1000));
+        m.agregar(new Jugador("f","f","Jose Perez",1000));
 
     }
     
