@@ -51,11 +51,12 @@ public class ControladorListaMesas implements Observer {
         // else
     }
     
-     public void unirseAmesa(String nom){
+     public void unirseAmesa(String nom) throws InvalidUserActionException{
         String nameMesa = nom.split(",")[0];
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
-        JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
+        JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador); // check this
         if (m != null) {
+            if (m.getTodosJugadoresEnMesa().size() == 4) throw new InvalidUserActionException("Esta mesa ya contiene el maxino numero de jugadores posible");
             try {
                 boolean espera = modelo.unirJugadorAMesaRuleta(jugador, m, asignarColor(m));
                 vista.abrirMesa(m, jugador, espera);
