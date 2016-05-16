@@ -150,11 +150,12 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
 
     @Override
-    public void abrirMesa(Mesa m, Jugador j) {
+    public void abrirMesa(Mesa m, Jugador j, boolean enEspera) {
         //dispose();
         
         vistaMesa = new VistaMesaV1(m, j);
         vistaMesa.setVisible(true);
+        vistaMesa.habilitar(!enEspera);
     }
 
     private void ingresarMesa() throws InvalidUserActionException {

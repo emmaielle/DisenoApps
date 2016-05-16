@@ -47,7 +47,7 @@ public class ControladorListaMesas implements Observer {
         Mesa m = new Mesa(nom);
         try{
             modelo.agregarMesaRuleta(m, jugador, asignarColor(m));
-            vista.abrirMesa(m,jugador);
+            vista.abrirMesa(m,jugador, false);
         }
         catch(InvalidUserActionException ex){
             vista.errorCrearMesa(ex.getMessage());
@@ -56,14 +56,13 @@ public class ControladorListaMesas implements Observer {
     }
     
      public void unirseAmesa(String nom){
-        // change to something more robust. Si el nombre tiene una coma, ya no sirve.
         String nameMesa = nom.split(",")[0];
         Mesa m = modelo.buscarMesaRuleta(nameMesa);
         JugadorRuleta jr = new JugadorRuleta(asignarColor(m), null, jugador);
         if (m != null) {
             try {
-                modelo.unirJugadorAMesaRuleta(jugador, m, asignarColor(m));
-                vista.abrirMesa(m, jugador);
+                boolean espera = modelo.unirJugadorAMesaRuleta(jugador, m, asignarColor(m));
+                vista.abrirMesa(m, jugador, espera);
             }
             catch (InvalidUserActionException ex){
                 vista.errorCrearMesa(ex.getMessage());

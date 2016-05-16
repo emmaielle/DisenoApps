@@ -28,7 +28,6 @@ public class Modelo extends Observable {
     public static final int EVENTO_JUEGO_CERRADO = 7;
     public static final int EVENTO_ACTUALIZA_SALDOS = 8;
     public static final int EVENTO_SALIR_MESA = 9;
-
     
     private Modelo() {
     }

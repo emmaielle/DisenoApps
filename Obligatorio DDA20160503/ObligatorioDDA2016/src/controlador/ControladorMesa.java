@@ -70,6 +70,7 @@ public class ControladorMesa implements Observer {
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
+
     }
 
     public void cargarJugadoresActivos() {

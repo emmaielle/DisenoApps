@@ -73,6 +73,7 @@ public class Mesa {
     }
 
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
+    // devuelve boolean que indica si el jugador esta en espera o no
     public boolean agregarJugador(Color c, Jugador j){
         //ver q cuando entre quede en una lista temporal hasta q termine la ronda
         JugadorRuleta jr = new JugadorRuleta(c, this, j);
@@ -84,7 +85,7 @@ public class Mesa {
             jugadoresMesa.add(jr);
             Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
             j.setEnMesa(true);
-            return true;
+            return false;
         }    
         else if(jugadoresMesa.size()<4 && this.buscarRonda(this.getUltimaRonda()).getNroGanador()==-1){
             jr.setMesa(this); // mesa en jugador

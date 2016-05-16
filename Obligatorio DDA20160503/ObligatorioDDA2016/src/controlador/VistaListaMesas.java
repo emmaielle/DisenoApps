@@ -15,7 +15,7 @@ import modelo.Mesa;
  */
 public interface VistaListaMesas {
     public void mostrar(ArrayList<Mesa> lista);
-    public void abrirMesa(Mesa m,Jugador jr);
+    public void abrirMesa(Mesa m,Jugador jr, boolean enEspera);
     public void salirDeJuego();
     public void habilitarIrAMesas(boolean habilitar);
     public void errorCrearMesa(String msg);
