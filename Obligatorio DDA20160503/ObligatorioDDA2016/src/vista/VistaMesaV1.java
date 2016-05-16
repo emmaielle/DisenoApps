@@ -144,6 +144,11 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         top.habilitar(b);
     }
 
+    @Override
+    public void mostrarTotalApostado(long total) {
+        top.mostrarTotalApostado(total);
+    }
+
    
 
 }

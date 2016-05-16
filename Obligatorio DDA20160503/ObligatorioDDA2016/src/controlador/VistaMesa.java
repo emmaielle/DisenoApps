@@ -22,5 +22,5 @@ public interface VistaMesa {
     public void habilitar(boolean b);
     public void errorApuesta(String msj);
     public void mostrarSaldo(long saldoJugador);
-
+    public void mostrarTotalApostado(long total);
 }

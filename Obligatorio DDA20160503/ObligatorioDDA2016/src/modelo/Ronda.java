@@ -129,5 +129,11 @@ public class Ronda {
             }
         }
     }
+    public long totalApostadoRonda(){
+        long total=0;
+        for(Apuesta a:apuestas)
+            total+=a.getMonto();
+        return total;
+    }
     // </editor-fold>
 }
