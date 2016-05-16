@@ -28,7 +28,8 @@ public class Jugador {
         this.nombreCompleto = nombreCompleto;
         this.saldo = saldo;
     }
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
     public String getNombre() {
         return nombre;
     }
@@ -98,8 +99,9 @@ public class Jugador {
     public long getTotalApostado() {
         return totalApostado;
     }
+    // </editor-fold>
     
-    // capaz que no?
+    // <editor-fold defaultstate="collapsed" desc="Metodos"> 
     @Override
     public String toString(){
         return getNombreCompleto();
@@ -115,5 +117,6 @@ public class Jugador {
             saldo -= monto;
         }
     }
+    // </editor-fold>
 
 }

@@ -14,6 +14,7 @@ public class Apuesta {
     private JugadorRuleta jugador;
     private Numero numero;
 
+    // <editor-fold defaultstate="collapsed" desc="Constructor"> 
     public Apuesta(Numero numero){
         this.numero=numero;
     }
@@ -22,7 +23,9 @@ public class Apuesta {
         this.jugador = jugador;
         this.numero = numero;
     }
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters">       
     public int getMonto() {
         return monto;
     }
@@ -46,9 +49,11 @@ public class Apuesta {
     public void setNumero(Numero numero) {
         this.numero = numero;
     }
-
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Metodos"> 
     public boolean validar() {
         return monto > 0 && jugador != null && numero != null; 
     }
-
+    // </editor-fold>
 }

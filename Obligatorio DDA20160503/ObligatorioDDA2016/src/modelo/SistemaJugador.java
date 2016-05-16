@@ -22,7 +22,7 @@ public class SistemaJugador {
     public static SistemaJugador getInstancia() {
         return instancia;
     }
-
+    
     public ArrayList<Jugador> getLogueados() {
         return logueados;
     }
@@ -31,6 +31,7 @@ public class SistemaJugador {
         return habilitado;
     }
     
+    // <editor-fold defaultstate="collapsed" desc="Metodos">
     public void agregar(Jugador j){
         jugadores.add(j);
     }
@@ -80,5 +81,6 @@ public class SistemaJugador {
         }
         return total;
     }
+    // </editor-fold>
     
 }

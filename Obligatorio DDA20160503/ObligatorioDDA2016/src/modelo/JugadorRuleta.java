@@ -24,6 +24,7 @@ public class JugadorRuleta {
         this.jugador = jugador;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
     public Jugador getJugador() {
         return jugador;
     }
@@ -51,7 +52,9 @@ public class JugadorRuleta {
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;
     }
+    // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Metodos">
     public void agregarApuesta(Apuesta a){
         if(a!=null) apuestas.add(a);
     }
@@ -59,5 +62,5 @@ public class JugadorRuleta {
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
-    
+    // </editor-fold>
 }

@@ -21,6 +21,7 @@ public class Numero {
         this.color = color;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
     public int getValor() {
         return valor;
     }
@@ -44,6 +45,7 @@ public class Numero {
     public void setApuesta(Apuesta apuesta) {
         this.apuesta = apuesta;
     }
+    // </editor-fold>
 
     @Override
     public String toString() {

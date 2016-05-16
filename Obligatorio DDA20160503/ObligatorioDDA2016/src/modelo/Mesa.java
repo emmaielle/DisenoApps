@@ -26,6 +26,7 @@ public class Mesa {
         initMesa();
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters">   
     public ArrayList<Color> getColoresDisp() {
         if (coloresDisp == null){
             coloresDisp = new ArrayList<>();
@@ -58,7 +59,7 @@ public class Mesa {
         for (JugadorRuleta k : jugadoresMesa){
             todos.add(k);
         }
-        for ( JugadorRuleta j : jugadoresEspera){
+        for (JugadorRuleta j : jugadoresEspera){
             todos.add(j);
         }
         return todos;
@@ -71,16 +72,16 @@ public class Mesa {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Metodos">  
+    
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     // devuelve boolean que indica si el jugador esta en espera o no
     public boolean agregarJugador(Color c, Jugador j){
         //ver q cuando entre quede en una lista temporal hasta q termine la ronda
         JugadorRuleta jr = new JugadorRuleta(c, this, j);
-
         if(jugadoresMesa.isEmpty()){
-            //Ronda primera = new Ronda(); // esto se puede hacer aca pero cuidado que hay que borrar el que ya esta hecho en otra parte
-            //rondas.add(primera);
             jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
             Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
@@ -92,14 +93,13 @@ public class Mesa {
             jugadoresEspera.add(jr);
             j.setEnMesa(true);
             Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
-            return true;       
-            //jugadoresMesa.add(jr);
-            //ver si esto queda aca o donde?          
+            return true;                
         }
         else{
             return false;
         }
     }
+    
     public void quitarJugador(JugadorRuleta j){
         jugadoresMesa.remove(j);
         jugadoresEspera.remove(j);
@@ -111,10 +111,8 @@ public class Mesa {
         // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
     }
 
-    // to DO
     public boolean validar() {
-        
-        return true;
+        return !nombre.isEmpty() && !nombre.contains(",");
     }
 
     public JugadorRuleta buscarJugador(Jugador j){
@@ -270,7 +268,8 @@ public class Mesa {
         else temp = nombre + ", " + jugadoresMesa.size() + " jugadores activos";
         
         if (espera != 0){
-            temp += " || "+espera+" en espera";
+
+            temp += " || " + espera +" en espera";
         }
         return temp;
     }
@@ -280,4 +279,5 @@ public class Mesa {
         Mesa m = (Mesa)o;
         return nombre.equalsIgnoreCase(m.getNombre());
     }
+     // </editor-fold>
 }
