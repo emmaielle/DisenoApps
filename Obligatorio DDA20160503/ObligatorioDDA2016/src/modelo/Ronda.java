@@ -21,6 +21,7 @@ public class Ronda {
         nroRonda = numRonda;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters">
     public int getNroGanador() {
         return nroGanador;
     }
@@ -40,7 +41,10 @@ public class Ronda {
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;
     }
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Metodos">
+    
     // sortea si no existe, sino devuelve nomas
     public int sortearNroGanador() {
         int nro = 0;
@@ -125,4 +129,5 @@ public class Ronda {
             }
         }
     }
+    // </editor-fold>
 }

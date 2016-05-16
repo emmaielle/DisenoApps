@@ -17,23 +17,23 @@ public class Casino {
     private JuegoRuleta ruleta = JuegoRuleta.getInstancia();
     
     private static Casino instancia = new Casino();
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructor"> 
     private Casino() {
-        // no me gusta como esta hecho esto. Parece harcodeado para cada juego
         juegos.add(ruleta);
     }
 
     public static Casino getInstancia() {
         return instancia;
     }
+    // </editor-fold>
     
-    
+    // <editor-fold defaultstate="collapsed" desc="Getters"> 
     public ArrayList<String> getJuegos(){
         ArrayList<String> juegosString = new ArrayList();
-        for(Object o: juegos){
-            // seguro que no anda, necesito castearlo pero por ahora queda asi
+        for(IJuego o: juegos){
             juegosString.add(o.toString());
         }
-        
         return juegosString;
     }
 
@@ -47,6 +47,6 @@ public class Casino {
     public JuegoRuleta getRuleta() {
         return ruleta;
     }
-    
+    // </editor-fold>
     
 }

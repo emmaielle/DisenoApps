@@ -37,13 +37,14 @@ public class Modelo extends Observable {
         return instancia;
     }
     
-    public void agregar (Jugador j){
-        sj.agregar(j);
-    }
-
     protected void avisar(Object evento){
         setChanged();
         notifyObservers(evento);
+    }
+    
+    // <editor-fold defaultstate="collapsed" desc="Metodos Sistema Jugador">   
+    public void agregar (Jugador j){
+        sj.agregar(j);
     }
 
     public boolean isHabilitado() {
@@ -62,7 +63,16 @@ public class Modelo extends Observable {
         return sj.isLogged(usr);
     }
     
-    // make defensive???
+    public long totalApostadoTodos() {
+        return sj.totalApostadoTodos();
+    }
+
+    public long totalCobradoTodos() {
+        return sj.totalCobradoTodos();
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Metodos Casino"> 
     public ArrayList<String> getJuegos(){
         return casino.getJuegos();
     }
@@ -86,7 +96,14 @@ public class Modelo extends Observable {
     public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException{
         return casino.getRuleta().unirJugadorAMesaRuleta(j, m, c);
     }
+    
+    public void cerrarMesaRuleta(Mesa mesa) {
+        casino.getRuleta().cerrarMesa(mesa);
+    }
+    
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Metodos mesa">  
     public ArrayList<JugadorRuleta> getJugadoresPorMesa(Mesa m) {
         return m.getTodosJugadoresEnMesa();
     }
@@ -97,10 +114,6 @@ public class Modelo extends Observable {
 
     public int sortearNumero(Mesa m) {
         return m.sortearNumeroGanador();
-    }
-
-    public void salirDeJuego(Jugador jugador) {
-        jugador.setEnJuego(false);
     }
 
     public int ultNumeroSorteado(Mesa m) {
@@ -115,24 +128,18 @@ public class Modelo extends Observable {
         return mesa.finalizarApuesta();
     }
 
-    public long totalApostadoTodos() {
-        return sj.totalApostadoTodos();
-    }
-
-    public long totalCobradoTodos() {
-        return sj.totalCobradoTodos();
-    }
-
     public void salirDeMesaRuleta(JugadorRuleta jugador, Mesa mesa) {
         mesa.quitarJugador(jugador);
-    }
-
-    public void cerrarMesaRuleta(Mesa mesa) {
-        casino.getRuleta().cerrarMesa(mesa);
     }
 
     public boolean estaEnEspera(JugadorRuleta jugador, Mesa mesa) {
         return mesa.estaEnEspera(jugador);
     }
+    // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Metodos Jugador"> 
+    public void salirDeJuego(Jugador jugador) {
+        jugador.setEnJuego(false);
+    }
+    // </editor-fold>
 }

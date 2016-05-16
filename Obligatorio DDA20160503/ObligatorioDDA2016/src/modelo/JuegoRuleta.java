@@ -17,12 +17,15 @@ public class JuegoRuleta implements IJuego {
 
     private static JuegoRuleta instancia = new JuegoRuleta();
     private ArrayList<Mesa> listadoMesas = new ArrayList();
+    
     private JuegoRuleta() {
     }
 
     public static JuegoRuleta getInstancia() {
         return instancia;
     }
+
+    // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
 
     public ArrayList<Mesa> getListadoMesas() {
         return listadoMesas;
@@ -31,7 +34,9 @@ public class JuegoRuleta implements IJuego {
     public void setListadoMesas(ArrayList<Mesa> listadoMesas) {
         this.listadoMesas = listadoMesas;
     }
+    // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Metodos">
     public void agregar(Mesa m) throws InvalidUserActionException{
         if(listadoMesas.contains(m))throw new InvalidUserActionException("La mesa ya existe");
         listadoMesas.add(m);
@@ -72,4 +77,5 @@ public class JuegoRuleta implements IJuego {
         return "Ruleta";
     }
     
+    // </editor-fold>
 }
