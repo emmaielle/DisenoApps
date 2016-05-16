@@ -119,8 +119,16 @@ public class Mesa {
 
     @Override
     public String toString() {
-        if (jugadoresMesa.size() == 1) return nombre + ", " + jugadoresMesa.size() + " jugador";
-        else return nombre + ", " + jugadoresMesa.size() + " jugadores";
+        int activos = jugadoresMesa.size();
+        int espera = jugadoresEspera.size();
+        String temp;
+        if (activos == 1) temp = nombre + ", " + jugadoresMesa.size() + " jugador activo";
+        else temp = nombre + ", " + jugadoresMesa.size() + " jugadores activos";
+        
+        if (espera != 0){
+            temp += " || 1 en espera";
+        }
+        return temp;
     }
     
     public JugadorRuleta buscarJugador(Jugador j){

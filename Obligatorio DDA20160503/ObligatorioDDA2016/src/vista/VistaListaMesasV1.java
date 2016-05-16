@@ -139,15 +139,9 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
     @Override
     public void mostrar(ArrayList<Mesa> lista) {
-        ArrayList<String> listado = new ArrayList<>();
-        for (Mesa m : lista){
-            listado.add(formatear(m));
-        }
-        list_mesas.setListData(listado.toArray());
+
+        list_mesas.setListData(lista.toArray());
     }
-
-
-
 
     @Override
     public void abrirMesa(Mesa m, Jugador j, boolean enEspera) {
@@ -162,10 +156,6 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
         if (list_mesas.getModel().getSize() == 0)  throw new InvalidUserActionException("No hay ninguna mesa creada");
         if(list_mesas.getSelectedValue() == null) throw new InvalidUserActionException("Debe seleccionar una mesa para ingresar");
             controlador.unirseAmesa(list_mesas.getSelectedValue().toString());
-    }
-
-    private String formatear(Mesa m) {
-        return m.getNombre() + ", " + m.getTodosJugadoresEnMesa().size() + " jugador/es";
     }
 
     @Override
