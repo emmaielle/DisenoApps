@@ -17,11 +17,13 @@ public class JugadorRuleta {
     private Mesa mesa;
     private Jugador jugador;
     private ArrayList<Apuesta> apuestas = new ArrayList<>();
-
+    private boolean apostado;
+    
     public JugadorRuleta(Color color, Mesa mesa, Jugador jugador) {
         this.color = color;
         this.mesa = mesa;
         this.jugador = jugador;
+        this.apostado = false;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
@@ -52,6 +54,16 @@ public class JugadorRuleta {
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;
     }
+
+    public void setApostado(boolean apostado) {
+        this.apostado = apostado;
+    }
+
+    public boolean isApostado() {
+        return apostado;
+    }
+    
+    
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Metodos">
@@ -62,12 +74,8 @@ public class JugadorRuleta {
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
-    
-//    public long totalApostadoRonda(){
-//        long total=0;
-//        for(Apuesta a:apuestas)
-//            total+=a.getMonto();
-//        return total;
-//    }
+    public long totalApostado(){
+        return mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador);
+    }
     // </editor-fold>
 }

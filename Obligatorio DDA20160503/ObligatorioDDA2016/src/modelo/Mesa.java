@@ -242,9 +242,15 @@ public class Mesa {
         cantFinalizados++;
         return apuestaTotal();
     } 
-     
+    
+    public void yaApostado(boolean si){
+        for(JugadorRuleta jr:jugadoresMesa){
+            jr.setApostado(si);
+        }
+    }
     public int apuestaTotal() {
         if(cantFinalizados == jugadoresMesa.size() || cantFinalizados == jugadoresMesa.size() + 1){ 
+            yaApostado(false);
             return sortearNumeroGanador();
         }
         else if(cantFinalizados>1 && cantFinalizados < jugadoresMesa.size())

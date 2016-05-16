@@ -113,8 +113,10 @@ public class PanelDatos extends javax.swing.JPanel {
         jLabel5.setBounds(10, 90, 130, 14);
         add(lbl_total_apostado);
         lbl_total_apostado.setBounds(110, 100, 0, 0);
+
+        lbl_total.setText("0");
         add(lbl_total);
-        lbl_total.setBounds(150, 90, 0, 0);
+        lbl_total.setBounds(170, 90, 34, 14);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
