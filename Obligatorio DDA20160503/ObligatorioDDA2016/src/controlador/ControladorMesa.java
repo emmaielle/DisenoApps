@@ -35,6 +35,10 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
+    public void desapostar(Numero n){
+        modelo.desapostar(mesa, n, jugador);
+    }
+    
     public void apostar(Numero n, int v) throws InvalidUserActionException {
         // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
         if (mesa.getJugadoresEspera().contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
@@ -44,17 +48,13 @@ public class ControladorMesa implements Observer {
             modelo.apostar(mesa, n, v, jugador);
             vista.exitoApuesta();
         }
-        // si es igual a 0 pero ese numero ya tiene apuesta. Desapuesta
-        if(v == 0 && n.getApuesta() != null){
-            modelo.apostar(mesa, n, v, jugador);
-            vista.exitoApuesta();
-        }
          
     }
     @Override
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
+            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda());
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
@@ -62,8 +62,8 @@ public class ControladorMesa implements Observer {
             {
                 vista.habilitar(true);
             }
+            mensajeRonda();
             mostrarSaldo();
-            
         }
         else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) ||
                 arg.equals(Modelo.EVENTO_SALIR_MESA)){
@@ -71,7 +71,6 @@ public class ControladorMesa implements Observer {
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
-
     }
 
     public void cargarJugadoresActivos() {
@@ -100,7 +99,6 @@ public class ControladorMesa implements Observer {
 
     public void finalizarApuesta() {
         int sorteado = modelo.finalizarApuesta(mesa);
-        //if algo q habilite el boton
         if(sorteado!=-1){
             vista.habilitar(true);
             if(jugador.getJugador().getSaldo()==0) {
@@ -115,5 +113,10 @@ public class ControladorMesa implements Observer {
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
         if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
+    }
+    
+    public void mensajeRonda(){
+        String msj = (mesa.estaEnEspera(jugador)) ? "Espera..." : "Apostar";
+        vista.mensajeRonda(msj);
     }
 }

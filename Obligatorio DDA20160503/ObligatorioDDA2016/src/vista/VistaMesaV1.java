@@ -42,6 +42,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         controlador.cargarJugadoresActivos();
         controlador.buscarNumeroActual();
         controlador.mostrarSaldo();
+        controlador.mensajeRonda();
     }
 
     /**
@@ -94,15 +95,17 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
             String monto = top.obtenerApuesta();
             int montoInt = 0;
             if(!monto.equals("0")){
-                montoInt = Integer.parseInt(monto);
+                if (monto.equals("")) controlador.desapostar(n);
+                else {
+                    montoInt = Integer.parseInt(monto);
+                    controlador.apostar(n,montoInt);
+                }
             }
-            controlador.apostar(n,montoInt);
+            else throw new InvalidUserActionException("Ingrese un monto mayor que 0");
         }
         catch (InvalidUserActionException ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
-        
     }
 
     @Override
@@ -142,6 +145,16 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     @Override
     public void habilitar(boolean b) {
         top.habilitar(b);
+    }
+
+    @Override
+    public void mostrarTotalApostado(long total) {
+        top.mostrarTotalApostado(total);
+    }
+
+    @Override
+    public void mensajeRonda(String msj) {
+        top.mensajesRonda(msj);
     }
 
    
