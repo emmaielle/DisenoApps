@@ -8,9 +8,7 @@ package vista;
 import controlador.ControladorMesa;
 import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import modelo.JugadorRuleta;
-import org.omg.CORBA.DynAnyPackage.Invalid;
 
 /**
  *

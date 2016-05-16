@@ -28,6 +28,7 @@ public class Modelo extends Observable {
     public static final int EVENTO_JUEGO_CERRADO = 7;
     public static final int EVENTO_ACTUALIZA_SALDOS = 8;
     public static final int EVENTO_SALIR_MESA = 9;
+    public static final int EVENTO_STATSWINDOW = 10;
     
     private Modelo() {
     }
@@ -52,6 +53,7 @@ public class Modelo extends Observable {
     public Jugador login(String nom, String psw) {
         return sj.login(nom,psw);
     }
+    
     public void logout(Jugador j){
         sj.logout(j);
     }
@@ -60,25 +62,22 @@ public class Modelo extends Observable {
         return sj.isLogged(usr);
     }
     
-    
     // make defensive???
     public ArrayList<String> getJuegos(){
         return casino.getJuegos();
     }
 
-    public Object getJuego(String j) {
+    public IJuego getJuego(String j) {
         return casino.getJuego(j);
     }
 
     public ArrayList<Mesa> listarMesasRuleta() {
         return casino.getRuleta().getListadoMesas();
-
     }
 
     public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
         return casino.getRuleta().agregarMesaRuleta(m, j, c);
     }
-    
 
     public Mesa buscarMesaRuleta(String nom){
         return casino.getRuleta().buscarMesa(nom);
@@ -109,18 +108,18 @@ public class Modelo extends Observable {
     }
 
     public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) {
-        mesa.apostar(n, v, jugador);
+        mesa.apostarUnNumero(n, v, jugador);
     }  
 
     public int finalizarApuesta(Mesa mesa) {
         return mesa.finalizarApuesta();
     }
 
-    public int totalApostadoTodos() {
+    public long totalApostadoTodos() {
         return sj.totalApostadoTodos();
     }
 
-    public int totalCobradoTodos() {
+    public long totalCobradoTodos() {
         return sj.totalCobradoTodos();
     }
 

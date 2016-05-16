@@ -9,11 +9,8 @@ import controlador.ControladorListaMesas;
 import controlador.VistaListaMesas;
 import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Jugador;
-import modelo.JugadorRuleta;
 import modelo.Mesa;
 
 /**
@@ -139,14 +136,12 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
     @Override
     public void mostrar(ArrayList<Mesa> lista) {
-
         list_mesas.setListData(lista.toArray());
     }
 
     @Override
     public void abrirMesa(Mesa m, Jugador j, boolean enEspera) {
         //dispose();
-        
         vistaMesa = new VistaMesaV1(m, j);
         vistaMesa.setVisible(true);
         vistaMesa.habilitar(!enEspera);
@@ -165,7 +160,6 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
             vistaMesa.salirDeMesa(); 
             vistaMesa.dispose();
         }
-        
     }
 
     @Override

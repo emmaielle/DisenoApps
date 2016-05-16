@@ -31,7 +31,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
 
     public VistaMesaV1(Mesa m, Jugador j) {
         initComponents();
-        this.setTitle("Mesa: "+m.getNombre()+" - Jugador: "+j.getNombreCompleto());
+        this.setTitle("Mesa: " + m.getNombre()+ " - Jugador: " + j.getNombreCompleto());
         JugadorRuleta jr= m.buscarJugador(j);
         controlador = new ControladorMesa(this,m,jr);
         top = new PanelDatos(controlador);
@@ -74,11 +74,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         salirDeMesa();
     }//GEN-LAST:event_formWindowClosing
-
-    /**
-     * @param args the command line arguments
-     */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
@@ -147,9 +142,5 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     public void habilitar(boolean b) {
         top.habilitar(b);
     }
-    
-    
-   
-
 
 }

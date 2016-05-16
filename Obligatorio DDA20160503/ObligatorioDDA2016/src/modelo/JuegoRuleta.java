@@ -13,12 +13,11 @@ import java.util.ArrayList;
  *
  * @author Euge
  */
-public class JuegoRuleta {
+public class JuegoRuleta implements IJuego {
 
     private static JuegoRuleta instancia = new JuegoRuleta();
     private ArrayList<Mesa> listadoMesas = new ArrayList();
     private JuegoRuleta() {
-        
     }
 
     public static JuegoRuleta getInstancia() {
@@ -32,18 +31,16 @@ public class JuegoRuleta {
     public void setListadoMesas(ArrayList<Mesa> listadoMesas) {
         this.listadoMesas = listadoMesas;
     }
+    
     public void agregar(Mesa m) throws InvalidUserActionException{
         if(listadoMesas.contains(m))throw new InvalidUserActionException("La mesa ya existe");
         listadoMesas.add(m);
         Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVA_MESA);
     }
+    
     public void cerrarMesa(Mesa m){
         listadoMesas.remove(m);
         Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
-    }
-    @Override
-    public String toString() {
-        return "Ruleta";
     }
     
     public Mesa buscarMesa(String nom) {
@@ -60,7 +57,7 @@ public class JuegoRuleta {
         return m.agregarJugador(c, j);
     }
 
-    boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
+    public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
         if (j.isEnMesa()) throw new InvalidUserActionException("Jugador ya se encuentra en una mesa");
         if (m.validar()){
             m.agregarJugador(c, j); // lista de jugadores en mesa
@@ -68,9 +65,11 @@ public class JuegoRuleta {
             return true;
         }
         else return false;
-
     }
     
-    
+    @Override
+    public String toString() {
+        return "Ruleta";
+    }
     
 }

@@ -27,13 +27,14 @@ public class ControladorLogin implements Observer{
     }
     public void login(String usr,String pass){
         if (!modelo.isLogged(usr)){
-        Jugador j = modelo.login(usr, pass);
-        if(j==null){
-            vista.errorLogin();
-        }else{
-            vista.ingresarJugador(j);
+            Jugador j = modelo.login(usr, pass);
+            if(j == null){
+                vista.errorLogin();
+            }
+            else{
+                vista.ingresarJugador(j);
+            }
         }
-    }
         else vista.errorYaLogueado();
     }
     
@@ -42,8 +43,5 @@ public class ControladorLogin implements Observer{
         if(evento.equals(Modelo.EVENTO_LOGIN)){
             vista.habilitar(modelo.isHabilitado());
         }
-    }
-        
-    
-    
+    } 
 }

@@ -105,7 +105,7 @@ public class Mesa {
         jugadoresEspera.remove(j);
         j.getJugador().setEnMesa(false);
         if(jugadoresMesa.size()>0) buscarRonda(getUltimaRonda()).eliminarApuestas(j);
-        apuesta(); // al salir hace una apuesta por si todos ya finalizaron y el no. Si no estaba
+        apuestaTotal(); // al salir hace una apuesta por si todos ya finalizaron y el no. Si no estaba
         // terminado no cambia en nada porque la cant de jugadores cambio
         Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
         // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
@@ -117,20 +117,6 @@ public class Mesa {
         return true;
     }
 
-    @Override
-    public String toString() {
-        int activos = jugadoresMesa.size();
-        int espera = jugadoresEspera.size();
-        String temp;
-        if (activos == 1) temp = nombre + ", " + jugadoresMesa.size() + " jugador activo";
-        else temp = nombre + ", " + jugadoresMesa.size() + " jugadores activos";
-        
-        if (espera != 0){
-            temp += " || 1 en espera";
-        }
-        return temp;
-    }
-    
     public JugadorRuleta buscarJugador(Jugador j){
         for(JugadorRuleta jr:jugadoresMesa){
             if(jr.getJugador()==j) return jr;     
@@ -185,7 +171,6 @@ public class Mesa {
         cantFinalizados=0;
     }
 
-
     public Color getUnusedColour() {
         Color sirve = Color.YELLOW;
         ArrayList<Color> temp = new ArrayList<>();
@@ -217,7 +202,6 @@ public class Mesa {
         return null;
     }
 
-
     public int sortearNumeroGanador() {
         Ronda ultimaRonda = buscarRonda(getUltimaRonda());
         int nro = ultimaRonda.sortearNroGanador(); // -1 porque ya hay otra mas nueva
@@ -248,29 +232,21 @@ public class Mesa {
         return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
     }
 
-    public void apostar(Numero n, int v, JugadorRuleta jugador) {
+    public void apostarUnNumero(Numero n, int v, JugadorRuleta jugador) {
        // if(this.getUltimaRonda()==1&& jugadoresMesa.size()==1)
         for(JugadorRuleta jr:jugadoresMesa){
             if(jugador==jr)
                 (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
-
         }
         Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
-
-    }
-    
-    @Override
-     public boolean equals(Object o){
-        Mesa m = (Mesa)o;
-        return nombre.equalsIgnoreCase(m.getNombre());
     }
 
     public int finalizarApuesta(){
         cantFinalizados++;
-        return apuesta();
+        return apuestaTotal();
     } 
      
-    public int apuesta() {
+    public int apuestaTotal() {
         if(cantFinalizados == jugadoresMesa.size() || cantFinalizados == jugadoresMesa.size() + 1){ 
             return sortearNumeroGanador();
         }
@@ -282,10 +258,27 @@ public class Mesa {
         return -1;
     }
 
-    boolean estaEnEspera(JugadorRuleta jugador) {
-        if (jugadoresEspera.contains(jugador)) return true;
-        return false;
+    public boolean estaEnEspera(JugadorRuleta jugador) {
+        return jugadoresEspera.contains(jugador);
     }
 
- 
+    @Override
+    public String toString() {
+        int activos = jugadoresMesa.size();
+        int espera = jugadoresEspera.size();
+        String temp;
+        if (activos == 1) temp = nombre + ", " + jugadoresMesa.size() + " jugador activo";
+        else temp = nombre + ", " + jugadoresMesa.size() + " jugadores activos";
+        
+        if (espera != 0){
+            temp += " || 1 en espera";
+        }
+        return temp;
+    }
+        
+    @Override
+     public boolean equals(Object o){
+        Mesa m = (Mesa)o;
+        return nombre.equalsIgnoreCase(m.getNombre());
+    }
 }

@@ -5,8 +5,6 @@
  */
 package controlador;
 
-import modelo.Jugador;
-
 /**
  *
  * @author Euge
@@ -17,7 +15,9 @@ public interface VistaEstadisticas {
     
     public void mostrarTotalCobrado(long m);
     
-    public void mostrarTodosApostado(int m);
+    public void mostrarTodosApostado(long m);
     
-    public void mostrarTodosCobrado(int m);
+    public void mostrarTodosCobrado(long m);
+    
+    public void habilitarBotonStats(boolean habilitar);
 }

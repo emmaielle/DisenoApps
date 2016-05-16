@@ -5,8 +5,6 @@
  */
 package modelo;
 
-import java.awt.Color;
-import java.util.Objects;
 
 /**
  *
@@ -16,11 +14,12 @@ public class Jugador {
     private String nombre;
     private String password;
     private String nombreCompleto;
-    private int saldo;
+    private long saldo;
     private long totalCobrado;
     private long totalApostado;
     private boolean enJuego;
     private boolean enMesa;
+    private boolean statsOn;
     
     
     public Jugador(String nombre, String password, String nombreCompleto, int saldo) {
@@ -38,6 +37,15 @@ public class Jugador {
         this.nombre = nombre;
     }
 
+    public boolean isStatsOn() {
+        return statsOn;
+    }
+
+    public void setStatsOn(boolean statsOn) {
+        this.statsOn = statsOn;
+        Modelo.getInstancia().avisar(Modelo.EVENTO_STATSWINDOW);
+    }
+    
     public boolean isEnMesa() {
         return enMesa;
     }
@@ -71,7 +79,7 @@ public class Jugador {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public int getSaldo() {
+    public long getSaldo() {
         return saldo;
     }
 
@@ -107,10 +115,5 @@ public class Jugador {
             saldo -= monto;
         }
     }
-
-
-    
-    
-
 
 }

@@ -10,7 +10,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import modelo.Apuesta;
-import modelo.JugadorRuleta;
 import modelo.Numero;
 
 /**

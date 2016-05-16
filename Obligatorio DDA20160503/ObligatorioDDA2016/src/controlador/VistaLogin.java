@@ -15,5 +15,6 @@ public interface VistaLogin {
     public void errorLogin();
     public void ingresarJugador(Jugador j);
     public void habilitar(boolean b);
-    public void errorYaLogueado(); 
+    public void errorYaLogueado();
+    public void finalizar();
 }

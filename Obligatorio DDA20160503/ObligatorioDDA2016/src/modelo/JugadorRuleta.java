@@ -31,7 +31,6 @@ public class JugadorRuleta {
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
-    
 
     public Mesa getMesa() {
         return mesa;
@@ -52,6 +51,7 @@ public class JugadorRuleta {
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;
     }
+    
     public void agregarApuesta(Apuesta a){
         if(a!=null) apuestas.add(a);
     }

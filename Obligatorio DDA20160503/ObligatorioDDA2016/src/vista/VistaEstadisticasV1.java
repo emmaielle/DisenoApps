@@ -42,6 +42,11 @@ public class VistaEstadisticasV1 extends javax.swing.JDialog implements VistaEst
         lbl_totalCobrado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
         getContentPane().add(lbl_allPagado);
         lbl_allPagado.setBounds(20, 170, 430, 30);
@@ -55,6 +60,10 @@ public class VistaEstadisticasV1 extends javax.swing.JDialog implements VistaEst
         setBounds(0, 0, 495, 339);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        habilitarBotonStats(true);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -67,12 +76,12 @@ public class VistaEstadisticasV1 extends javax.swing.JDialog implements VistaEst
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void mostrarTodosApostado(int monto) {
+    public void mostrarTodosApostado(long monto) {
         lbl_all_apostado.setText("Total Apostado por todos los jugadores: " + String.valueOf(monto));
     }
 
     @Override
-    public void mostrarTodosCobrado(int monto) {
+    public void mostrarTodosCobrado(long monto) {
         lbl_allPagado.setText("Total Cobrado por todos los jugadores: "+String.valueOf(monto));
     }
 
@@ -84,6 +93,11 @@ public class VistaEstadisticasV1 extends javax.swing.JDialog implements VistaEst
     @Override
     public void mostrarTotalCobrado(long m) {
         lbl_totalCobrado.setText("Total cobrado desde el ingreso al casino: "+String.valueOf(m));
+    }
+
+    @Override
+    public void habilitarBotonStats(boolean habilitar) {
+        controlador.habilitarStats(habilitar);
     }
 
 }

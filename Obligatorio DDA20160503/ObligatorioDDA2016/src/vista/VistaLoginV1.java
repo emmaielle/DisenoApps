@@ -9,7 +9,6 @@ import controlador.ControladorLogin;
 import controlador.VistaLogin;
 import javax.swing.JOptionPane;
 import modelo.Jugador;
-import modelo.Mesa;
 
 /**
  *
@@ -113,6 +112,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
         JOptionPane.showMessageDialog(this, "Usuario actualmente logueado");
     }
 
+    @Override
     public void finalizar() {
         if(vistaJuegos!=null) vistaJuegos.logout();
     }

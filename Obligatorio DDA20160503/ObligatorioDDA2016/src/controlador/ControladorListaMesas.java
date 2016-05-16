@@ -12,7 +12,6 @@ import java.util.Observable;
 import java.util.Observer;
 import modelo.Jugador;
 import modelo.JugadorRuleta;
-
 import modelo.Mesa;
 import modelo.Modelo;
 
@@ -32,15 +31,12 @@ public class ControladorListaMesas implements Observer {
         listarMesas();
     }
 
-    
-    
     @Override
     public void update(Observable o, Object evento) {
         if (evento.equals(Modelo.EVENTO_NUEVA_MESA) || evento.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA)
          || evento.equals(Modelo.EVENTO_SALIR_MESA)){
             listarMesas();
         }
-
     }
     
     public void crearMesa(String nom){

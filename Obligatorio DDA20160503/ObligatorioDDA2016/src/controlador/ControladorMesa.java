@@ -31,7 +31,6 @@ public class ControladorMesa implements Observer {
         this.vista = vista;
         this.jugador = jr;
         this.mesa= m;
-        //se puede hacer esto? Llamar directo al getNumeros??
         vista.mostrar(mesa.getNumeros());
         modelo.addObserver(this);
     }
@@ -97,8 +96,7 @@ public class ControladorMesa implements Observer {
 
 
     public void mostrarSaldo() {
-        vista.mostrarSaldo(jugador.getJugador().getSaldo());
-        
+        vista.mostrarSaldo(jugador.getJugador().getSaldo());      
     }
 
     public void finalizarApuesta() {

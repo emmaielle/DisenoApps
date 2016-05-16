@@ -10,7 +10,6 @@ import java.util.Observable;
 import java.util.Observer;
 import modelo.Jugador;
 import modelo.Modelo;
-import vista.VistaJuegosV1;
 
 /**
  *
@@ -33,6 +32,10 @@ public class ControladorJuegos implements Observer {
     public void update(Observable o, Object arg) {
         if (arg.equals(Modelo.EVENTO_JUEGO_CERRADO)){
             if(!jugador.isEnJuego()) vista.habilitarIrAJuego(true);
+        }
+        else if (arg.equals(Modelo.EVENTO_STATSWINDOW)){
+            if(jugador.isStatsOn()) vista.habilitarEstadisticas(false);
+            else vista.habilitarEstadisticas(true);
         }
     }
     

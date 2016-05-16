@@ -19,4 +19,9 @@ public interface VistaJuegos {
     
     public void habilitarIrAJuego(boolean habilitar);
     
+    public void mostrarEstadisticas();
+    
+    public void logout();
+    
+    public void habilitarEstadisticas(boolean b);
 }

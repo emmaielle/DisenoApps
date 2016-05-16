@@ -15,8 +15,6 @@ public class SistemaJugador {
     private ArrayList<Jugador> jugadores = new ArrayList();
     private ArrayList<Jugador> logueados = new ArrayList();
     private boolean habilitado = true;
-    //Ver si la interfaz queda aca!!!!!!!! No deberia quedar en el Jugador? No lo tengo claro
-    private TipoJugador tipo;
     private static SistemaJugador instancia = new SistemaJugador();
     private SistemaJugador() {
     }
@@ -25,15 +23,18 @@ public class SistemaJugador {
         return instancia;
     }
 
-    public void agregar(Jugador j){
-        jugadores.add(j);
-    }
-
     public ArrayList<Jugador> getLogueados() {
         return logueados;
     }
     
-    // metodo cambiado para poder reusar una parte
+    public boolean isHabilitado() {
+        return habilitado;
+    }
+    
+    public void agregar(Jugador j){
+        jugadores.add(j);
+    }
+    
     public Jugador login(String nom, String psw) {
         if(!habilitado) return null;
         Jugador j = buscarJugador(nom);
@@ -65,17 +66,14 @@ public class SistemaJugador {
         Modelo.getInstancia().avisar(Modelo.EVENTO_LOGUEADOS);
     }
 
-    public boolean isHabilitado() {
-        return habilitado;
-    }
-    public int totalCobradoTodos(){
+    public long totalCobradoTodos(){
         int total=0;
         for(Jugador j:jugadores){
             total+=j.getTotalCobrado();
         }
         return total;
     }
-    public int totalApostadoTodos(){
+    public long totalApostadoTodos(){
         int total=0;
         for(Jugador j: jugadores){
             total+=j.getTotalApostado();

@@ -21,8 +21,6 @@ public class Numero {
         this.color = color;
     }
 
-
-
     public int getValor() {
         return valor;
     }
@@ -38,23 +36,6 @@ public class Numero {
     public void setColor(Color color) {
         this.color = color;
     }
-
-
-//    public void apostar(JugadorRuleta j, int v) {
-//        if(jugador==null){
-//            apostado=v;
-//            jugador = j;
-//            color=jugador.getColor();
-//            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
-//        }
-//        else if(j==jugador){
-//            jugador = null;
-//            apostado=0;
-//            color=fijo;
-//            Modelo.getInstancia().avisar(Modelo.EVENTO_TABLERO);
-//
-//        }
-//    }
 
     public Apuesta getApuesta() {
         return apuesta;

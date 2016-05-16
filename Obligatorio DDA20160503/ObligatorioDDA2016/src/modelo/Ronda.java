@@ -12,15 +12,9 @@ import java.util.ArrayList;
  * @author Euge
  */
 public class Ronda {
-    
-    // no hice getters de todos
-    
     private final int nroRonda;
-    // montoGanado estaba en el UML pero creo que lo pusimos cuando ibamos a 
-    // calcular las estadisticas por el lado del casino. Hay que ver si sigue yendo aca
     private Apuesta apuestaGanadora;
     private int nroGanador = -1;
-    
     private ArrayList<Apuesta> apuestas = new ArrayList<>();
 
     public Ronda(int numRonda) {
@@ -42,8 +36,6 @@ public class Ronda {
     public Apuesta getApuestaGanadora() {
         return apuestaGanadora;
     }
-
-    
 
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;

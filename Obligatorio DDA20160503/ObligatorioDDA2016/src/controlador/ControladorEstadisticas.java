@@ -24,8 +24,7 @@ public class ControladorEstadisticas implements Observer{
         this.jugador = jugador;
         modelo.addObserver(this);
     }
-    
-    
+
     @Override
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS)){
@@ -51,5 +50,8 @@ public class ControladorEstadisticas implements Observer{
     public void mostrarTotalCobrado() {
         vista.mostrarTotalCobrado(jugador.getTotalCobrado());
     }
-    
+
+    public void habilitarStats(boolean habilitar) {
+        jugador.setStatsOn(!habilitar);
+    }
 }

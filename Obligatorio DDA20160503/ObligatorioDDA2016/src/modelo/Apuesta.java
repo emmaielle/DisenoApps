@@ -14,7 +14,6 @@ public class Apuesta {
     private JugadorRuleta jugador;
     private Numero numero;
 
-    
     public Apuesta(Numero numero){
         this.numero=numero;
     }
@@ -51,8 +50,5 @@ public class Apuesta {
     public boolean validar() {
         return monto > 0 && jugador != null && numero != null; 
     }
-    
-    
-    
-    
+
 }

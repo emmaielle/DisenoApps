@@ -19,10 +19,6 @@ import modelo.Jugador;
 public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
 
     
-    /**
-     * Creates new form VistaJuegos
-     */
-    
     private ControladorJuegos controlador;
     private Jugador jugador;
     private VistaListaMesasV1 vistaListaMesa;
@@ -132,15 +128,12 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     @Override
     public void abrirJuego(Object juego) {
         //dispose();
-        
         if(juego.getClass()==JuegoRuleta.class){
             vistaListaMesa = new VistaListaMesasV1(jugador);
             vistaListaMesa.setVisible(true);
-
         }
         else
             System.out.println("vista.VistaJuegosV1.abrirJuego()");
-        
     }
 
     @Override
@@ -148,11 +141,15 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
         btn_chooseGame.setEnabled(habilitar);
     }
 
-    private void mostrarEstadisticas() {
+    @Override
+    public void mostrarEstadisticas() {
         vistaEstadisticas = new VistaEstadisticasV1(jugador);
         vistaEstadisticas.setVisible(true);
+        jugador.setStatsOn(true);
+        habilitarEstadisticas(false);
     }
 
+    @Override
     public void logout() {
         dispose();
         controlador.logout();
@@ -161,6 +158,11 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
             vistaListaMesa.dispose();
         }
         if (vistaEstadisticas != null) vistaEstadisticas.dispose();
+    }
+
+    @Override
+    public void habilitarEstadisticas(boolean b) {
+        btn_statsCasino.setEnabled(b);
     }
     
     
