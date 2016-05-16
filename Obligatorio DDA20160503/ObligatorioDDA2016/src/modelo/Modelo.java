@@ -131,5 +131,9 @@ public class Modelo extends Observable {
     public void cerrarMesaRuleta(Mesa mesa) {
         casino.getRuleta().cerrarMesa(mesa);
     }
+
+    public boolean estaEnEspera(JugadorRuleta jugador, Mesa mesa) {
+        return mesa.estaEnEspera(jugador);
+    }
     
 }

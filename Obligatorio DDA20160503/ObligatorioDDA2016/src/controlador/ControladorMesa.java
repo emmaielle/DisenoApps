@@ -61,7 +61,10 @@ public class ControladorMesa implements Observer {
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
             // mostrar nuevos saldos. Hacer un display de saldo, actualizar paneltablero
-            vista.habilitar(true);
+            if (!modelo.estaEnEspera(jugador, mesa))
+            {
+                vista.habilitar(true);
+            }
             mostrarSaldo();
         }
         else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) ||
@@ -99,7 +102,7 @@ public class ControladorMesa implements Observer {
     }
 
     public void finalizarApuesta() {
-        int sorteado=modelo.finalizarApuesta(mesa);
+        int sorteado = modelo.finalizarApuesta(mesa);
         //if algo q habilite el boton
         if(sorteado!=-1)
             vista.habilitar(true);

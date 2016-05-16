@@ -19,7 +19,7 @@ public class Mesa {
     private ArrayList<Numero> numeros = new ArrayList();
     private ArrayList<Ronda> rondas = new ArrayList();
     private ArrayList<Color> coloresDisp;
-    private int cant;
+    private int cantFinalizados;
     
     public Mesa(String nombre) {
         this.nombre = nombre;
@@ -105,7 +105,8 @@ public class Mesa {
         jugadoresEspera.remove(j);
         j.getJugador().setEnMesa(false);
         if(jugadoresMesa.size()>0) buscarRonda(getUltimaRonda()).eliminarApuestas(j);
-        
+        apuesta(); // al salir hace una apuesta por si todos ya finalizaron y el no. Si no estaba
+        // terminado no cambia en nada porque la cant de jugadores cambio
         Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
         // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
     }
@@ -173,7 +174,7 @@ public class Mesa {
         numeros.add(new Numero(36, Color.red));
         Ronda ronda = new Ronda(getUltimaRonda() + 1);
         rondas.add(ronda);
-        cant=0;
+        cantFinalizados=0;
     }
 
 
@@ -256,17 +257,27 @@ public class Mesa {
         return nombre.equalsIgnoreCase(m.getNombre());
     }
 
-    public int finalizarApuesta() {
-        cant++;
-        if(cant==jugadoresMesa.size()){
+    public int finalizarApuesta(){
+        cantFinalizados++;
+        return apuesta();
+    } 
+     
+    public int apuesta() {
+        if(cantFinalizados == jugadoresMesa.size() || cantFinalizados == jugadoresMesa.size() + 1){ 
             return sortearNumeroGanador();
         }
-        else if(cant>1 && cant<jugadoresMesa.size())
+        else if(cantFinalizados>1 && cantFinalizados < jugadoresMesa.size())
         {
-            cant++;
+            cantFinalizados++;
             return -1;
         }
         return -1;
     }
 
+    boolean estaEnEspera(JugadorRuleta jugador) {
+        if (jugadoresEspera.contains(jugador)) return true;
+        return false;
+    }
+
+ 
 }
