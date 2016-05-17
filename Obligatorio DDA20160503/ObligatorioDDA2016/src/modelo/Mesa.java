@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import exceptions.InvalidUserActionException;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -267,8 +268,8 @@ public class Mesa {
             return -1;
         }
     }
-    public void consultarYQuitar(){
-        for(int i=0; i<jugadoresMesa.size();i++){
+    public void consultarYQuitar()  {
+        for(int i=0; i < jugadoresMesa.size();i++){
             if(jugadoresMesa.get(i).getJugador().getSaldo()==0){
                 quitarJugador(jugadoresMesa.get(i));
                 i--;

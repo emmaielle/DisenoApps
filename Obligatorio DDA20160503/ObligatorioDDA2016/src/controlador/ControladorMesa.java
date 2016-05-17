@@ -9,6 +9,7 @@ import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 import modelo.Apuesta;
 import modelo.JugadorRuleta;
 import modelo.Mesa;
@@ -100,15 +101,17 @@ public class ControladorMesa implements Observer {
         vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
 
-    public void finalizarApuesta() {
+    public void finalizarApuesta()  {
         int sorteado = modelo.finalizarApuesta(mesa);
         if(sorteado!=-1){
             vista.habilitar(true);
-            if(jugador.getJugador().getSaldo()==0) {
-                vista.errorApuesta("Se le terminó el saldo.");
-                mesa.consultarYQuitar();
+//            try{
+            mesa.consultarYQuitar();
 //vista.salirDeMesa();
-            }
+//            }
+//            catch (InvalidUserActionException ex){
+//                JOptionPane.showMessageDialog(this, ex.getMessage());
+//            }
         }
         else{
             vista.habilitar(false);
