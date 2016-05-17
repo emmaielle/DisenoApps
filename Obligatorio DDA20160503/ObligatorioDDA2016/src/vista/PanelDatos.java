@@ -16,9 +16,6 @@ import modelo.JugadorRuleta;
  */
 public class PanelDatos extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelDatos
-     */
     ControladorMesa controlador;
     
     public PanelDatos(ControladorMesa c) {
