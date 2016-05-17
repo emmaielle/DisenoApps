@@ -55,6 +55,8 @@ public class PanelDatos extends javax.swing.JPanel {
         lbl_total_apostado = new javax.swing.JLabel();
         lbl_total = new javax.swing.JLabel();
         lbl_mensajes = new javax.swing.JLabel();
+        lbl_total_apostado1 = new javax.swing.JLabel();
+        lbl_totalApostadoRonda = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -108,7 +110,7 @@ public class PanelDatos extends javax.swing.JPanel {
 
         jLabel5.setText("Total apostado :");
         add(jLabel5);
-        jLabel5.setBounds(10, 100, 130, 14);
+        jLabel5.setBounds(10, 100, 90, 14);
         add(lbl_total_apostado);
         lbl_total_apostado.setBounds(110, 100, 0, 0);
         add(lbl_total);
@@ -119,6 +121,12 @@ public class PanelDatos extends javax.swing.JPanel {
         lbl_mensajes.setText(".");
         add(lbl_mensajes);
         lbl_mensajes.setBounds(220, 20, 110, 14);
+        add(lbl_total_apostado1);
+        lbl_total_apostado1.setBounds(110, 100, 0, 0);
+
+        lbl_totalApostadoRonda.setText("0");
+        add(lbl_totalApostadoRonda);
+        lbl_totalApostadoRonda.setBounds(110, 94, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
@@ -147,7 +155,9 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel lbl_mensajes;
     private javax.swing.JLabel lbl_saldo;
     private javax.swing.JLabel lbl_total;
+    private javax.swing.JLabel lbl_totalApostadoRonda;
     private javax.swing.JLabel lbl_total_apostado;
+    private javax.swing.JLabel lbl_total_apostado1;
     private javax.swing.JList listaJugadores;
     private javax.swing.JLabel nroSorteado;
     private javax.swing.JTextField txt_valorApuesta;
@@ -192,10 +202,11 @@ public class PanelDatos extends javax.swing.JPanel {
     }
 
     public void mostrarTotalApostado(long total) {
-        lbl_total.setText(String.valueOf(total));
+        lbl_totalApostadoRonda.setText(String.valueOf(total));
     }
 
     public void mensajesRonda(String msj) {
         lbl_mensajes.setText(msj);
     }
+
 }

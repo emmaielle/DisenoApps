@@ -251,10 +251,16 @@ public class Mesa {
         cantFinalizados++;
         return apuestaTotal();
     } 
-     
+    
+    public void yaApostado(boolean si){
+        for(JugadorRuleta jr:jugadoresMesa){
+            jr.setApostado(si);
+        }
+    }
     public int apuestaTotal() {
         // cuando terminaron de apostar todos. O cuando apostaron todos menos uno que se va
         if(cantFinalizados == jugadoresMesa.size() || cantFinalizados == jugadoresMesa.size() + 1){ 
+            yaApostado(false);
             return sortearNumeroGanador();
         }
         // si termino uno pero no son todos
