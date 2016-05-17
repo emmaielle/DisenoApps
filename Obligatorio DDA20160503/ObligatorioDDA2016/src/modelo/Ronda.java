@@ -141,11 +141,11 @@ public class Ronda {
         }
     }
 
-    public long totalApostadoRonda(Jugador j){
-        long total=0;
+    public long totalApostadoRonda(JugadorRuleta j){
+        long total = 0;
         for(Apuesta a:apuestas){
-            if(a.getJugador().getJugador()==j)
-                total+=a.getMonto();}
+            if(a.getJugador()==j) total += a.getMonto();
+        }
         return total;
     }
     // </editor-fold>

@@ -25,7 +25,6 @@ public class ControladorJuegos implements Observer {
         this.vista = v;
         modelo.addObserver(this);
         jugador = j;
-        
     }
     
     @Override

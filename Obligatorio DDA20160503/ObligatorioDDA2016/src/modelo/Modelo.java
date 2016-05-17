@@ -147,6 +147,4 @@ public class Modelo extends Observable {
     }
     // </editor-fold>
 
-
-
 }

@@ -50,7 +50,6 @@ public class ControladorMesa implements Observer {
         if(v!=0){
             modelo.apostar(mesa, n, v, jugador);
             vista.exitoApuesta();
-            
         }
          
     }
@@ -58,7 +57,7 @@ public class ControladorMesa implements Observer {
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
-            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador.getJugador()));
+            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador));
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
@@ -97,7 +96,6 @@ public class ControladorMesa implements Observer {
         vista.mostrarNumeroSorteado(i);
     }
 
-
     public void mostrarSaldo() {
         vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
@@ -110,13 +108,10 @@ public class ControladorMesa implements Observer {
                 vista.errorApuesta("Se le terminó el saldo.");
                 vista.salirDeMesa();
             }
-            
-
         }
         else{
             vista.habilitar(false);
             jugador.setApostado(true);
-
         }
     } 
 

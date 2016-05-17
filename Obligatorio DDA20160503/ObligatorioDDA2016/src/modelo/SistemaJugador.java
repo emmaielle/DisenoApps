@@ -16,6 +16,7 @@ public class SistemaJugador {
     private ArrayList<Jugador> logueados = new ArrayList();
     private boolean habilitado = true;
     private static SistemaJugador instancia = new SistemaJugador();
+    
     private SistemaJugador() {
     }
 
