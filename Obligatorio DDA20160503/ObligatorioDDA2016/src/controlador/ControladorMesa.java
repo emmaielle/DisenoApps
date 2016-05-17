@@ -35,7 +35,8 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
-    public void desapostar(Numero n){
+    public void desapostar(Numero n) throws InvalidUserActionException{
+        if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
         modelo.desapostar(mesa, n, jugador);
     }
     
@@ -49,6 +50,7 @@ public class ControladorMesa implements Observer {
         if(v!=0){
             modelo.apostar(mesa, n, v, jugador);
             vista.exitoApuesta();
+            
         }
          
     }
