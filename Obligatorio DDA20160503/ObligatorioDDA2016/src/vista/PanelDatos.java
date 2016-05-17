@@ -22,7 +22,7 @@ public class PanelDatos extends javax.swing.JPanel {
         initComponents();
         controlador = c;
         txt_valorApuesta.setText("0");
-
+        
     }
     
     public PanelDatos(ControladorMesa c, int numeroSorteado,long total) {
@@ -54,13 +54,16 @@ public class PanelDatos extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         lbl_total_apostado = new javax.swing.JLabel();
         lbl_total = new javax.swing.JLabel();
+        lbl_mensajes = new javax.swing.JLabel();
+        lbl_total_apostado1 = new javax.swing.JLabel();
+        lbl_totalApostadoRonda = new javax.swing.JLabel();
 
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Numero Sorteado: ");
         add(jLabel1);
-        jLabel1.setBounds(20, 20, 120, 14);
+        jLabel1.setBounds(10, 20, 120, 14);
 
         jScrollPane1.setViewportView(listaJugadores);
 
@@ -73,7 +76,7 @@ public class PanelDatos extends javax.swing.JPanel {
 
         nroSorteado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         add(nroSorteado);
-        nroSorteado.setBounds(150, 10, 50, 30);
+        nroSorteado.setBounds(140, 10, 50, 30);
 
         txt_valorApuesta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -99,19 +102,31 @@ public class PanelDatos extends javax.swing.JPanel {
         add(btn_finalizarA);
         btn_finalizarA.setBounds(420, 130, 150, 40);
         add(lbl_saldo);
-        lbl_saldo.setBounds(20, 50, 160, 30);
+        lbl_saldo.setBounds(10, 50, 160, 30);
 
-        jLabel4.setText("(Para desapostar, ingresar 0 y elegir el numero apostado)");
+        jLabel4.setText("(Para desapostar elegir el numero apostado)");
         add(jLabel4);
-        jLabel4.setBounds(10, 110, 430, 40);
+        jLabel4.setBounds(10, 120, 430, 30);
 
         jLabel5.setText("Total apostado :");
         add(jLabel5);
-        jLabel5.setBounds(10, 90, 130, 14);
+        jLabel5.setBounds(10, 100, 90, 14);
         add(lbl_total_apostado);
         lbl_total_apostado.setBounds(110, 100, 0, 0);
         add(lbl_total);
         lbl_total.setBounds(150, 90, 0, 0);
+
+        lbl_mensajes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbl_mensajes.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_mensajes.setText(".");
+        add(lbl_mensajes);
+        lbl_mensajes.setBounds(220, 20, 110, 14);
+        add(lbl_total_apostado1);
+        lbl_total_apostado1.setBounds(110, 100, 0, 0);
+
+        lbl_totalApostadoRonda.setText("0");
+        add(lbl_totalApostadoRonda);
+        lbl_totalApostadoRonda.setBounds(110, 94, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
@@ -137,9 +152,12 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_mensajes;
     private javax.swing.JLabel lbl_saldo;
     private javax.swing.JLabel lbl_total;
+    private javax.swing.JLabel lbl_totalApostadoRonda;
     private javax.swing.JLabel lbl_total_apostado;
+    private javax.swing.JLabel lbl_total_apostado1;
     private javax.swing.JList listaJugadores;
     private javax.swing.JLabel nroSorteado;
     private javax.swing.JTextField txt_valorApuesta;
@@ -158,12 +176,10 @@ public class PanelDatos extends javax.swing.JPanel {
         else nroSorteado.setText(String.valueOf(num));
     }
 
-    private void sortearNum() {
-        controlador.sortearNumero();
-    }
     public String obtenerApuesta() throws InvalidUserActionException{
         String montoIngresado = txt_valorApuesta.getText();
-        if (!montoIngresado.matches("[0-9]+")) throw new InvalidUserActionException("El valor apostado debe contener solo numeros");
+        // [\\s\\d]* permite empty strings tambien, porque lo uso para desapostar, y filtra mas adelante
+        if (!montoIngresado.matches("[\\s\\d]*")) throw new InvalidUserActionException("El valor apostado debe contener solo numeros");
         return montoIngresado;
     }
 
@@ -177,6 +193,7 @@ public class PanelDatos extends javax.swing.JPanel {
     }
 
     private void finalizarApuesta() {
+        mensajesRonda("Apuesta realizada...");
         controlador.finalizarApuesta();
     }
 
@@ -185,6 +202,11 @@ public class PanelDatos extends javax.swing.JPanel {
     }
 
     public void mostrarTotalApostado(long total) {
-        lbl_total.setText(String.valueOf(total));
+        lbl_totalApostadoRonda.setText(String.valueOf(total));
     }
+
+    public void mensajesRonda(String msj) {
+        lbl_mensajes.setText(msj);
+    }
+
 }

@@ -59,12 +59,17 @@ public class Ronda {
         return nroGanador;
     }
     
-    // funciona en ambos sentidos si se hace click de nuevo
-    public void apostar(Numero n, int v, JugadorRuleta jugador) {
+    public Apuesta buscarApuestaPorNumero(Numero n){
         Apuesta yaApostada = null;
         for (Apuesta a: apuestas){
             if (a.getNumero() == n) yaApostada = a;
         }
+        return yaApostada;
+    }
+    
+    // funciona en ambos sentidos si se hace click de nuevo
+    public void apostar(Numero n, int v, JugadorRuleta jugador) {
+        Apuesta yaApostada = buscarApuestaPorNumero(n);
         // si llega aca es porque ese numero no fue elegido antes
         if (yaApostada == null){
             Apuesta a = new Apuesta(v, jugador, n);
@@ -76,14 +81,20 @@ public class Ronda {
         else {
             // solo quita la apuesta si el monto apostado es 0 y ya tiene apuesta hecha por él mismo
             // sino queda la anterior
-            if (yaApostada.getJugador().equals(jugador) && v == 0) {
-                quitarApuesta(yaApostada);
-                jugador.getJugador().modificarSaldo(true,yaApostada.getMonto());
-            }
+            desapostar(jugador, n);
+        }
+    }
+    
+    public void desapostar(JugadorRuleta j, Numero n){
+        Apuesta yaApostada = buscarApuestaPorNumero(n);
+        if (yaApostada.getJugador().equals(j)) 
+        { // && v == 0
+            quitarApuesta(yaApostada);
         }
     }
     
     public void quitarApuesta(Apuesta a){
+        a.getJugador().getJugador().modificarSaldo(true,a.getMonto());
         a.getNumero().setApuesta(null);
         a.getJugador().quitarApuesta(a);
         a.setJugador(null);
@@ -129,11 +140,15 @@ public class Ronda {
             }
         }
     }
-    public long totalApostadoRonda(){
+
+    public long totalApostadoRonda(Jugador j){
         long total=0;
-        for(Apuesta a:apuestas)
-            total+=a.getMonto();
+        for(Apuesta a:apuestas){
+            if(a.getJugador().getJugador()==j)
+                total+=a.getMonto();}
         return total;
     }
     // </editor-fold>
+
+
 }
