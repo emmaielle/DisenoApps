@@ -74,6 +74,13 @@ public class JugadorRuleta {
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
+    
+//    public long totalApostadoRonda(){
+//        long total=0;
+//        for(Apuesta a:apuestas)
+//            total+=a.getMonto();
+//        return total;
+//    }
     public long totalApostado(){
         return mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador);
     }

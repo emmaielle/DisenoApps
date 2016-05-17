@@ -123,6 +123,10 @@ public class Modelo extends Observable {
     public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) {
         mesa.apostarUnNumero(n, v, jugador);
     }  
+    
+    public void desapostar(Mesa mesa, Numero n, JugadorRuleta jugador) {
+        mesa.desapostar(n, jugador);
+    }
 
     public int finalizarApuesta(Mesa mesa) {
         return mesa.finalizarApuesta();
@@ -142,4 +146,7 @@ public class Modelo extends Observable {
         jugador.setEnJuego(false);
     }
     // </editor-fold>
+
+
+
 }

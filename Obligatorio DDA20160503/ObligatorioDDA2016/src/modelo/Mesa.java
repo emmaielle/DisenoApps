@@ -237,6 +237,15 @@ public class Mesa {
         }
         Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
     }
+    
+    public void desapostar(Numero n, JugadorRuleta jugador) {
+        for(JugadorRuleta jr:jugadoresMesa){
+            if(jugador==jr)
+                if (n.getApuesta() != null)
+                (buscarRonda(getUltimaRonda())).desapostar(jugador, n);
+        }
+        Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
+    }
 
     public int finalizarApuesta(){
         cantFinalizados++;
@@ -280,4 +289,6 @@ public class Mesa {
         return nombre.equalsIgnoreCase(m.getNombre());
     }
      // </editor-fold>
+
+   
 }
