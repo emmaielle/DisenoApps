@@ -32,7 +32,7 @@ public class Mesa {
             coloresDisp = new ArrayList<>();
             coloresDisp.add(Color.BLUE);
             coloresDisp.add(Color.YELLOW);
-            coloresDisp.add(Color.ORANGE);
+            coloresDisp.add(Color.MAGENTA);
             coloresDisp.add(Color.PINK);
         }
         return coloresDisp;
@@ -268,7 +268,15 @@ public class Mesa {
             return -1;
         }
     }
-
+    public void consultarYQuitar(){
+        for(int i=0; i<jugadoresMesa.size();i++){
+            if(jugadoresMesa.get(i).getJugador().getSaldo()==0){
+                quitarJugador(jugadoresMesa.get(i));
+                i--;
+            }
+        }
+    }
+    
     public boolean estaEnEspera(JugadorRuleta jugador) {
         return jugadoresEspera.contains(jugador);
     }

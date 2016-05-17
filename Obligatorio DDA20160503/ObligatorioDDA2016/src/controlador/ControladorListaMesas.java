@@ -48,7 +48,6 @@ public class ControladorListaMesas implements Observer {
         catch(InvalidUserActionException ex){
             vista.errorCrearMesa(ex.getMessage());
         }
-        // else
     }
     
      public void unirseAmesa(String nom) throws InvalidUserActionException{
