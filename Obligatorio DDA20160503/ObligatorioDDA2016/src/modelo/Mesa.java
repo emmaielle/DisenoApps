@@ -268,13 +268,8 @@ public class Mesa {
             return -1;
         }
     }
-    public void consultarYQuitar()  {
-        for(int i=0; i < jugadoresMesa.size();i++){
-            if(jugadoresMesa.get(i).getJugador().getSaldo()==0){
-                quitarJugador(jugadoresMesa.get(i));
-                i--;
-            }
-        }
+    public void avisarCheckSaldo()  {
+        Modelo.getInstancia().avisar(Modelo.EVENTO_CHECK_SALDOS);
     }
     
     public boolean estaEnEspera(JugadorRuleta jugador) {

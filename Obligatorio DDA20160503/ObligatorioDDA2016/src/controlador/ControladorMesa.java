@@ -65,14 +65,18 @@ public class ControladorMesa implements Observer {
             if (!modelo.estaEnEspera(jugador, mesa))
             {
                 vista.habilitar(true);
-                //jugador.setApostado(true);
             }
             mensajeRonda();
             mostrarSaldo();
         }
-        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) ||
+        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) || 
                 arg.equals(Modelo.EVENTO_SALIR_MESA)){
             vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
+        }
+        else if (arg.equals(Modelo.EVENTO_CHECK_SALDOS)){
+            if (jugador.getJugador().getSaldo() == 0){
+                vista.cerrarVentana();
+            }
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
@@ -106,7 +110,7 @@ public class ControladorMesa implements Observer {
         if(sorteado!=-1){
             vista.habilitar(true);
 //            try{
-            mesa.consultarYQuitar();
+            mesa.avisarCheckSaldo();
 //vista.salirDeMesa();
 //            }
 //            catch (InvalidUserActionException ex){

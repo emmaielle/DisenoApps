@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Casino {
     
-    private ArrayList<IJuego> juegos = new ArrayList(); // llenarlo
+    private ArrayList<Object> juegos = new ArrayList(); // llenarlo
     private JuegoRuleta ruleta = JuegoRuleta.getInstancia();
     
     private static Casino instancia = new Casino();
@@ -31,14 +31,14 @@ public class Casino {
     // <editor-fold defaultstate="collapsed" desc="Getters"> 
     public ArrayList<String> getJuegos(){
         ArrayList<String> juegosString = new ArrayList();
-        for(IJuego o: juegos){
+        for(Object o: juegos){
             juegosString.add(o.toString());
         }
         return juegosString;
     }
 
-    public IJuego getJuego(String j) {
-        for (IJuego o : juegos){
+    public Object getJuego(String j) {
+        for (Object o : juegos){
             if (o.toString().equals(j)) return o;
         }
         return null;

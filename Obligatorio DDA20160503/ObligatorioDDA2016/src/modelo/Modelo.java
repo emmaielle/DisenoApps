@@ -29,6 +29,7 @@ public class Modelo extends Observable {
     public static final int EVENTO_ACTUALIZA_SALDOS = 8;
     public static final int EVENTO_SALIR_MESA = 9;
     public static final int EVENTO_STATSWINDOW = 10;
+    public static final int EVENTO_CHECK_SALDOS = 11;
     
     private Modelo() {
     }
@@ -77,7 +78,7 @@ public class Modelo extends Observable {
         return casino.getJuegos();
     }
 
-    public IJuego getJuego(String j) {
+    public Object getJuego(String j) {
         return casino.getJuego(j);
     }
 

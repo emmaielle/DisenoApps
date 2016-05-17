@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Euge
  */
-public class JuegoRuleta implements IJuego {
+public class JuegoRuleta  {
 
     private static JuegoRuleta instancia = new JuegoRuleta();
     private ArrayList<Mesa> listadoMesas = new ArrayList();
