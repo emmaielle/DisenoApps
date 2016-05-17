@@ -249,16 +249,15 @@ public class Mesa {
         }
     }
     public int apuestaTotal() {
+        // cuando terminaron de apostar todos. O cuando apostaron todos menos uno que se va
         if(cantFinalizados == jugadoresMesa.size() || cantFinalizados == jugadoresMesa.size() + 1){ 
             yaApostado(false);
             return sortearNumeroGanador();
         }
-        else if(cantFinalizados>1 && cantFinalizados < jugadoresMesa.size())
-        {
-            cantFinalizados++;
+        // si termino uno pero no son todos
+        else {
             return -1;
         }
-        return -1;
     }
 
     public boolean estaEnEspera(JugadorRuleta jugador) {
@@ -267,16 +266,11 @@ public class Mesa {
 
     @Override
     public String toString() {
-        int activos = jugadoresMesa.size();
-        int espera = jugadoresEspera.size();
         String temp;
-        if (activos == 1) temp = nombre + ", " + jugadoresMesa.size() + " jugador activo";
-        else temp = nombre + ", " + jugadoresMesa.size() + " jugadores activos";
+        if (this.getTodosJugadoresEnMesa().size() == 1) 
+            temp = nombre + ", " + this.getTodosJugadoresEnMesa().size() + " jugador";
+        else temp = nombre + ", " + this.getTodosJugadoresEnMesa().size() + " jugadores";
         
-        if (espera != 0){
-
-            temp += " || " + espera +" en espera";
-        }
         return temp;
     }
         

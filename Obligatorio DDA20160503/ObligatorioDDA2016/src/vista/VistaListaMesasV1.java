@@ -98,7 +98,6 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
 
     private void btn_enterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enterTableActionPerformed
         try {
-            // TODO add your handling code here:
             ingresarMesa();
         } catch (InvalidUserActionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -150,7 +149,13 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     private void ingresarMesa() throws InvalidUserActionException {
         if (list_mesas.getModel().getSize() == 0)  throw new InvalidUserActionException("No hay ninguna mesa creada");
         if(list_mesas.getSelectedValue() == null) throw new InvalidUserActionException("Debe seleccionar una mesa para ingresar");
+        try{
             controlador.unirseAmesa(list_mesas.getSelectedValue().toString());
+        }
+        catch (InvalidUserActionException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
 
     @Override
