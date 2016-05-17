@@ -55,6 +55,8 @@ public class ControladorMesa implements Observer {
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
+            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda());
+
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();

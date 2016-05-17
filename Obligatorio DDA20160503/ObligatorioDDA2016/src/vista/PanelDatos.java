@@ -25,10 +25,11 @@ public class PanelDatos extends javax.swing.JPanel {
 
     }
     
-    public PanelDatos(ControladorMesa c, int numeroSorteado) {
+    public PanelDatos(ControladorMesa c, int numeroSorteado,long total) {
         initComponents();
         controlador = c;
         mostrarNumeroSorteado(numeroSorteado);
+        mostrarTotalApostado(total);
     }
 
     /**
@@ -50,6 +51,9 @@ public class PanelDatos extends javax.swing.JPanel {
         btn_finalizarA = new javax.swing.JButton();
         lbl_saldo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lbl_total_apostado = new javax.swing.JLabel();
+        lbl_total = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -100,6 +104,14 @@ public class PanelDatos extends javax.swing.JPanel {
         jLabel4.setText("(Para desapostar, ingresar 0 y elegir el numero apostado)");
         add(jLabel4);
         jLabel4.setBounds(10, 110, 430, 40);
+
+        jLabel5.setText("Total apostado :");
+        add(jLabel5);
+        jLabel5.setBounds(10, 90, 130, 14);
+        add(lbl_total_apostado);
+        lbl_total_apostado.setBounds(110, 100, 0, 0);
+        add(lbl_total);
+        lbl_total.setBounds(150, 90, 0, 0);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
@@ -123,8 +135,11 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_saldo;
+    private javax.swing.JLabel lbl_total;
+    private javax.swing.JLabel lbl_total_apostado;
     private javax.swing.JList listaJugadores;
     private javax.swing.JLabel nroSorteado;
     private javax.swing.JTextField txt_valorApuesta;
@@ -167,5 +182,9 @@ public class PanelDatos extends javax.swing.JPanel {
 
     public void habilitar(boolean b) {
         btn_finalizarA.setEnabled(b);
+    }
+
+    public void mostrarTotalApostado(long total) {
+        lbl_total.setText(String.valueOf(total));
     }
 }
