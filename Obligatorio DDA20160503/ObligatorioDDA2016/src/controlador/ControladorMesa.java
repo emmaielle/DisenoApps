@@ -106,7 +106,8 @@ public class ControladorMesa implements Observer {
             vista.habilitar(true);
             if(jugador.getJugador().getSaldo()==0) {
                 vista.errorApuesta("Se le terminó el saldo.");
-                vista.salirDeMesa();
+                mesa.consultarYQuitar();
+//vista.salirDeMesa();
             }
         }
         else{
