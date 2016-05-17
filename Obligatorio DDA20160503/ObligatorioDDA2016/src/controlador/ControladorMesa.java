@@ -44,6 +44,7 @@ public class ControladorMesa implements Observer {
         if (mesa.getJugadoresEspera().contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
         if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
         if(jugador.getJugador().getSaldo() < v) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
+        if(v == 0) throw new InvalidUserActionException("Ingrese un monto mayor que 0");
         //si el monto a aportar es mayor que 0
         if(v!=0){
             modelo.apostar(mesa, n, v, jugador);

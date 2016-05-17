@@ -94,14 +94,11 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         try{
             String monto = top.obtenerApuesta();
             int montoInt = 0;
-            if(!monto.equals("0")){
-                if (monto.equals("")) controlador.desapostar(n);
-                else {
-                    montoInt = Integer.parseInt(monto);
-                    controlador.apostar(n,montoInt);
-                }
+            if (monto.equals("")) controlador.desapostar(n);
+            else {
+                montoInt = Integer.parseInt(monto);
+                controlador.apostar(n,montoInt);
             }
-            else throw new InvalidUserActionException("Ingrese un monto mayor que 0");
         }
         catch (InvalidUserActionException ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -113,12 +110,10 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         top.mostrarJugadores(j);
     }
 
-    // se llama cuando todos han hecho click sobre finalizar apuesta, asi que
-    // es avisado
     @Override
     public void mostrarNumeroSorteado(int num) {
         top.mostrarNumeroSorteado(num);
-        validate(); // para refrescar en el momento
+        validate(); 
     }
 
     @Override
