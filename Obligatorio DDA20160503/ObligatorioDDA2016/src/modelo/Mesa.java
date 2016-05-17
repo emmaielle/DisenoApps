@@ -105,7 +105,7 @@ public class Mesa {
         jugadoresEspera.remove(j);
         j.getJugador().setEnMesa(false);
         if(jugadoresMesa.size()>0) buscarRonda(getUltimaRonda()).eliminarApuestas(j);
-        apuestaTotal(); // al salir hace una apuesta por si todos ya finalizaron y el no. Si no estaba
+        if (!j.isApostado()) apuestaTotal(); // al salir hace una apuesta por si todos ya finalizaron y el no. Si no estaba
         // terminado no cambia en nada porque la cant de jugadores cambio
         Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
         // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
