@@ -122,7 +122,8 @@ public class ControladorMesa implements Observer {
 
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
-        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa); /// este adentro del anterior
+        modelo.deleteObserver(this);
+        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
     }
     
     public void mensajeRonda(){

@@ -155,6 +155,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     @Override
     public void cerrarVentana() {
         JOptionPane.showMessageDialog(this, "Se le terminó el saldo");
+        salirDeMesa();
         dispose();
     }
 
