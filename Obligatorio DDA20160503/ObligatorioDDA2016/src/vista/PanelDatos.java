@@ -7,6 +7,7 @@ package vista;
 
 import controlador.ControladorMesa;
 import exceptions.InvalidUserActionException;
+import java.awt.Color;
 import java.util.ArrayList;
 import modelo.JugadorRuleta;
 
@@ -23,13 +24,6 @@ public class PanelDatos extends javax.swing.JPanel {
         controlador = c;
         txt_valorApuesta.setText("0");
         
-    }
-    
-    public PanelDatos(ControladorMesa c, int numeroSorteado,long total) {
-        initComponents();
-        controlador = c;
-        mostrarNumeroSorteado(numeroSorteado);
-        mostrarTotalApostado(total);
     }
 
     @SuppressWarnings("unchecked")
@@ -201,6 +195,10 @@ public class PanelDatos extends javax.swing.JPanel {
 
     public void mensajesRonda(String msj) {
         lbl_mensajes.setText(msj);
+    }
+
+    public void colorSaldo(Color color) {
+        lbl_saldo.setForeground(color);
     }
 
 }

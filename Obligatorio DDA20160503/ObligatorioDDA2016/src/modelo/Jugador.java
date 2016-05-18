@@ -20,6 +20,7 @@ public class Jugador {
     private boolean enJuego;
     private boolean enMesa;
     private boolean statsOn;
+    private boolean ganoUltimaRonda = false;
     
     
     public Jugador(String nombre, String password, String nombreCompleto, int saldo) {
@@ -99,6 +100,10 @@ public class Jugador {
     public long getTotalApostado() {
         return totalApostado;
     }
+    
+    public boolean isGanoUltimaRonda() {
+        return ganoUltimaRonda;
+    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Metodos"> 
@@ -112,11 +117,16 @@ public class Jugador {
         // que actualmente tiene, porque sino no se haria la apuesta
         if (agregar){
             saldo += monto;
+            ganoUltimaRonda = true;
         }
         else {
             saldo -= monto;
+            ganoUltimaRonda = false;
         }
     }
+    
     // </editor-fold>
+
+
 
 }

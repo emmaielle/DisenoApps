@@ -56,7 +56,6 @@ public class JuegoRuleta  {
         return null;
     }
 
-    // boolean returns if the player is waiting or playing
     public void unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException {
         if (m != null) {
             if (m.getTodosJugadoresEnMesa().size() == 4) throw new InvalidUserActionException("Esta mesa ya contiene el maxino numero de jugadores posible");

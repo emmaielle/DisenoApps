@@ -159,12 +159,6 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     }
 
     @Override
-    public void habilitarIrAMesas(boolean habilitar) {
-        btnCrear.setEnabled(habilitar);
-        btn_enterTable.setEnabled(habilitar);
-    }
-
-    @Override
     public void errorCrearMesa(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }

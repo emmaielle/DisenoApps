@@ -15,9 +15,7 @@ public class Apuesta {
     private Numero numero;
 
     // <editor-fold defaultstate="collapsed" desc="Constructor"> 
-    public Apuesta(Numero numero){
-        this.numero=numero;
-    }
+
     public Apuesta(int monto, JugadorRuleta jugador, Numero numero) {
         this.monto = monto;
         this.jugador = jugador;

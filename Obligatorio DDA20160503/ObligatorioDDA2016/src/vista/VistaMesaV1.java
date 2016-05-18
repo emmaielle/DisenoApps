@@ -8,6 +8,7 @@ package vista;
 import controlador.ControladorMesa;
 import controlador.VistaMesa;
 import exceptions.InvalidUserActionException;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -117,12 +118,6 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
     }
 
     @Override
-    public void errorApuesta(String msj) {
-        JOptionPane.showMessageDialog(this, msj);
-        dispose();                
-    }
-
-    @Override
     public void mostrarSaldo(long saldoJugador) {
         top.mostrarSaldo(saldoJugador);
     }
@@ -149,6 +144,10 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         dispose();
     }
 
+    @Override
+    public void colorSaldo(Color color){
+        top.colorSaldo(color);
+    }
    
 
 }

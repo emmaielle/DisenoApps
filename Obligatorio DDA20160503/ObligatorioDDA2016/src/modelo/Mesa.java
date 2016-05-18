@@ -81,18 +81,15 @@ public class Mesa {
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     // devuelve boolean que indica si el jugador esta en espera o no
         JugadorRuleta jr = new JugadorRuleta(c, this, j);
+        jr.setMesa(this); // mesa en jugador
         if(jugadoresMesa.isEmpty()){
-            jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
-            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
-            j.setEnMesa(true);
         }    
         else if(jugadoresMesa.size()<4 && this.buscarRonda(this.getUltimaRonda()).getNroGanador()==-1){
-            jr.setMesa(this); // mesa en jugador
-            jugadoresEspera.add(jr);
-            j.setEnMesa(true);
-            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);            
+            jugadoresEspera.add(jr);           
         }
+        Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
+        j.setEnMesa(true);
     }
     
     public void quitarJugador(JugadorRuleta j){
@@ -230,7 +227,6 @@ public class Mesa {
         if (v.equals("")) desapostar(n, jugador); 
         else {
             int montoInt = Integer.parseInt(v);
-            
             if(jugador.getJugador().getSaldo() < montoInt) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
             if(montoInt == 0) throw new InvalidUserActionException("Ingrese un monto mayor que 0");
             if(montoInt != 0){
@@ -268,11 +264,9 @@ public class Mesa {
             yaApostado(false);
             return sortearNumeroGanador();
         }
-        // si terminó uno pero no son todos
-        else {
-            return -1;
-        }
+        else return -1;
     }
+    
     public void avisarCheckSaldo()  {
         Modelo.getInstancia().avisar(Modelo.EVENTO_CHECK_SALDOS);
     }
@@ -283,12 +277,9 @@ public class Mesa {
 
     @Override
     public String toString() {
-        String temp;
-        if (this.getTodosJugadoresEnMesa().size() == 1) 
-            temp = nombre + ", " + this.getTodosJugadoresEnMesa().size() + " jugador";
-        else temp = nombre + ", " + this.getTodosJugadoresEnMesa().size() + " jugadores";
-        
-        return temp;
+        String temp = nombre + ", " + this.getTodosJugadoresEnMesa().size();
+        if (this.getTodosJugadoresEnMesa().size() == 1) return temp + " jugador";
+        else return temp + " jugadores";
     }
         
     @Override

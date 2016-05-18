@@ -79,9 +79,6 @@ public class JugadorRuleta {
         if (apuestas.contains(a)) apuestas.remove(a);
     }
 
-    public long totalApostado(){
-        return mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(this);
-    }
     // </editor-fold>
 
 

@@ -38,6 +38,11 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("LOGIN");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         lblNombre.setText("Nombre :");
@@ -69,6 +74,10 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
     private void btnIngresarCasinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarCasinoActionPerformed
         login();
     }//GEN-LAST:event_btnIngresarCasinoActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        controlador.eliminarObservador();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

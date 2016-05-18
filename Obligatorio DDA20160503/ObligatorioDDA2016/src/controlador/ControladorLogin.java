@@ -42,4 +42,8 @@ public class ControladorLogin implements Observer{
             vista.habilitar(modelo.isHabilitado());
         }
     } 
+
+    public void eliminarObservador() {
+        modelo.deleteObserver(this);
+    }
 }

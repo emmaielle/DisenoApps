@@ -6,6 +6,7 @@
 package controlador;
 
 import exceptions.InvalidUserActionException;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,10 +34,6 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
-    public void desapostar(Numero n) throws InvalidUserActionException{ 
-        modelo.desapostar(mesa, n, jugador);
-    }
-    
     public void apostar(Numero n, String v) throws InvalidUserActionException { 
         modelo.apostar(mesa, n, v, jugador);
         vista.exitoApuesta();   
@@ -60,6 +57,8 @@ public class ControladorMesa implements Observer {
         }
         else if (arg.equals(Modelo.EVENTO_CHECK_SALDOS)){
             if (jugador.expulsado()) vista.cerrarVentana();
+            if (jugador.getJugador().isGanoUltimaRonda()) vista.colorSaldo(Color.GREEN);
+            else vista.colorSaldo(Color.RED);
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
@@ -68,11 +67,6 @@ public class ControladorMesa implements Observer {
     public void cargarJugadoresActivos() {
         ArrayList<JugadorRuleta> j = modelo.getJugadoresPorMesa(mesa);
         vista.mostrarJugadores(j);
-    }
-
-    public void sortearNumero() {
-        mostrarNumeroSorteado(modelo.sortearNumero(mesa));
-        vista.mostrar(mesa.getNumeros());
     }
 
     public void buscarNumeroActual() {

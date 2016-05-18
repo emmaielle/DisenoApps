@@ -105,10 +105,6 @@ public class Modelo extends Observable {
         return m.getUnusedColour();
     }
 
-    public int sortearNumero(Mesa m) {
-        return m.sortearNumeroGanador();
-    }
-
     public int ultNumeroSorteado(Mesa m) {
         return m.getNumeroGanador();
     }
@@ -116,10 +112,6 @@ public class Modelo extends Observable {
     public void apostar(Mesa mesa, Numero n, String v, JugadorRuleta jugador) throws InvalidUserActionException {
         mesa.apostarUnNumero(n, v, jugador);
     }  
-    
-    public void desapostar(Mesa mesa, Numero n, JugadorRuleta jugador) throws InvalidUserActionException{
-        mesa.desapostar(n, jugador);
-    }
 
     public int finalizarApuesta(Mesa mesa) {
         return mesa.finalizarApuesta();
@@ -131,12 +123,6 @@ public class Modelo extends Observable {
 
     public boolean estaEnEspera(JugadorRuleta jugador, Mesa mesa) {
         return mesa.estaEnEspera(jugador);
-    }
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Metodos Jugador"> 
-    public void salirDeJuego(Jugador jugador) {
-        jugador.setEnJuego(false);
     }
     // </editor-fold>
 

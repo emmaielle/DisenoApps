@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import modelo.JugadorRuleta;
 import modelo.Numero;
@@ -20,9 +21,9 @@ public interface VistaMesa {
     public void exitoApuesta();
     public void salirDeMesa();
     public void habilitar(boolean b);
-    public void errorApuesta(String msj);
     public void mostrarSaldo(long saldoJugador);
     public void mostrarTotalApostado(long total);
     public void mensajeRonda(String msj);
     public void cerrarVentana();
+    public void colorSaldo(Color color);
 }

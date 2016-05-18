@@ -17,7 +17,6 @@ public interface VistaListaMesas {
     public void mostrar(ArrayList<Mesa> lista);
     public void abrirMesa(Mesa m,Jugador jr, boolean enEspera);
     public void salirDeJuego();
-    public void habilitarIrAMesas(boolean habilitar);
     public void errorCrearMesa(String msg);
     public void eliminarObservador();
     public void ingresarMesa();
