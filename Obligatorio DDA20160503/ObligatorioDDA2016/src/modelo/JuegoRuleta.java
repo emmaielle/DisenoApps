@@ -58,8 +58,12 @@ public class JuegoRuleta  {
 
     // boolean returns if the player is waiting or playing
     public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException {
-        if (j.isEnMesa()) throw new InvalidUserActionException("Jugador ya se encuentra en una mesa");
-        return m.agregarJugador(c, j);
+        if (m != null) {
+            if (m.getTodosJugadoresEnMesa().size() == 4) throw new InvalidUserActionException("Esta mesa ya contiene el maxino numero de jugadores posible");
+            if (j.isEnMesa()) throw new InvalidUserActionException("Jugador ya se encuentra en una mesa");
+            return m.agregarJugador(c, j);
+        }
+        else return false;
     }
 
     public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {

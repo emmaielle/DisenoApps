@@ -144,8 +144,13 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
         if(vistaListaMesa != null){
             vistaListaMesa.salirDeJuego();
             vistaListaMesa.dispose();
+            vistaListaMesa.eliminarObservador();
         }
-        if (vistaEstadisticas != null) vistaEstadisticas.dispose();
+        if (vistaEstadisticas != null) {
+            vistaEstadisticas.dispose();
+            vistaEstadisticas.eliminarObservador();
+        }
+        controlador.eliminarObservador();
     }
 
     @Override

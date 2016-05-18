@@ -100,4 +100,8 @@ public class VistaEstadisticasV1 extends javax.swing.JDialog implements VistaEst
         controlador.habilitarStats(habilitar);
     }
 
+    void eliminarObservador() {
+        controlador.eliminarObservador();
+    }
+
 }

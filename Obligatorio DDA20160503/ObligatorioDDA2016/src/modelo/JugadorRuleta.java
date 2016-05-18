@@ -71,6 +71,10 @@ public class JugadorRuleta {
         if(a!=null) apuestas.add(a);
     }
     
+    public boolean expulsado() {
+        return jugador.getSaldo() == 0;
+    }
+    
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
@@ -79,4 +83,6 @@ public class JugadorRuleta {
         return mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(this);
     }
     // </editor-fold>
+
+
 }

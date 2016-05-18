@@ -9,8 +9,6 @@ import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JOptionPane;
-import modelo.Apuesta;
 import modelo.JugadorRuleta;
 import modelo.Mesa;
 import modelo.Modelo;
@@ -26,7 +24,7 @@ public class ControladorMesa implements Observer {
     private VistaMesa vista;
     private JugadorRuleta jugador;
     private Mesa mesa;
-    private ArrayList<Apuesta> apuestas = new ArrayList<>();
+    //private ArrayList<Apuesta> apuestas = new ArrayList<>();
     
     public ControladorMesa(VistaMesa vista,Mesa m, JugadorRuleta jr){
         this.vista = vista;
@@ -36,12 +34,12 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
-    public void desapostar(Numero n) throws InvalidUserActionException{
+    public void desapostar(Numero n) throws InvalidUserActionException{ // aca cambiar
         if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
         modelo.desapostar(mesa, n, jugador);
     }
     
-    public void apostar(Numero n, int v) throws InvalidUserActionException {
+    public void apostar(Numero n, int v) throws InvalidUserActionException { // para adentro
         // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
         if (mesa.getJugadoresEspera().contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
         if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
@@ -58,11 +56,11 @@ public class ControladorMesa implements Observer {
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
-            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador));
+            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador)); // esto
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
-            if (!modelo.estaEnEspera(jugador, mesa))
+            if (!modelo.estaEnEspera(jugador, mesa)) // ojo
             {
                 vista.habilitar(true);
             }
@@ -74,7 +72,7 @@ public class ControladorMesa implements Observer {
             vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
         }
         else if (arg.equals(Modelo.EVENTO_CHECK_SALDOS)){
-            if (jugador.getJugador().getSaldo() == 0){
+            if (jugador.expulsado()){ 
                 vista.cerrarVentana();
             }
         }
@@ -89,7 +87,6 @@ public class ControladorMesa implements Observer {
 
     public void sortearNumero() {
         mostrarNumeroSorteado(modelo.sortearNumero(mesa));
-        // llamar a metodo de ver quien gano
         vista.mostrar(mesa.getNumeros());
     }
 
@@ -105,7 +102,7 @@ public class ControladorMesa implements Observer {
         vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
 
-    public void finalizarApuesta()  {
+    public void finalizarApuesta()  { // aca cambiar
         int sorteado = modelo.finalizarApuesta(mesa);
         if(sorteado!=-1){
             vista.habilitar(true);
@@ -125,7 +122,7 @@ public class ControladorMesa implements Observer {
 
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
-        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
+        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa); /// este adentro del anterior
     }
     
     public void mensajeRonda(){

@@ -94,8 +94,8 @@ public class Modelo extends Observable {
         return casino.getRuleta().buscarMesa(nom);
     }
 
-    public boolean unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException{
-        return casino.getRuleta().unirJugadorAMesaRuleta(j, m, c);
+    public void unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException{
+        casino.getRuleta().unirJugadorAMesaRuleta(j, m, c);
     }
     
     public void cerrarMesaRuleta(Mesa mesa) {

@@ -94,7 +94,7 @@ public class VistaMesaV1 extends javax.swing.JDialog implements VistaMesa, Actio
         try{
             String monto = top.obtenerApuesta();
             int montoInt = 0;
-            if (monto.equals("")) controlador.desapostar(n);
+            if (monto.equals("")) controlador.desapostar(n); //logica
             else {
                 montoInt = Integer.parseInt(monto);
                 controlador.apostar(n,montoInt);

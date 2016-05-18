@@ -25,7 +25,7 @@ public class ControladorLogin implements Observer{
         vista.habilitar(modelo.isHabilitado());
 
     }
-    public void login(String usr,String pass){
+    public void login(String usr,String pass){ // hay que cambiar
         if (!modelo.isLogged(usr)){
             Jugador j = modelo.login(usr, pass);
             if(j == null){

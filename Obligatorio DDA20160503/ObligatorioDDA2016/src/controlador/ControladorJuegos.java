@@ -48,14 +48,17 @@ public class ControladorJuegos implements Observer {
     
     public void ingresarAjuego(String j){
         Object juego = modelo.getJuego(j);
-        //if (juego != null) // supongo que esto deberia ir para controlar
-            vista.abrirJuego(juego);
-            jugador.setEnJuego(true);
-            vista.habilitarIrAJuego(false);
+        vista.abrirJuego(juego);
+        jugador.setEnJuego(true);
+        vista.habilitarIrAJuego(false);
     }
     
     public void logout(){
         modelo.logout(jugador);
         jugador.setEnJuego(false);
+    }
+
+    public void eliminarObservador() {
+        modelo.deleteObserver(this);
     }
 }

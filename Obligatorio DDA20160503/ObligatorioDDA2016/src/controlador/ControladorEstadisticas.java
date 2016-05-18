@@ -54,4 +54,8 @@ public class ControladorEstadisticas implements Observer{
     public void habilitarStats(boolean habilitar) {
         jugador.setStatsOn(!habilitar);
     }
+
+    public void eliminarObservador() {
+        modelo.deleteObserver(this);
+    }
 }
