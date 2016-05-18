@@ -18,9 +18,6 @@ import modelo.Numero;
  */
 public class PanelTablero extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelTablero
-     */
     public PanelTablero(ArrayList<Numero> numeros, ActionListener al) {
         initComponents();
         mostrarTablero(numeros,al);
@@ -32,8 +29,6 @@ public class PanelTablero extends javax.swing.JPanel {
 
         setLayout(null);
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 

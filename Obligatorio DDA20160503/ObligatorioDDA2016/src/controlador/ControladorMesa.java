@@ -33,12 +33,11 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
-    public void desapostar(Numero n) throws InvalidUserActionException{ // aca cambiar: me parece que esta bien...
-        if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
+    public void desapostar(Numero n) throws InvalidUserActionException{ 
         modelo.desapostar(mesa, n, jugador);
     }
     
-    public void apostar(Numero n, int v) throws InvalidUserActionException { 
+    public void apostar(Numero n, String v) throws InvalidUserActionException { 
         modelo.apostar(mesa, n, v, jugador);
         vista.exitoApuesta();   
     }
@@ -52,21 +51,15 @@ public class ControladorMesa implements Observer {
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
-            if (!modelo.estaEnEspera(jugador, mesa)) 
-            {
-                vista.habilitar(true);
-            }
+            if (!modelo.estaEnEspera(jugador, mesa))  vista.habilitar(true);
             mensajeRonda();
             mostrarSaldo();
         }
-        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) || 
-                arg.equals(Modelo.EVENTO_SALIR_MESA)){
+        else if (arg.equals(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA) || arg.equals(Modelo.EVENTO_SALIR_MESA)){
             vista.mostrarJugadores(modelo.getJugadoresPorMesa(mesa));
         }
         else if (arg.equals(Modelo.EVENTO_CHECK_SALDOS)){
-            if (jugador.expulsado()){ 
-                vista.cerrarVentana();
-            }
+            if (jugador.expulsado()) vista.cerrarVentana();
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
@@ -94,7 +87,7 @@ public class ControladorMesa implements Observer {
         vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
 
-    public void finalizarApuesta()  { // aca cambiar: aunque ahora q veo para mi esta bien
+    public void finalizarApuesta()  { // ahora q veo para mi esta bien
         int sorteado = modelo.finalizarApuesta(mesa);
         if(sorteado!= -1){
             vista.habilitar(true);
@@ -109,7 +102,6 @@ public class ControladorMesa implements Observer {
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
         modelo.deleteObserver(this);
-        if (mesa.getTodosJugadoresEnMesa().isEmpty()) modelo.cerrarMesaRuleta(mesa);
     }
     
     public void mensajeRonda(){

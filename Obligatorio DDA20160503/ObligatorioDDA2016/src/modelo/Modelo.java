@@ -82,8 +82,8 @@ public class Modelo extends Observable {
         return casino.getRuleta().getListadoMesas();
     }
 
-    public boolean agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
-        return casino.getRuleta().agregarMesaRuleta(m, j, c);
+    public void agregarMesaRuleta(Mesa m, Jugador j, Color c) throws InvalidUserActionException {
+        casino.getRuleta().agregarMesaRuleta(m, j, c);
     }
 
     public Mesa buscarMesaRuleta(String nom){
@@ -92,10 +92,6 @@ public class Modelo extends Observable {
 
     public void unirJugadorAMesaRuleta(Jugador j, Mesa m, Color c) throws InvalidUserActionException{
         casino.getRuleta().unirJugadorAMesaRuleta(j, m, c);
-    }
-    
-    public void cerrarMesaRuleta(Mesa mesa) {
-        casino.getRuleta().cerrarMesa(mesa);
     }
     
     // </editor-fold>
@@ -117,11 +113,11 @@ public class Modelo extends Observable {
         return m.getNumeroGanador();
     }
 
-    public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) throws InvalidUserActionException {
+    public void apostar(Mesa mesa, Numero n, String v, JugadorRuleta jugador) throws InvalidUserActionException {
         mesa.apostarUnNumero(n, v, jugador);
     }  
     
-    public void desapostar(Mesa mesa, Numero n, JugadorRuleta jugador) {
+    public void desapostar(Mesa mesa, Numero n, JugadorRuleta jugador) throws InvalidUserActionException{
         mesa.desapostar(n, jugador);
     }
 
@@ -130,7 +126,7 @@ public class Modelo extends Observable {
     }
 
     public void salirDeMesaRuleta(JugadorRuleta jugador, Mesa mesa) {
-        mesa.quitarJugador(jugador);
+        casino.quitarJugador(jugador, mesa);
     }
 
     public boolean estaEnEspera(JugadorRuleta jugador, Mesa mesa) {

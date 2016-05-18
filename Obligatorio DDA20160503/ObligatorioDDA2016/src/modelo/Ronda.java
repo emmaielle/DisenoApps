@@ -45,17 +45,14 @@ public class Ronda {
 
     // <editor-fold defaultstate="collapsed" desc="Metodos">
     
-    // sortea si no existe, sino devuelve nomas
+    // sortea si no existe, sino devuelve existente
     public int sortearNroGanador() {
-        int nro = 0;
-        // significa que todavia no se sorteo
-        if (nroGanador == -1){
+        if (nroGanador == -1){ // todavia no se sorteo
             int randomOut = (int)Math.floor(Math.random()*37);
-            nroGanador = randomOut; // hacer logica
+            nroGanador = randomOut; 
             lookForWinner();
             return randomOut;
         }
-        // nunca se deberia llegar aca
         return nroGanador;
     }
     
@@ -67,30 +64,22 @@ public class Ronda {
         return yaApostada;
     }
     
-    // funciona en ambos sentidos si se hace click de nuevo
-    public void apostar(Numero n, int v, JugadorRuleta jugador) {
+    public void apostar(Numero n, int v, JugadorRuleta jugador) { //funciona en ambos sentidos si se clickea de nuevo
         Apuesta yaApostada = buscarApuestaPorNumero(n);
-        // si llega aca es porque ese numero no fue elegido antes
-        if (yaApostada == null){
+        if (yaApostada == null){ // si entra aca es porque ese numero no fue elegido antes
             Apuesta a = new Apuesta(v, jugador, n);
             if (a.validar()){
                 agregarApuesta(a);
                 jugador.getJugador().modificarSaldo(false, v);
             }
         }
-        else {
-            // solo quita la apuesta si el monto apostado es 0 y ya tiene apuesta hecha por él mismo
-            // sino queda la anterior
-            desapostar(jugador, n);
-        }
+        else desapostar(jugador, n);
     }
     
     public void desapostar(JugadorRuleta j, Numero n){
         Apuesta yaApostada = buscarApuestaPorNumero(n);
         if (yaApostada.getJugador().equals(j)) 
-        { // && v == 0
             quitarApuesta(yaApostada);
-        }
     }
     
     public void quitarApuesta(Apuesta a){
@@ -120,14 +109,10 @@ public class Ronda {
             Jugador j = a.getJugador().getJugador();
             if (apuestaGanadora != null && apuestaGanadora.equals(a)){ // si hubo un ganador
                 j.modificarSaldo(true, a.getMonto()* 35);
-                //j.modificarSaldo(false, a.getMonto());
                 j.setTotalCobrado(j.getTotalCobrado() + a.getMonto() * 35);
                 j.setTotalApostado(j.getTotalApostado() + a.getMonto());
             }
-            else {
-                //j.modificarSaldo(false, a.getMonto());
-                j.setTotalApostado(j.getTotalApostado() + a.getMonto());
-            }
+            else j.setTotalApostado(j.getTotalApostado() + a.getMonto());
         }
         Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
     }

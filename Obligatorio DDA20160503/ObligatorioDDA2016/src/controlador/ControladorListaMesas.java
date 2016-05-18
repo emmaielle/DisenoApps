@@ -70,7 +70,7 @@ public class ControladorListaMesas implements Observer {
     }
 
     public void salirDeJuego() {
-        modelo.salirDeJuego(jugador);
+        jugador.setEnJuego(false);
     }
 
     public void eliminarObservador() {

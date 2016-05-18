@@ -23,10 +23,7 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     private Jugador jugador;
     private VistaListaMesasV1 vistaListaMesa;
     private VistaEstadisticasV1 vistaEstadisticas;
-    /**
-     *
-     * @param j
-     */
+
     public VistaJuegosV1(Jugador j) {
         initComponents();
         controlador = new ControladorJuegos(this, j);

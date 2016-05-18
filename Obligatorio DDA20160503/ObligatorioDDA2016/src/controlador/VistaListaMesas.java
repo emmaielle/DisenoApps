@@ -19,4 +19,7 @@ public interface VistaListaMesas {
     public void salirDeJuego();
     public void habilitarIrAMesas(boolean habilitar);
     public void errorCrearMesa(String msg);
+    public void eliminarObservador();
+    public void ingresarMesa();
+    public void crearMesa();
 }

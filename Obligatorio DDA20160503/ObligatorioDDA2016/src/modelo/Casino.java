@@ -15,7 +15,6 @@ public class Casino {
     
     private ArrayList<Object> juegos = new ArrayList(); // llenarlo
     private JuegoRuleta ruleta = JuegoRuleta.getInstancia();
-    
     private static Casino instancia = new Casino();
     
     // <editor-fold defaultstate="collapsed" desc="Constructor"> 
@@ -48,5 +47,13 @@ public class Casino {
         return ruleta;
     }
     // </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="Metodos"> 
     
+    public void quitarJugador(JugadorRuleta jugador, Mesa mesa) {
+        mesa.quitarJugador(jugador);
+        if (mesa.getTodosJugadoresEnMesa().isEmpty()) ruleta.cerrarMesa(mesa); 
+    }
+    
+    // </editor-fold>
 }

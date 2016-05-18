@@ -42,7 +42,7 @@ public class SistemaJugador {
         if(!habilitado) return null;
         Jugador j = buscarJugador(nom);
         if (j != null){
-            if (!isLogged(j)) throw new InvalidUserActionException("Ya se encuentra logueado");
+            if (isLogged(j)) throw new InvalidUserActionException("Ya se encuentra logueado");
             if (j.getPassword().equals(psw) && !logueados.contains(j)){
                 logueados.add(j);
                 Modelo.getInstancia().avisar(Modelo.EVENTO_LOGUEADOS);

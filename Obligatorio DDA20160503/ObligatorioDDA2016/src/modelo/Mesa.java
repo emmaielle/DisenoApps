@@ -77,27 +77,21 @@ public class Mesa {
     
     // <editor-fold defaultstate="collapsed" desc="Metodos">  
     
+    public void agregarJugador(Color c, Jugador j){
     // crea y agrega el jugadorRuleta en la mesa actual y lo guarda en su lista de JR
     // devuelve boolean que indica si el jugador esta en espera o no
-    public boolean agregarJugador(Color c, Jugador j){
-        //ver q cuando entre quede en una lista temporal hasta q termine la ronda
         JugadorRuleta jr = new JugadorRuleta(c, this, j);
         if(jugadoresMesa.isEmpty()){
             jr.setMesa(this); // mesa en jugador
             jugadoresMesa.add(jr);
             Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
             j.setEnMesa(true);
-            return false;
         }    
         else if(jugadoresMesa.size()<4 && this.buscarRonda(this.getUltimaRonda()).getNroGanador()==-1){
             jr.setMesa(this); // mesa en jugador
             jugadoresEspera.add(jr);
             j.setEnMesa(true);
-            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);
-            return true;                
-        }
-        else{
-            return false;
+            Modelo.getInstancia().avisar(Modelo.EVENTO_NUEVO_JUGADOR_MESA_RULETA);            
         }
     }
     
@@ -106,10 +100,9 @@ public class Mesa {
         jugadoresEspera.remove(j);
         j.getJugador().setEnMesa(false);
         if(jugadoresMesa.size()>0) buscarRonda(getUltimaRonda()).eliminarApuestas(j);
-        if (!j.isApostado()) apuestaTotal(); // al salir hace una apuesta por si todos ya finalizaron y el no. Si no estaba
-        // terminado no cambia en nada porque la cant de jugadores cambio
+        if (!j.isApostado()) apuestaTotal();
         Modelo.getInstancia().avisar(Modelo.EVENTO_SALIR_MESA);
-        // no necesito quitar mesa de j, porque se va a eliminar solo cn el garbage collector
+        // no necesito quitar mesa de j, porque se va a eliminar solo con el garbage collector
     }
 
     public boolean validar() {
@@ -202,7 +195,7 @@ public class Mesa {
 
     public int sortearNumeroGanador() {
         Ronda ultimaRonda = buscarRonda(getUltimaRonda());
-        int nro = ultimaRonda.sortearNroGanador(); // -1 porque ya hay otra mas nueva
+        int nro = ultimaRonda.sortearNroGanador(); 
         // reviso resultados // aviso ganadores // reparto plata // guardo historial
         ultimaRonda.modificarSaldos();
         nuevaRonda();
@@ -230,28 +223,31 @@ public class Mesa {
         return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
     }
 
-    public void apostarUnNumero(Numero n, int v, JugadorRuleta jugador) throws InvalidUserActionException {
-        // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
+    public void apostarUnNumero(Numero n, String v, JugadorRuleta jugador) throws InvalidUserActionException {
         if(jugadoresEspera.contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
         if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
-        if(jugador.getJugador().getSaldo() < v) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
-        if(v == 0) throw new InvalidUserActionException("Ingrese un monto mayor que 0");
         
-        //si el monto a aportar es mayor que 0
-        if(v!=0){
-            for(JugadorRuleta jr:jugadoresMesa){
-                if(jugador==jr)
-                    (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+        if (v.equals("")) desapostar(n, jugador); 
+        else {
+            int montoInt = Integer.parseInt(v);
+            
+            if(jugador.getJugador().getSaldo() < montoInt) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
+            if(montoInt == 0) throw new InvalidUserActionException("Ingrese un monto mayor que 0");
+            if(montoInt != 0){
+                for(JugadorRuleta jr:jugadoresMesa){
+                    if(jugador==jr)
+                        (buscarRonda(getUltimaRonda())).apostar(n, montoInt, jugador);
+                }
+                Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
             }
-            Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
         }
     }
     
-    public void desapostar(Numero n, JugadorRuleta jugador) {
+    public void desapostar(Numero n, JugadorRuleta jugador) throws InvalidUserActionException {
+        if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
         for(JugadorRuleta jr:jugadoresMesa){
             if(jugador==jr)
-                if (n.getApuesta() != null)
-                (buscarRonda(getUltimaRonda())).desapostar(jugador, n);
+                if (n.getApuesta() != null) (buscarRonda(getUltimaRonda())).desapostar(jugador, n);
         }
         Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
     }
@@ -272,7 +268,7 @@ public class Mesa {
             yaApostado(false);
             return sortearNumeroGanador();
         }
-        // si termino uno pero no son todos
+        // si terminó uno pero no son todos
         else {
             return -1;
         }
