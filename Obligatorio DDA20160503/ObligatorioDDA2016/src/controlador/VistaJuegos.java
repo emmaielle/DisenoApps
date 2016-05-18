@@ -14,14 +14,10 @@ import java.util.ArrayList;
 public interface VistaJuegos {
     
     public void mostrarJuegos(ArrayList<String> juegos);
-    
     public void abrirJuego(Object juego);
-    
     public void habilitarIrAJuego(boolean habilitar);
-    
     public void mostrarEstadisticas();
-    
     public void logout();
-    
     public void habilitarEstadisticas(boolean b);
+
 }

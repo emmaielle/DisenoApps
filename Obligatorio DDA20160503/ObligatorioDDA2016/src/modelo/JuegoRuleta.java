@@ -72,10 +72,16 @@ public class JuegoRuleta  {
         }
     }
     
+    public void quitarJugador(JugadorRuleta jugador, Mesa mesa) {
+        mesa.quitarJugador(jugador);
+        if (mesa.getTodosJugadoresEnMesa().isEmpty()) cerrarMesa(mesa); 
+    }
+    
     @Override
     public String toString() {
         return "Ruleta (" + this.listadoMesas.size() + ")";
     }
     
     // </editor-fold>
+
 }

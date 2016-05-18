@@ -26,6 +26,14 @@ public class ControladorLogin implements Observer{
         vista.habilitar(modelo.isHabilitado());
 
     }
+    
+    @Override
+    public void update(Observable o, Object evento) {
+        if(evento.equals(Modelo.EVENTO_LOGIN)){
+            vista.habilitar(modelo.isHabilitado());
+        }
+    } 
+    
     public void login(String usr,String pass) throws InvalidUserActionException{ 
         Jugador j = modelo.login(usr, pass);
         if(j == null){
@@ -35,13 +43,6 @@ public class ControladorLogin implements Observer{
             vista.ingresarJugador(j);
         }
     }
-    
-    @Override
-    public void update(Observable o, Object evento) {
-        if(evento.equals(Modelo.EVENTO_LOGIN)){
-            vista.habilitar(modelo.isHabilitado());
-        }
-    } 
 
     public void eliminarObservador() {
         modelo.deleteObserver(this);

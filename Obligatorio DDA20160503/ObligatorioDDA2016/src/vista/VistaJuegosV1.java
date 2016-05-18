@@ -154,8 +154,5 @@ public class VistaJuegosV1 extends javax.swing.JDialog implements VistaJuegos {
     public void habilitarEstadisticas(boolean b) {
         btn_statsCasino.setEnabled(b);
     }
-    
-    
-    
 
 }

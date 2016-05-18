@@ -70,15 +70,15 @@ public class JugadorRuleta {
     public void agregarApuesta(Apuesta a){
         if(a!=null) apuestas.add(a);
     }
-    
-    public boolean expulsado() {
-        return jugador.getSaldo() == 0;
-    }
-    
+
     public void quitarApuesta(Apuesta a){
         if (apuestas.contains(a)) apuestas.remove(a);
     }
 
+    public boolean expulsado() {
+        return jugador.getSaldo() == 0;
+    }
+    
     // </editor-fold>
 
 

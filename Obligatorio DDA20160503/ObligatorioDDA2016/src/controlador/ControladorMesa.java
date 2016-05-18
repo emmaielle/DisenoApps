@@ -26,17 +26,12 @@ public class ControladorMesa implements Observer {
     private JugadorRuleta jugador;
     private Mesa mesa;
     
-    public ControladorMesa(VistaMesa vista,Mesa m, JugadorRuleta jr){
+    public ControladorMesa(VistaMesa vista, Mesa m, JugadorRuleta jr){
         this.vista = vista;
         this.jugador = jr;
         this.mesa= m;
         vista.mostrar(mesa.getNumeros());
         modelo.addObserver(this);
-    }
-    
-    public void apostar(Numero n, String v) throws InvalidUserActionException { 
-        modelo.apostar(mesa, n, v, jugador);
-        vista.exitoApuesta();   
     }
     
     @Override
@@ -62,6 +57,11 @@ public class ControladorMesa implements Observer {
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
+    }
+    
+    public void apostar(Numero n, String v) throws InvalidUserActionException { 
+        modelo.apostar(mesa, n, v, jugador);
+        vista.exitoApuesta();   
     }
 
     public void cargarJugadoresActivos() {
@@ -95,11 +95,15 @@ public class ControladorMesa implements Observer {
 
     public void salirDeMesa() {
         modelo.salirDeMesaRuleta(jugador, mesa);
-        modelo.deleteObserver(this);
+        eliminarObservador();
     }
     
     public void mensajeRonda(){
         String msj = (mesa.estaEnEspera(jugador)) ? "Espera..." : "Apostar";
         vista.mensajeRonda(msj);
+    }
+    
+    public void eliminarObservador() {
+        modelo.deleteObserver(this);
     }
 }
