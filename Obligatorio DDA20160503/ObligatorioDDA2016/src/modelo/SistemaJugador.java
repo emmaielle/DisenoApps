@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import exceptions.InvalidUserActionException;
 import java.util.ArrayList;
 
 /**
@@ -37,13 +38,16 @@ public class SistemaJugador {
         jugadores.add(j);
     }
     
-    public Jugador login(String nom, String psw) {
+    public Jugador login(String nom, String psw) throws InvalidUserActionException{
         if(!habilitado) return null;
         Jugador j = buscarJugador(nom);
-        if (j != null && j.getPassword().equals(psw) && !logueados.contains(j)){
-            logueados.add(j);
-            Modelo.getInstancia().avisar(Modelo.EVENTO_LOGUEADOS);
-            return j;
+        if (j != null){
+            if (!isLogged(j)) throw new InvalidUserActionException("Ya se encuentra logueado");
+            if (j.getPassword().equals(psw) && !logueados.contains(j)){
+                logueados.add(j);
+                Modelo.getInstancia().avisar(Modelo.EVENTO_LOGUEADOS);
+                return j;
+            }
         }
         return null;
     }
@@ -57,8 +61,7 @@ public class SistemaJugador {
         return null;
     }
     
-    public boolean isLogged(String usr) {
-        Jugador j = buscarJugador(usr);
+    public boolean isLogged(Jugador j) {
         if (j != null) return logueados.contains(j);
         return false;
     }

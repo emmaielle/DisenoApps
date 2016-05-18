@@ -230,12 +230,21 @@ public class Mesa {
         return (this.buscarRonda(this.getUltimaRonda() - 1)).getNroGanador();
     }
 
-    public void apostarUnNumero(Numero n, int v, JugadorRuleta jugador) {
-        for(JugadorRuleta jr:jugadoresMesa){
-            if(jugador==jr)
-                (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+    public void apostarUnNumero(Numero n, int v, JugadorRuleta jugador) throws InvalidUserActionException {
+        // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
+        if(jugadoresEspera.contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
+        if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
+        if(jugador.getJugador().getSaldo() < v) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
+        if(v == 0) throw new InvalidUserActionException("Ingrese un monto mayor que 0");
+        
+        //si el monto a aportar es mayor que 0
+        if(v!=0){
+            for(JugadorRuleta jr:jugadoresMesa){
+                if(jugador==jr)
+                    (buscarRonda(getUltimaRonda())).apostar(n, v, jugador);
+            }
+            Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
         }
-        Modelo.getInstancia().avisar(Modelo.EVENTO_ACTUALIZA_SALDOS);
     }
     
     public void desapostar(Numero n, JugadorRuleta jugador) {

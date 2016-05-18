@@ -17,4 +17,5 @@ public interface VistaLogin {
     public void habilitar(boolean b);
     public void errorYaLogueado();
     public void finalizar();
+    public void login();
 }

@@ -7,6 +7,7 @@ package vista;
 
 import controlador.ControladorLogin;
 import controlador.VistaLogin;
+import exceptions.InvalidUserActionException;
 import javax.swing.JOptionPane;
 import modelo.Jugador;
 
@@ -74,7 +75,7 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarCasinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarCasinoActionPerformed
-        controlador.login(txtNombre.getText(), txtPsw.getText());
+        login();
     }//GEN-LAST:event_btnIngresarCasinoActionPerformed
 
     /**
@@ -117,5 +118,14 @@ public class VistaLoginV1 extends javax.swing.JDialog implements VistaLogin{
         if(vistaJuegos!=null) vistaJuegos.logout();
     }
     
+    @Override
+    public void login(){
+        try{
+            controlador.login(txtNombre.getText(), txtPsw.getText());
+        }
+        catch (InvalidUserActionException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     
 }

@@ -52,16 +52,12 @@ public class Modelo extends Observable {
         return sj.isHabilitado();
     }
 
-    public Jugador login(String nom, String psw) {
+    public Jugador login(String nom, String psw) throws InvalidUserActionException{
         return sj.login(nom,psw);
     }
     
     public void logout(Jugador j){
         sj.logout(j);
-    }
-    
-    public boolean isLogged(String usr) {
-        return sj.isLogged(usr);
     }
     
     public long totalApostadoTodos() {
@@ -121,7 +117,7 @@ public class Modelo extends Observable {
         return m.getNumeroGanador();
     }
 
-    public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) {
+    public void apostar(Mesa mesa, Numero n, int v, JugadorRuleta jugador) throws InvalidUserActionException {
         mesa.apostarUnNumero(n, v, jugador);
     }  
     

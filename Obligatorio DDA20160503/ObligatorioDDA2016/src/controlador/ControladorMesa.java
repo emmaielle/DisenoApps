@@ -24,7 +24,6 @@ public class ControladorMesa implements Observer {
     private VistaMesa vista;
     private JugadorRuleta jugador;
     private Mesa mesa;
-    //private ArrayList<Apuesta> apuestas = new ArrayList<>();
     
     public ControladorMesa(VistaMesa vista,Mesa m, JugadorRuleta jr){
         this.vista = vista;
@@ -34,33 +33,26 @@ public class ControladorMesa implements Observer {
         modelo.addObserver(this);
     }
     
-    public void desapostar(Numero n) throws InvalidUserActionException{ // aca cambiar
+    public void desapostar(Numero n) throws InvalidUserActionException{ // aca cambiar: me parece que esta bien...
         if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
         modelo.desapostar(mesa, n, jugador);
     }
     
-    public void apostar(Numero n, int v) throws InvalidUserActionException { // para adentro
-        // si el jugador que apuesta tiene saldo mayor o igual que el monto a apostar
-        if (mesa.getJugadoresEspera().contains(jugador)) throw new InvalidUserActionException("Debe esperar a que finalice la ronda actual");
-        if(jugador.isApostado()) throw new InvalidUserActionException("Ya ha finalizado su apuesta");
-        if(jugador.getJugador().getSaldo() < v) throw new InvalidUserActionException("No tiene saldo suficiente para realizar esta apuesta");
-        if(v == 0) throw new InvalidUserActionException("Ingrese un monto mayor que 0");
-        //si el monto a aportar es mayor que 0
-        if(v!=0){
-            modelo.apostar(mesa, n, v, jugador);
-            vista.exitoApuesta();
-        }
-         
+    public void apostar(Numero n, int v) throws InvalidUserActionException { 
+        modelo.apostar(mesa, n, v, jugador);
+        vista.exitoApuesta();   
     }
+    
     @Override
     public void update(Observable o, Object arg) {
         if(arg.equals(Modelo.EVENTO_TABLERO)){
             vista.mostrar(mesa.getNumeros());
-            vista.mostrarTotalApostado(mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador)); // esto
+            long tot = mesa.buscarRonda(mesa.getUltimaRonda()).totalApostadoRonda(jugador); // mas limpio??
+            vista.mostrarTotalApostado(tot);
         }
         else if(arg.equals(Modelo.EVENTO_SORTEARNUMERO)){            
             buscarNumeroActual();
-            if (!modelo.estaEnEspera(jugador, mesa)) // ojo
+            if (!modelo.estaEnEspera(jugador, mesa)) 
             {
                 vista.habilitar(true);
             }
@@ -102,17 +94,11 @@ public class ControladorMesa implements Observer {
         vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
 
-    public void finalizarApuesta()  { // aca cambiar
+    public void finalizarApuesta()  { // aca cambiar: aunque ahora q veo para mi esta bien
         int sorteado = modelo.finalizarApuesta(mesa);
-        if(sorteado!=-1){
+        if(sorteado!= -1){
             vista.habilitar(true);
-//            try{
             mesa.avisarCheckSaldo();
-//vista.salirDeMesa();
-//            }
-//            catch (InvalidUserActionException ex){
-//                JOptionPane.showMessageDialog(this, ex.getMessage());
-//            }
         }
         else{
             vista.habilitar(false);

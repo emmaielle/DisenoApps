@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import exceptions.InvalidUserActionException;
 import java.util.Observable;
 import java.util.Observer;
 import modelo.Jugador;
@@ -25,17 +26,14 @@ public class ControladorLogin implements Observer{
         vista.habilitar(modelo.isHabilitado());
 
     }
-    public void login(String usr,String pass){ // hay que cambiar
-        if (!modelo.isLogged(usr)){
-            Jugador j = modelo.login(usr, pass);
-            if(j == null){
-                vista.errorLogin();
-            }
-            else{
-                vista.ingresarJugador(j);
-            }
+    public void login(String usr,String pass) throws InvalidUserActionException{ 
+        Jugador j = modelo.login(usr, pass);
+        if(j == null){
+            vista.errorLogin();
         }
-        else vista.errorYaLogueado();
+        else{
+            vista.ingresarJugador(j);
+        }
     }
     
     @Override
