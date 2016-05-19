@@ -17,10 +17,12 @@ public class Ronda {
     private int nroGanador = -1;
     private ArrayList<Apuesta> apuestas = new ArrayList<>();
 
+    // <editor-fold defaultstate="collapsed" desc="Constructor">   
     public Ronda(int numRonda) {
         nroRonda = numRonda;
     }
-
+    //</editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Getters y setters">
     public int getNroGanador() {
         return nroGanador;

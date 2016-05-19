@@ -22,6 +22,7 @@ public class Jugador {
     private boolean statsOn;
     private boolean ganoUltimaRonda = false;
     
+    // <editor-fold defaultstate="collapsed" desc="Constructor">   
     
     public Jugador(String nombre, String password, String nombreCompleto, int saldo) {
         this.nombre = nombre;
@@ -29,7 +30,7 @@ public class Jugador {
         this.nombreCompleto = nombreCompleto;
         this.saldo = saldo;
     }
-    
+    //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
     public String getNombre() {
         return nombre;

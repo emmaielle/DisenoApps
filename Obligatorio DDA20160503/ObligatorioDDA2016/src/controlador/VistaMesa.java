@@ -26,4 +26,5 @@ public interface VistaMesa {
     public void mensajeRonda(String msj);
     public void cerrarVentana();
     public void colorSaldo(Color color);
+    public void colorJugador(Color color);
 }

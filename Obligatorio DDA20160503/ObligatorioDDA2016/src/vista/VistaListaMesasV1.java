@@ -121,6 +121,7 @@ public class VistaListaMesasV1 extends javax.swing.JDialog implements VistaLista
     public void abrirMesa(Mesa m, Jugador j, boolean enEspera) {
         vistaMesa = new VistaMesaV1(m, j);
         vistaMesa.setVisible(true);
+        vistaMesa.setLocationRelativeTo(null);
         vistaMesa.habilitar(!enEspera);
     }
 
