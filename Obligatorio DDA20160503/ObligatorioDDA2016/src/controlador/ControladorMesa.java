@@ -52,8 +52,6 @@ public class ControladorMesa implements Observer {
         }
         else if (arg.equals(Modelo.EVENTO_CHECK_SALDOS)){
             if (jugador.expulsado()) vista.cerrarVentana();
-            if (jugador.getJugador().isGanoUltimaRonda()) vista.colorSaldo(Color.GREEN);
-            else vista.colorSaldo(Color.RED);
         }
         else if(arg.equals(Modelo.EVENTO_ACTUALIZA_SALDOS))
             vista.mostrarSaldo(jugador.getJugador().getSaldo());
