@@ -19,13 +19,15 @@ public class JugadorRuleta {
     private ArrayList<Apuesta> apuestas = new ArrayList<>();
     private boolean apostado;
     
+    // <editor-fold defaultstate="collapsed" desc="Constructor">       
     public JugadorRuleta(Color color, Mesa mesa, Jugador jugador) {
         this.color = color;
         this.mesa = mesa;
         this.jugador = jugador;
         this.apostado = false;
     }
-
+    //</editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
     public Jugador getJugador() {
         return jugador;

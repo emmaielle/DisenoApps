@@ -20,18 +20,24 @@ public class Inicio {
     public static void main(String[] args) {
         // TODO code application logic here
         cargarDatos();
-        new Principal().setVisible(true);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        principal.setLocationRelativeTo(null);
+        
     }
 
     private static void cargarDatos() {
         Modelo m = Modelo.getInstancia();
-        m.agregar(new Jugador("a","a","Maria Eugenia Cremona",1000));
-        m.agregar(new Jugador("b","b","Moira Lasserre",1000));
-        m.agregar(new Jugador("c","c","Gabriel Serrano",1000));
-        m.agregar(new Jugador("d","d","Florencia Polcaro",1000));
-        m.agregar(new Jugador("e","e","Campalans",1000));
-        m.agregar(new Jugador("f","f","Jose Perez",1000));
-
+        m.agregar(new Jugador("a","a","Juan Perez",1000));
+        m.agregar(new Jugador("b","b","Rodrigo Rodriguez",1000));
+        m.agregar(new Jugador("c","c","Roberto Lopez",1000));
+        m.agregar(new Jugador("d","d","Leticia Bueno",1000));
+        m.agregar(new Jugador("e","e","Laura Lorenzo",1000));
+        m.agregar(new Jugador("f","f","Luis Suarez",1000));
+        m.agregar(new Jugador("g","g","Moira Lasserre",1000));
+        m.agregar(new Jugador("h","h","Maria Eugenia Cremona",1000));
+        m.agregar(new Jugador("i","i","Dario Campalans",1000));
+        m.agregar(new Jugador("j","j","Gabriel Serrano",1000));
     }
     
 }

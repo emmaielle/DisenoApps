@@ -22,11 +22,13 @@ public class Mesa {
     private ArrayList<Color> coloresDisp;
     private int cantFinalizados;
     
+    // <editor-fold defaultstate="collapsed" desc="Constructor">   
     public Mesa(String nombre) {
         this.nombre = nombre;
         initMesa();
     }
-
+ // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Getters y setters">   
     public ArrayList<Color> getColoresDisp() {
         if (coloresDisp == null){

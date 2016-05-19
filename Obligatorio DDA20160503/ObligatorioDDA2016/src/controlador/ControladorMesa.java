@@ -81,7 +81,7 @@ public class ControladorMesa implements Observer {
         vista.mostrarSaldo(jugador.getJugador().getSaldo());
     }
 
-    public void finalizarApuesta()  { // ahora q veo para mi esta bien
+    public void finalizarApuesta()  { 
         int sorteado = modelo.finalizarApuesta(mesa);
         if(sorteado!= -1){
             vista.habilitar(true);
@@ -105,5 +105,9 @@ public class ControladorMesa implements Observer {
     
     public void eliminarObservador() {
         modelo.deleteObserver(this);
+    }
+
+    public void colorJugador(Color color) {
+        vista.colorJugador(color);
     }
 }

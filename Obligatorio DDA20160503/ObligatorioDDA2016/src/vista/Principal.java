@@ -62,6 +62,7 @@ public class Principal extends javax.swing.JFrame {
         VistaLoginV1 vistaLogin = new VistaLoginV1(this,false);
         vistasLogin.add(vistaLogin);
         vistaLogin.setVisible(true);
+        vistaLogin.setLocationRelativeTo(this);
     }
     
     private void finalizar() {

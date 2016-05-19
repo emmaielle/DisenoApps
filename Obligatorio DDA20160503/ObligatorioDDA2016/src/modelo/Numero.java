@@ -16,11 +16,13 @@ public class Numero {
     private Color color; // el color por defecto
     private Apuesta apuesta;
 
+    // <editor-fold defaultstate="collapsed" desc="Constructor">   
     public Numero(int valor, Color color) {
         this.valor = valor;
         this.color = color;
     }
-
+    //</editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Getters y setters"> 
     public int getValor() {
         return valor;

@@ -46,6 +46,7 @@ public class PanelDatos extends javax.swing.JPanel {
         lbl_mensajes = new javax.swing.JLabel();
         lbl_total_apostado1 = new javax.swing.JLabel();
         lbl_totalApostadoRonda = new javax.swing.JLabel();
+        lbl_color = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -116,6 +117,10 @@ public class PanelDatos extends javax.swing.JPanel {
         lbl_totalApostadoRonda.setText("0");
         add(lbl_totalApostadoRonda);
         lbl_totalApostadoRonda.setBounds(110, 94, 40, 20);
+
+        lbl_color.setText("Mi Color");
+        add(lbl_color);
+        lbl_color.setBounds(490, 20, 70, 14);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_finalizarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarAActionPerformed
@@ -140,6 +145,7 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_color;
     private javax.swing.JLabel lbl_mensajes;
     private javax.swing.JLabel lbl_saldo;
     private javax.swing.JLabel lbl_total;
@@ -199,6 +205,10 @@ public class PanelDatos extends javax.swing.JPanel {
 
     public void colorSaldo(Color color) {
         lbl_saldo.setForeground(color);
+    }
+
+    public void colorJugador(Color color) {
+        lbl_color.setForeground(color);
     }
 
 }
